@@ -167,4 +167,7 @@ Dependencies/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+### Mac ###
+.DS_STORE
+
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,c++,objective-c
