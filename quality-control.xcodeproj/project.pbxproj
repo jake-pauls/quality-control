@@ -58,14 +58,14 @@
 		40BF4A8A27A1E8F500D45FB6 /* quality-control */ = {
 			isa = PBXGroup;
 			children = (
+				40BF4A9127A1E8F500D45FB6 /* Main.storyboard */,
+				40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */,
+				40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */,
+				40BF4A9927A1E8F600D45FB6 /* Info.plist */,
+				40A987E827A9AEA4003B5236 /* vendor */,
 				40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */,
 				40BF4A8D27A1E8F500D45FB6 /* SceneDelegate.swift */,
 				40BF4A8F27A1E8F500D45FB6 /* ViewController.swift */,
-				40BF4A9127A1E8F500D45FB6 /* Main.storyboard */,
-				40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */,
-				40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */,
-				40BF4A9927A1E8F600D45FB6 /* Info.plist */,
-				40A987E827A9AEA4003B5236 /* vendor */,
 			);
 			path = "quality-control";
 			sourceTree = "<group>";
@@ -212,6 +212,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"GLES_SILENCE_DEPRECATION=1",
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -270,6 +271,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "GLES_SILENCE_DEPRECATION=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
