@@ -7,12 +7,13 @@
 
 #include "Cube.hpp"
 
-Cube::Cube() {}
+Cube::Cube()
+{ }
 
 /// Awake is called when the object is initialized at setup
 void Cube::Awake()
 {
-    isRotating = false;
+    isRotating = true;
     isTranslating = false;
     isScaling = false;
     

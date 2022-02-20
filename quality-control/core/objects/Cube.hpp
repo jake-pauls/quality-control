@@ -12,6 +12,7 @@ class Cube : public GameObject
 public:
     Cube();
     
+    // Implement lifecycle methods
     void Awake();
     void Draw();
     void Update();

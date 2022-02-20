@@ -15,7 +15,7 @@ bool GLLogCall(const char* function, const char* file, int lineNumber)
     
     while((error = glGetError()))
     {
-        std::cout << "[OpenGLES Error] #" << error << " - " << function << "::" << file << "::" << lineNumber << std::endl;
+        std::cout << "[OpenGLES Error] #" << error << " - " << file << "::" << function << "(" << lineNumber << ")" << std::endl;
         return false;
     }
     

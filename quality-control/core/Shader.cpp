@@ -10,11 +10,75 @@
 #include "Shader.hpp"
 #include "Assert.hpp"
 
+Shader::Shader()
+{ }
+
+Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFilePath) : _filePaths{vertexFilePath, fragmentFilePath}, _rendererID(0)
+{
+    ProgramSource source {
+        ParseShader(vertexFilePath).vertexSource,
+        ParseShader(fragmentFilePath).fragmentSource
+    };
+    
+    _rendererID = CreateShader(source.vertexSource, source.fragmentSource);
+    
+    LOG("Shader program object created for shader with ID #" << _rendererID);
+    
+    GL_CALL(glUseProgram(_rendererID));
+}
+
+Shader::~Shader()
+{
+    GL_CALL(glDeleteProgram(_rendererID));
+}
+
+void Shader::Bind()
+{
+    GL_CALL(glUseProgram(_rendererID));
+}
+
+void Shader::Unbind()
+{
+    GL_CALL(glUseProgram(0));
+}
+
+/**
+ * Retrieves the program ID for a particular uniform on a Shader
+ * Used locally for an easier API in setting uniform values
+ */
+int Shader::GetUniformLocation(const std::string& name)
+{
+    // Return uniform location if it exists in the cache
+    if (_uniformLocations.find(name) != _uniformLocations.end())
+        return _uniformLocations[name];
+    
+    // Check if uniform exists and add it to cache
+    LOG("Searching for " << name << " on Shader with ID " << _rendererID);
+    GL_CALL(int location = glGetUniformLocation(_rendererID, name.c_str()));
+    
+    if (location == -1)
+        LOG("WARN: Uniform \"" << name << "\" not found on shader with ID " << _rendererID);
+    
+    _uniformLocations[name] = location;
+
+    return location;
+}
+
+void Shader::SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3)
+{
+    GL_CALL(glUniform4f(GetUniformLocation(name), f0, f1, f2, f3));
+}
+
+void Shader::SetUniformMatrix4fv(const std::string& name, const GLfloat* matrix)
+{
+    GL_CALL(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, matrix));
+}
+
 /**
  * Parses shader with a header format -> #shader TYPE
  * Allows to combine vertex/fragment shaders in a single file if small and/or tightly coupled
  */
-Shader::ProgramSource Shader::parseShader(const std::string& fileName)
+Shader::ProgramSource Shader::ParseShader(const std::string& fileName)
 {
     std::ifstream stream(fileName);
     
@@ -47,7 +111,7 @@ Shader::ProgramSource Shader::parseShader(const std::string& fileName)
 /**
  * Compiles shaders from a string with shader contents
  */
-GLenum Shader::compileShader(GLenum type, const std::string& source)
+GLenum Shader::CompileShader(GLenum type, const std::string& source)
 {
     GLenum shaderId = glCreateShader(type);
     const char* src = source.c_str();
@@ -81,11 +145,11 @@ GLenum Shader::compileShader(GLenum type, const std::string& source)
  * Compiles, creates, and attaches shader programs
  * Discards/deletes shaders from state after creation
  */
-GLuint Shader::createShader(const std::string& vertexShader, const std::string& fragmentShader)
+GLuint Shader::CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
 {
     GLuint glProgram = glCreateProgram();
-    GLenum vs = compileShader(GL_VERTEX_SHADER, vertexShader);
-    GLenum fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
+    GLenum vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
+    GLenum fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
     
     // Attach, Link, and Validate shader program
     GL_CALL(glAttachShader(glProgram, vs));

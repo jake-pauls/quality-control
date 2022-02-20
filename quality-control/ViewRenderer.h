@@ -9,7 +9,6 @@
 
 @interface ViewRenderer : NSObject
 
-- (void)load;
 - (void)setup:(GLKView*)view;
 - (void)update;
 - (void)draw;

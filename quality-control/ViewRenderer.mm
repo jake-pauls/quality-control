@@ -4,46 +4,33 @@
 
 #import <Foundation/Foundation.h>
 
-#include <chrono>
 #include <iostream>
+#include <chrono>
+#include <vector>
 
 #import "ViewRenderer.h"
 
 #include "Renderer.hpp"
 #include "Game.hpp"
+#include "Mesh.hpp"
 #include "Shader.hpp"
 #include "Assert.hpp"
 
 #include "Cube.hpp"
 
-enum
-{
-    UNIFORM_MVP_MATRIX,
-    NUM_UNIFORMS,
-};
-
 @interface ViewRenderer() {
     GLKView* _view;
     Game game;
     Cube cube;
+    Mesh cubeMesh;
+    Shader shader;
     
     glm::mat4 _modelViewMatrix;
-    GLint uniforms[NUM_UNIFORMS];
-    
-    // TODO: Refactor please
-    Renderer renderer;
-    float *vertices, *normals, *texCoords;
-    int *indices, numberOfIndices;
 }
 
 @end
 
 @implementation ViewRenderer
-
-- (void)load
-{
-    numberOfIndices = renderer.drawCube(1.0f, &vertices, &normals, &texCoords, &indices);
-}
 
 /**
  * Sets up OpenGLES context and extract data from view
@@ -71,10 +58,32 @@ enum
     GL_CALL(glEnable(GL_BLEND));
     
     cube.Awake();
+    cubeMesh = game.renderer.ParseCubeVertexData();
+}
+
+- (void)draw
+{
+    // Check if we can update the drawableWidth/Height before rendering objects
+    if (game.renderer.drawableWidth != _view.drawableWidth)
+        game.renderer.drawableWidth = _view.drawableWidth;
+    
+    if (game.renderer.drawableHeight != _view.drawableHeight)
+        game.renderer.drawableHeight = _view.drawableHeight;
+    
+    game.Render();
+    
+    cube.Draw();
+    
+    shader.SetUniform4f("_color", 0.0f, 1.0f, 0.0f, 1.0f);
+    shader.SetUniformMatrix4fv("_mvpMatrix", &_modelViewMatrix[0][0]);
+    cubeMesh.Draw();
 }
 
 - (void)update
 {
+    // TODO: Add cube to global gameObject set
+    // game.Update()
+    
     cube.Update();
     
     // Only recalculate this matrix if an object actually moves in space
@@ -83,37 +92,9 @@ enum
     }
 }
 
-- (void)draw
-{
-    cube.Draw();
-    
-    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, GL_FALSE, &_modelViewMatrix[0][0]));
-    
-    // Clean viewport
-    GL_CALL(glViewport(0, 0, (int) _view.drawableWidth, (int) _view.drawableHeight));
-    GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-    
-    // Setup vertex attributes
-    GL_CALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), vertices));
-    GL_CALL(glEnableVertexAttribArray(0));
-    
-    GL_CALL(glVertexAttrib4f(1, 0.0f, 1.0f, 0.0f, 1.0f));
-    
-    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, GL_FALSE, &_modelViewMatrix[0][0]));
-    GL_CALL(glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, indices));
-}
-
 - (bool)setupShaders
 {
-    Shader::ProgramSource shaderSource;
-    shaderSource.vertexSource = Shader().parseShader([self retrieveFilePathByName:"Shader.vsh"]).vertexSource;
-    shaderSource.fragmentSource = Shader().parseShader([self retrieveFilePathByName:"Shader.fsh"]).fragmentSource;
-
-    GLuint programObject = Shader().createShader(shaderSource.vertexSource, shaderSource.fragmentSource);
-    GL_CALL(glUseProgram(programObject));
-    ASSERT(programObject != 0)
-
-    uniforms[UNIFORM_MVP_MATRIX] = glGetUniformLocation(programObject, "modelViewProjectionMatrix");
+    shader = Shader([self retrieveFilePathByName:"Shader.vsh"], [self retrieveFilePathByName:"Shader.fsh"]);
 
     return true;
 }

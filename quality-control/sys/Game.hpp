@@ -5,10 +5,12 @@
 #ifndef Game_hpp
 #define Game_hpp
 
+#include <OpenGLES/ES3/gl.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <OpenGLES/ES3/gl.h>
+
+#include "Renderer.hpp"
 
 class Game
 {
@@ -22,16 +24,18 @@ public:
     void Awake();
     
     // Game Loops
-    void Update(GLfloat deltaTime);
     void Render();
+    void Update(GLfloat deltaTime);
+
+public:
+    Renderer renderer;
+    
+    glm::mat4 projectionMatrix;
+    glm::mat4 viewMatrix;
     
 private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
-
-public:
-    glm::mat4 projectionMatrix;
-    glm::mat4 viewMatrix;
 };
 
 #endif /* Game_hpp */

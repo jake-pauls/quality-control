@@ -3,12 +3,15 @@
 // 2022-02-19
 
 #include "Game.hpp"
+#include "Renderer.hpp"
+#include "Assert.hpp"
 
-#include <iostream>
+Game::Game()
+{ }
 
-Game::Game() {}
-
-Game::Game(GLfloat viewWidth, GLfloat viewHeight) : _viewWidth(viewWidth), _viewHeight(viewHeight) {}
+Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
+    _viewWidth(viewWidth), _viewHeight(viewHeight)
+{ }
 
 /**
  * Sets the default aspect ratio for the viewport "camera"
@@ -34,14 +37,16 @@ void Game::Awake()
     // For all gameObjects in scene, call gameObject.Awake()
 }
 
+void Game::Render()
+{
+    // Render all game objects
+    // For all gameObjects in scene, call Renderer.Draw(gameObject)
+    renderer.Clear();
+}
+
 void Game::Update(GLfloat deltaTime)
 {
     // Update all game objects
     // For all gameObjects in scene, call gameObject.Update()
 }
 
-void Game::Render()
-{
-    // Render all game objects
-    // For all gameObjects in scene, call Renderer.Draw(gameObject)
-}

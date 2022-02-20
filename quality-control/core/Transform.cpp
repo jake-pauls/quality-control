@@ -52,7 +52,7 @@ glm::mat4 Transform::GetModelMatrix()
     if (_rotationMatrix == zeroMatrix)
         _rotationMatrix = identityMatrix;
     
-    return _translationMatrix * _rotationMatrix * _scalingMatrix;
+    return _scalingMatrix * _translationMatrix * _rotationMatrix;
 }
 
 /**

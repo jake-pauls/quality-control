@@ -8,6 +8,9 @@
 #include <iostream>
 #include <OpenGLES/ES3/gl.h>
 
+#define LOG(x) \
+    std::cout << "[QualityControl::" __FILE__ << "(" << __LINE__ << ")]" << x << std::endl;
+
 #define ASSERT(x) if (!(x)) {}
 
 #define GL_CALL(x) GLClearErrors();\
