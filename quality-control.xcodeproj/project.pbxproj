@@ -15,6 +15,8 @@
 		40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */; };
 		40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */; };
 		9C9CF4C027C18C8300650B07 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD53AC27C0C14000B4C46C /* Shader.vsh */; };
+		9C9CF4C327C1A8A800650B07 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C127C1A8A800650B07 /* Game.cpp */; };
+		9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C527C1BD0600650B07 /* Cube.cpp */; };
 		9CAD53A527C0BFBF00B4C46C /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD53A327C0BFBF00B4C46C /* Shader.cpp */; };
 		9CAD53AE27C0C18C00B4C46C /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD53AD27C0C18C00B4C46C /* Shader.fsh */; };
 		9CAD53B127C0C2FC00B4C46C /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD53AF27C0C2FC00B4C46C /* GameObject.cpp */; };
@@ -34,6 +36,10 @@
 		40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40BF4A9727A1E8F600D45FB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40BF4A9927A1E8F600D45FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C9CF4C127C1A8A800650B07 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		9C9CF4C227C1A8A800650B07 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		9C9CF4C527C1BD0600650B07 /* Cube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
+		9C9CF4C627C1BD0600650B07 /* Cube.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cube.hpp; sourceTree = "<group>"; };
 		9CAD53A327C0BFBF00B4C46C /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		9CAD53A427C0BFBF00B4C46C /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		9CAD53AC27C0C14000B4C46C /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
@@ -101,6 +107,15 @@
 			path = "quality-control";
 			sourceTree = "<group>";
 		};
+		9C9CF4C427C1BCE700650B07 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				9C9CF4C527C1BD0600650B07 /* Cube.cpp */,
+				9C9CF4C627C1BD0600650B07 /* Cube.hpp */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
 		9CAD53A227C0BF9D00B4C46C /* sys */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +147,13 @@
 		9CE555B827C06EAB00FC6A72 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				9C9CF4C427C1BCE700650B07 /* objects */,
 				9CAD53AF27C0C2FC00B4C46C /* GameObject.cpp */,
 				9CAD53B027C0C2FC00B4C46C /* GameObject.hpp */,
 				9CAD53B227C0C3A800B4C46C /* Transform.cpp */,
 				9CAD53B327C0C3A800B4C46C /* Transform.hpp */,
+				9C9CF4C127C1A8A800650B07 /* Game.cpp */,
+				9C9CF4C227C1A8A800650B07 /* Game.hpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -216,8 +234,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CAD53B727C0C99300B4C46C /* Renderer.cpp in Sources */,
+				9C9CF4C327C1A8A800650B07 /* Game.cpp in Sources */,
 				9CE555BB27C06ED700FC6A72 /* ViewRenderer.mm in Sources */,
 				40BF4A9027A1E8F500D45FB6 /* ViewController.swift in Sources */,
+				9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */,
 				9CAD53B427C0C3A800B4C46C /* Transform.cpp in Sources */,
 				40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */,
 				9CE555BF27C0710700FC6A72 /* Assert.cpp in Sources */,

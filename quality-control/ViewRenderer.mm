@@ -3,13 +3,21 @@
 // 2022-02-18
 
 #import <Foundation/Foundation.h>
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 #include <chrono>
+#include <iostream>
 
 #import "ViewRenderer.h"
 
 #include "Renderer.hpp"
+#include "Game.hpp"
 #include "Shader.hpp"
 #include "Assert.hpp"
+
+#include "Cube.hpp"
 
 enum
 {
@@ -19,7 +27,10 @@ enum
 
 @interface ViewRenderer() {
     GLKView* _view;
-    GLKMatrix4 _modelViewMatrix;
+    Game game;
+    Cube cube;
+    
+    glm::mat4 _modelViewMatrix;
     GLint uniforms[NUM_UNIFORMS];
     
     // TODO: Refactor please
@@ -50,10 +61,14 @@ enum
     view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     ASSERT(view.context);
     
+    [EAGLContext setCurrentContext:view.context];
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     _view = view;
     
-    [EAGLContext setCurrentContext:view.context];
+    // Create game context
+    Game gameInstance(_view.bounds.size.width, _view.bounds.size.height);
+    game = gameInstance;
+    game.Init();
     
     // Setup shaders
     ASSERT([self setupShaders]);
@@ -70,6 +85,8 @@ enum
 
 - (void)update
 {
+    cube.Update();
+    
     // TODO: Refactor rotation logic
     auto currentTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
@@ -83,23 +100,16 @@ enum
             rotAngle = 0.0f;
     }
     
-    // Update translation matrices
-    _modelViewMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0, 0.0, -5.0);
-    _modelViewMatrix = GLKMatrix4Rotate(_modelViewMatrix, rotAngle, 1.0, 0.0, 1.0 );
-    
-    // Create and apply the normal matrix
-    GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(_modelViewMatrix), NULL);
-
-    // Define perspective view based on aspect ratio
-    float aspectRatio = (float) _view.drawableWidth / (float) _view.drawableHeight;
-    GLKMatrix4 perspective = GLKMatrix4MakePerspective(60.0f * M_PI / 180.0f, aspectRatio, 1.0f, 20.0f);
-
-    _modelViewMatrix = GLKMatrix4Multiply(perspective, _modelViewMatrix);
+    // Update MVP matrix
+    _modelViewMatrix = glm::rotate(rotAngle, glm::vec3(1.0, 0.0, 1.0));
+    _modelViewMatrix = game.projectionMatrix * game.viewMatrix * _modelViewMatrix;
 }
 
 - (void)draw
 {
-    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) _modelViewMatrix.m));
+    cube.Draw();
+    
+    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, GL_FALSE, &_modelViewMatrix[0][0]));
     
     // Clean viewport
     GL_CALL(glViewport(0, 0, (int) _view.drawableWidth, (int) _view.drawableHeight));
@@ -111,7 +121,7 @@ enum
     
     GL_CALL(glVertexAttrib4f(1, 0.0f, 1.0f, 0.0f, 1.0f));
     
-    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, FALSE, (const float *) _modelViewMatrix.m));
+    GL_CALL(glUniformMatrix4fv(uniforms[UNIFORM_MVP_MATRIX], 1, GL_FALSE, &_modelViewMatrix[0][0]));
     GL_CALL(glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, indices));
 }
 

@@ -16,7 +16,7 @@ public:
     glm::vec3 rotation;
     glm::vec3 scale;
     
-    void translate();
+    void Translate();
 };
 
 #endif /* Transform_hpp */

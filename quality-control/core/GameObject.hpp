@@ -5,17 +5,21 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
-#include "Transform.hpp"
+#include <OpenGLES/ES3/gl.h>
 
 class GameObject
 {
 public:
     // Model, Texture, etc.
-    Transform transform;
+    // Transform transform;
     
 public:
-    void draw();
-    virtual void update();
+    virtual void Draw();
+    virtual void Update();
+    
+protected:
+    float *_vertices, *_normals, *_textureCoords;
+    GLuint _indices, _numberOfIndices;
 };
 
 #endif /* GameObject_hpp */

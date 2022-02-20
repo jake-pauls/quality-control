@@ -4,3 +4,6 @@
 
 #include "GameObject.hpp"
 
+void GameObject::Draw() {}
+
+void GameObject::Update() {}
