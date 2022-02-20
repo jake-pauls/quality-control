@@ -3,9 +3,6 @@
 // 2022-02-18
 
 #import <Foundation/Foundation.h>
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 #include <chrono>
 #include <iostream>
@@ -34,7 +31,6 @@ enum
     GLint uniforms[NUM_UNIFORMS];
     
     // TODO: Refactor please
-    std::chrono::time_point<std::chrono::steady_clock> lastTime;
     Renderer renderer;
     float *vertices, *normals, *texCoords;
     int *indices, numberOfIndices;
@@ -43,10 +39,6 @@ enum
 @end
 
 @implementation ViewRenderer
-
-// TODO: Refactor please
-@synthesize isRotating;
-@synthesize rotAngle;
 
 - (void)load
 {
@@ -78,31 +70,17 @@ enum
     GL_CALL(glEnable(GL_CULL_FACE));
     GL_CALL(glEnable(GL_BLEND));
     
-    rotAngle = 0.0f;
-    isRotating = 1;
-    lastTime = std::chrono::steady_clock::now();
+    cube.Awake();
 }
 
 - (void)update
 {
     cube.Update();
     
-    // TODO: Refactor rotation logic
-    auto currentTime = std::chrono::steady_clock::now();
-    auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
-    lastTime = currentTime;
-    
-    if (isRotating)
-    {
-        rotAngle += 0.001f * elapsedTime;
-        
-        if (rotAngle >= 360.0f)
-            rotAngle = 0.0f;
+    // Only recalculate this matrix if an object actually moves in space
+    if (cube.transform.IsModelMatrixUpdated()) {
+        _modelViewMatrix = game.projectionMatrix * game.viewMatrix * cube.transform.GetModelMatrix();
     }
-    
-    // Update MVP matrix
-    _modelViewMatrix = glm::rotate(rotAngle, glm::vec3(1.0, 0.0, 1.0));
-    _modelViewMatrix = game.projectionMatrix * game.viewMatrix * _modelViewMatrix;
 }
 
 - (void)draw

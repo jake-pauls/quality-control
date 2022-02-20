@@ -18,6 +18,9 @@ public:
     
     void Init();
     
+    // Setup for gameObjects
+    void Awake();
+    
     // Game Loops
     void Update(GLfloat deltaTime);
     void Render();

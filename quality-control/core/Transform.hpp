@@ -5,7 +5,12 @@
 #ifndef Transform_hpp
 #define Transform_hpp
 
+#define GLM_FORCE_SWIZZLE
+
 #include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 class Transform
 {
@@ -16,7 +21,20 @@ public:
     glm::vec3 rotation;
     glm::vec3 scale;
     
-    void Translate();
+    void Translate(float x, float y, float z);
+    void Rotate(float xAngle, float yAngle, float zAngle);
+    void Scale(glm::vec3 scaleFactor);
+    
+    bool IsModelMatrixUpdated();
+    glm::mat4 GetModelMatrix();
+    
+private:
+    glm::mat4 _rotationMatrix;
+    glm::mat4 _translationMatrix;
+    glm::mat4 _scalingMatrix;
+    
+    // Used for comparing model matrices between frames
+    glm::mat4 _lastModelMatrix;
 };
 
 #endif /* Transform_hpp */

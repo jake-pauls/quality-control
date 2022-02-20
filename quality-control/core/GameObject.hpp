@@ -6,14 +6,17 @@
 #define GameObject_hpp
 
 #include <OpenGLES/ES3/gl.h>
+#include <glm/glm.hpp>
+
+#include "Transform.hpp"
 
 class GameObject
 {
 public:
-    // Model, Texture, etc.
-    // Transform transform;
+    Transform transform;
     
 public:
+    virtual void Awake();
     virtual void Draw();
     virtual void Update();
     

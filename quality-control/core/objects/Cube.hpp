@@ -7,13 +7,29 @@
 
 #include "GameObject.hpp"
 
-class Cube : GameObject
+class Cube : public GameObject
 {
 public:
     Cube();
     
+    void Awake();
     void Draw();
     void Update();
+    
+public:
+    // Rotation testing
+    float rotAngle;
+    bool isRotating;
+    
+    // Translation testing
+    bool isRight;
+    bool isTranslating;
+    
+    // Scale testing
+    bool isMovingForward;
+    bool isScaling;
+    
+    std::chrono::time_point<std::chrono::steady_clock> lastTime;
 };
 
 #endif /* Cube_hpp */

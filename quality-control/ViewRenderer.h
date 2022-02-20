@@ -9,10 +9,6 @@
 
 @interface ViewRenderer : NSObject
 
-// TODO: Refactor please
-@property float rotAngle;
-@property bool isRotating;
-
 - (void)load;
 - (void)setup:(GLKView*)view;
 - (void)update;

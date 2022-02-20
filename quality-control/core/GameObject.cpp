@@ -4,6 +4,8 @@
 
 #include "GameObject.hpp"
 
+void GameObject::Awake() {}
+
 void GameObject::Draw() {}
 
 void GameObject::Update() {}
