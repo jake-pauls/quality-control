@@ -6,14 +6,14 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-
 #include "Shader.hpp"
 #include "Assert.hpp"
 
 Shader::Shader()
 { }
 
-Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFilePath) : _filePaths{vertexFilePath, fragmentFilePath}, _rendererID(0)
+Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFilePath)
+    : _filePaths{vertexFilePath, fragmentFilePath}, _rendererID(0)
 {
     ProgramSource source {
         ParseShader(vertexFilePath).vertexSource,

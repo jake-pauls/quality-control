@@ -10,22 +10,12 @@
 
 #import "ViewRenderer.h"
 
-#include "Renderer.hpp"
 #include "Game.hpp"
-#include "Mesh.hpp"
-#include "Shader.hpp"
 #include "Assert.hpp"
-
-#include "Cube.hpp"
 
 @interface ViewRenderer() {
     GLKView* _view;
     Game game;
-    Cube cube;
-    Mesh cubeMesh;
-    Shader shader;
-    
-    glm::mat4 _modelViewMatrix;
 }
 
 @end
@@ -33,7 +23,8 @@
 @implementation ViewRenderer
 
 /**
- * Sets up OpenGLES context and extract data from view
+ * Sets up OpenGLES context with default settings
+ * Extracts data from GLKView
  */
 - (void)setup:(GLKView*) view
 {
@@ -44,21 +35,20 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     _view = view;
     
-    // Create game context
-    Game gameInstance(_view.bounds.size.width, _view.bounds.size.height);
-    game = gameInstance;
-    game.Init();
-    
-    // Setup shaders
-    ASSERT([self setupShaders]);
-    
     GL_CALL(glClearColor(0, 0, 0, 0));
     GL_CALL(glEnable(GL_DEPTH_TEST));
     GL_CALL(glEnable(GL_CULL_FACE));
     GL_CALL(glEnable(GL_BLEND));
+}
+
+// MARK: Lifecycle Methods (Awake, Draw, Update)
+
+- (void)awake
+{
+    game = Game(_view.bounds.size.width, _view.bounds.size.height);
+    game.Init();
     
-    cube.Awake();
-    cubeMesh = game.renderer.ParseCubeVertexData();
+    game.Awake();
 }
 
 - (void)draw
@@ -71,37 +61,27 @@
         game.renderer.drawableHeight = _view.drawableHeight;
     
     game.Render();
-    
-    cube.Draw();
-    
-    shader.SetUniform4f("_color", 0.0f, 1.0f, 0.0f, 1.0f);
-    shader.SetUniformMatrix4fv("_mvpMatrix", &_modelViewMatrix[0][0]);
-    cubeMesh.Draw();
 }
 
 - (void)update
 {
-    // TODO: Add cube to global gameObject set
-    // game.Update()
-    
-    cube.Update();
-    
-    // Only recalculate this matrix if an object actually moves in space
-    if (cube.transform.IsModelMatrixUpdated()) {
-        _modelViewMatrix = game.projectionMatrix * game.viewMatrix * cube.transform.GetModelMatrix();
-    }
+    game.Update();
 }
 
-- (bool)setupShaders
-{
-    shader = Shader([self retrieveFilePathByName:"Shader.vsh"], [self retrieveFilePathByName:"Shader.fsh"]);
-
-    return true;
-}
-
-- (const char*)retrieveFilePathByName:(const char*)fileName
+/**
+ * Retrieves a file path within the Xcode project using NSStrings
+ */
++ (const char*)RetrieveFilePathByName:(const char*)fileName
 {
     return [[[NSBundle mainBundle] pathForResource:[[NSString stringWithUTF8String:fileName] stringByDeletingPathExtension] ofType:[[NSString stringWithUTF8String:fileName] pathExtension]] cStringUsingEncoding:1];
+}
+
+/**
+ * "Trampoline" C function called by C++ to retrieve Objective-C++ file path
+ */
+const char* RetrieveObjectiveCPath(const char* fileName)
+{
+    return [ViewRenderer RetrieveFilePathByName: fileName];
 }
 
 @end

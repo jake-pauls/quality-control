@@ -7,11 +7,17 @@
 
 #import <GLKit/GLKit.h>
 
+#include "Obj-C-Utils-Interface.h"
+
 @interface ViewRenderer : NSObject
 
 - (void)setup:(GLKView*)view;
+- (void)awake;
 - (void)update;
 - (void)draw;
+
+// Called from C++ to load shader files
++ (const char*)RetrieveFilePathByName:(const char*)fileName;
 
 @end
 

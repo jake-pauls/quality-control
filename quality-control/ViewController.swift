@@ -5,7 +5,9 @@
 import GLKit
 
 extension ViewController: GLKViewControllerDelegate {
-    // Perform core rendering updates
+    /**
+     * Performs core rendering updates
+     */
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
     }
@@ -15,7 +17,10 @@ class ViewController: GLKViewController {
     private var context: EAGLContext?
     private var viewRenderer: ViewRenderer!
     
-    // Initializes the GL view, required to obtain viewport size
+    /**
+     * Initializes the GL view from a Swift context
+     * Awakens and initializes the game state
+     */
     private func setupView() {
         context = EAGLContext(api: .openGLES3)
         EAGLContext.setCurrent(context)
@@ -26,7 +31,7 @@ class ViewController: GLKViewController {
             
             viewRenderer = ViewRenderer()
             viewRenderer.setup(view)
-            viewRenderer.load()
+            viewRenderer.awake()
         }
     }
     
@@ -35,8 +40,10 @@ class ViewController: GLKViewController {
         self.setupView()
     }
     
+    /**
+     * Perform all core draw calls
+     */
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        // Perform core draw calls
         viewRenderer.draw()
     }
 }

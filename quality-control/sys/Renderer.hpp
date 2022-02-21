@@ -15,10 +15,8 @@ class Renderer
 {
 public:
     void Clear();
-    void Draw(GameObject* gameObject);
     
-    Mesh ParseCubeVertexData();
-    int AllocateMemory(float scale, float **vertices, float **normals, float **texCoords, int **indices);
+    static Mesh ParseCubeVertexData();
     
     GLfloat drawableWidth;
     GLfloat drawableHeight;

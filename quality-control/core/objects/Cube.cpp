@@ -5,7 +5,11 @@
 #include <iostream>
 #include <chrono>
 
+#include "Obj-C-Utils-Interface.h"
+
 #include "Cube.hpp"
+#include "Game.hpp"
+#include "Assert.hpp"
 
 Cube::Cube()
 { }
@@ -13,6 +17,13 @@ Cube::Cube()
 /// Awake is called when the object is initialized at setup
 void Cube::Awake()
 {
+    // Setup Cube Mesh
+    this->mesh = Renderer().ParseCubeVertexData();
+    
+    // Setup Cube Shader
+    this->shader = Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
+    
+    // Game Logic
     isRotating = true;
     isTranslating = false;
     isScaling = false;
@@ -22,7 +33,15 @@ void Cube::Awake()
 
 /// Draw is called when the renderer processes draw calls
 void Cube::Draw()
-{ }
+{
+    // Set shader uniforms
+    glm::mat4 mvp = this->_mvpMatrix;
+    this->shader.SetUniform4f("_color", 0.0f, 1.0f, 0.0f, 1.0f);
+    this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
+    
+    // Draw cube mesh
+    this->mesh.Draw();
+}
 
 /// Update is called once per frame
 void Cube::Update()

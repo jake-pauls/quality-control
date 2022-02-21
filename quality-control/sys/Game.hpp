@@ -5,6 +5,7 @@
 #ifndef Game_hpp
 #define Game_hpp
 
+#include <set>
 #include <OpenGLES/ES3/gl.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -12,11 +13,19 @@
 
 #include "Renderer.hpp"
 
+typedef std::set<GameObject *> GameObjectSet;
+
 class Game
 {
+private:
+    void InitializeGameObjects();
+    
 public:
     Game();
     Game(GLfloat viewWidth, GLfloat viewHeight);
+    
+    // Static set of global game objects
+    GameObjectSet g_GameObjects;
     
     void Init();
     
@@ -25,17 +34,17 @@ public:
     
     // Game Loops
     void Render();
-    void Update(GLfloat deltaTime);
+    void Update();
 
+private:
+    GLfloat _viewWidth;
+    GLfloat _viewHeight;
+    
 public:
     Renderer renderer;
     
     glm::mat4 projectionMatrix;
     glm::mat4 viewMatrix;
-    
-private:
-    GLfloat _viewWidth;
-    GLfloat _viewHeight;
 };
 
 #endif /* Game_hpp */

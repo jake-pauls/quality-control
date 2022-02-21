@@ -21,6 +21,7 @@ public:
     glm::vec3 rotation;
     glm::vec3 scale;
     
+    // API methods
     void Translate(float x, float y, float z);
     void Rotate(float xAngle, float yAngle, float zAngle);
     void Scale(glm::vec3 scaleFactor);

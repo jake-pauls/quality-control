@@ -113,9 +113,6 @@ GLuint cubeIndices[] =
     20, 22, 21
 };
 
-void Renderer::Draw(GameObject* gameObject)
-{ }
-
 /**
  * Clears the viewport before each draw call
  */
@@ -125,6 +122,9 @@ void Renderer::Clear()
     GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
+/**
+ * Uses the global cube data above to parse cube data into a mesh
+ */
 Mesh Renderer::ParseCubeVertexData()
 {
     std::vector<Vertex> vertices;
