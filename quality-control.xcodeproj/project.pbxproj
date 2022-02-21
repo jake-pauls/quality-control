@@ -15,6 +15,7 @@
 		40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */; };
 		40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */; };
 		9C26E07127C220E400522AFF /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C26E06F27C220E400522AFF /* Mesh.cpp */; };
+		9C2FB47327C3152500AE1F69 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FB47127C3152500AE1F69 /* Platform.cpp */; };
 		9C9CF4C027C18C8300650B07 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD53AC27C0C14000B4C46C /* Shader.vsh */; };
 		9C9CF4C327C1A8A800650B07 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C127C1A8A800650B07 /* Game.cpp */; };
 		9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C527C1BD0600650B07 /* Cube.cpp */; };
@@ -40,6 +41,8 @@
 		9C26E06F27C220E400522AFF /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		9C26E07027C220E400522AFF /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		9C2FB47027C2FB5A00AE1F69 /* Obj-C-Utils-Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Obj-C-Utils-Interface.h"; sourceTree = "<group>"; };
+		9C2FB47127C3152500AE1F69 /* Platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Platform.cpp; sourceTree = "<group>"; };
+		9C2FB47227C3152500AE1F69 /* Platform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Platform.hpp; sourceTree = "<group>"; };
 		9C9CF4C127C1A8A800650B07 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		9C9CF4C227C1A8A800650B07 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		9C9CF4C527C1BD0600650B07 /* Cube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 			children = (
 				9C9CF4C527C1BD0600650B07 /* Cube.cpp */,
 				9C9CF4C627C1BD0600650B07 /* Cube.hpp */,
+				9C2FB47127C3152500AE1F69 /* Platform.cpp */,
+				9C2FB47227C3152500AE1F69 /* Platform.hpp */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				9CAD53B727C0C99300B4C46C /* Renderer.cpp in Sources */,
 				9C9CF4C327C1A8A800650B07 /* Game.cpp in Sources */,
 				9CE555BB27C06ED700FC6A72 /* ViewRenderer.mm in Sources */,
+				9C2FB47327C3152500AE1F69 /* Platform.cpp in Sources */,
 				40BF4A9027A1E8F500D45FB6 /* ViewController.swift in Sources */,
 				9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */,
 				9CAD53B427C0C3A800B4C46C /* Transform.cpp in Sources */,

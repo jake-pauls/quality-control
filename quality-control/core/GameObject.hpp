@@ -8,6 +8,9 @@
 #include <OpenGLES/ES3/gl.h>
 #include <glm/glm.hpp>
 
+#include "Obj-C-Utils-Interface.h"
+
+#include "Renderer.hpp"
 #include "Transform.hpp"
 #include "Mesh.hpp"
 #include "Shader.hpp"
