@@ -7,6 +7,7 @@
 #include "Assert.hpp"
 
 #include "Cube.hpp"
+#include "Platform.hpp"
 
 Game::Game()
 { }
@@ -41,6 +42,7 @@ void Game::Init()
 void Game::InitializeGameObjects()
 {
     g_GameObjects.insert(new Cube());
+    g_GameObjects.insert(new Platform());
 }
 
 /**

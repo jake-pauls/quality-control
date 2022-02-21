@@ -27,11 +27,6 @@ Shader::Shader(const std::string& vertexFilePath, const std::string& fragmentFil
     GL_CALL(glUseProgram(_rendererID));
 }
 
-Shader::~Shader()
-{
-    GL_CALL(glDeleteProgram(_rendererID));
-}
-
 void Shader::Bind()
 {
     GL_CALL(glUseProgram(_rendererID));
@@ -53,7 +48,6 @@ int Shader::GetUniformLocation(const std::string& name)
         return _uniformLocations[name];
     
     // Check if uniform exists and add it to cache
-    LOG("Searching for " << name << " on Shader with ID " << _rendererID);
     GL_CALL(int location = glGetUniformLocation(_rendererID, name.c_str()));
     
     if (location == -1)
