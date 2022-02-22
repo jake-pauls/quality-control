@@ -22,9 +22,9 @@ public:
     glm::vec3 scale;
     
     // API methods
-    void Translate(float x, float y, float z);
-    void Rotate(float xAngle, float yAngle, float zAngle);
-    void Scale(glm::vec3 scaleFactor);
+    void Translate();
+    void Rotate();
+    void Scale();
     
     bool IsModelMatrixUpdated();
     glm::mat4 GetModelMatrix();

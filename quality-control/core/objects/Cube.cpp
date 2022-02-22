@@ -49,15 +49,13 @@ void Cube::Update()
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-    if (isRotating)
-    {
+    if (isRotating) {
         this->transform.rotation.x += 0.001f * elapsedTime;
         this->transform.rotation.y += 0.001f * elapsedTime;
         this->transform.rotation.z += 0.001f * elapsedTime;
     }
     
-    if (isTranslating)
-    {
+    if (isTranslating) {
         if (isRight) {
             this->transform.position.x += 0.001f * elapsedTime;
             this->transform.position.y += 0.001f * elapsedTime;
@@ -73,8 +71,7 @@ void Cube::Update()
         }
     }
     
-    if (isScaling)
-    {
+    if (isScaling) {
         if (isMovingForward) {
             this->transform.scale += 0.001f * elapsedTime;
         } else {
@@ -90,10 +87,8 @@ void Cube::Update()
     
     
     // MARK: API Examples (Rotate, Translate, Scale)
-    
-    this->transform.Rotate(this->transform.rotation.x, this->transform.rotation.y, this->transform.rotation.y);
-    
-    this->transform.Translate(this->transform.position.x, this->transform.position.y, this->transform.position.z);
-    
-    this->transform.Scale(this->transform.scale);
+    /// Transform operations are based on the 'position', 'rotation', and 'scale' properties of the respective GameObject
+    this->transform.Rotate();
+    this->transform.Translate();
+    this->transform.Scale();
 }

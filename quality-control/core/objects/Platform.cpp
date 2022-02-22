@@ -25,6 +25,10 @@ void Platform::Draw()
     this->shader.SetUniform4f("_color", 1.0f, 0.0f, 0.5f, 1.0f);
     this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
     
+    this->transform.position.x = 1.0f;
+    this->transform.position.y = 1.0f;
+    this->transform.Translate();
+    
     // Draw cube mesh
     this->mesh.Draw();
 }
