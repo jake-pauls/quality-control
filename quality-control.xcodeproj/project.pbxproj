@@ -414,10 +414,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"quality-control/vendor/glm/",
-					"quality-control/vendor/box2d/",
+					"quality-control/vendor/bullet3/src/",
 				);
 				INFOPLIST_FILE = "quality-control/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -449,10 +450,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_PREPROCESSOR_DEFINITIONS = "GLES_SILENCE_DEPRECATION=1";
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"quality-control/vendor/glm/",
-					"quality-control/vendor/box2d/",
+					"quality-control/vendor/bullet3/src/",
 				);
 				INFOPLIST_FILE = "quality-control/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
