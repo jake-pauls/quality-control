@@ -1,6 +1,6 @@
 [submodule "quality-control/vendor/box2d"]
 	path = quality-control/vendor/box2d
-	url = git@github.com:erincatto/box2d.git
+	url = https://github.com/erincatto/box2d.git
 [submodule "quality-control/vendor/glm"]
 	path = quality-control/vendor/glm
-	url = git@github.com:g-truc/glm.git
+	url = https://github.com/g-truc/glm.git
