@@ -5,7 +5,7 @@
 #include "Platform.hpp"
 #include "Assert.hpp"
 
-Platform::Platform()
+Platform::Platform() : GameObject()
 { }
 
 void Platform::Awake()

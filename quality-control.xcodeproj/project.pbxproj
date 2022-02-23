@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
 		40BF4A8E27A1E8F500D45FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8D27A1E8F500D45FB6 /* SceneDelegate.swift */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
+		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
 		40BF4A8827A1E8F500D45FB6 /* quality-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quality-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				9C9CF4C627C1BD0600650B07 /* Cube.hpp */,
 				9C2FB47127C3152500AE1F69 /* Platform.cpp */,
 				9C2FB47227C3152500AE1F69 /* Platform.hpp */,
+				404018D227C5E3D300DDDC1C /* Projectile.cpp */,
+				404018D327C5E3D300DDDC1C /* Projectile.hpp */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				9C2FB47327C3152500AE1F69 /* Platform.cpp in Sources */,
 				40BF4A9027A1E8F500D45FB6 /* ViewController.swift in Sources */,
 				9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */,
+				404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */,
 				9CAD53B427C0C3A800B4C46C /* Transform.cpp in Sources */,
 				9C26E07127C220E400522AFF /* Mesh.cpp in Sources */,
 				40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */,

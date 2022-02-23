@@ -7,7 +7,7 @@
 
 #include "Cube.hpp"
 
-Cube::Cube()
+Cube::Cube() : GameObject()
 { }
 
 /// Awake is called when the object is initialized at setup
