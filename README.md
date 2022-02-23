@@ -8,5 +8,5 @@ $ git clone https://github.com:/jake-pauls/quality-control.git
 $ git submodule update --init --recursive
 ```
 
-## Devices
-Currently, the UI of quality-control only supports later iPhone-11 models and the iOS deployment target is 15.2.
+## Devices Supported
+iPhones and iPods on iOS 15.2
