@@ -27,7 +27,7 @@ void Game::Init()
     projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
     
     viewMatrix = glm::lookAt(
-        glm::vec3(2, 3, 8),
+        glm::vec3(2, 5, 8),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );

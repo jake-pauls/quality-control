@@ -102,19 +102,27 @@ void Cube::MoveCube(int keyCode)
     switch (keyCode) {
         // Up
         case 0:
-            this->transform.position.z -= 0.1f;
+            if (this->transform.position.z > -2.0f) {
+                this->transform.position.z -= 1.0f;
+            }
             break;
         // Right
         case 1:
-            this->transform.position.x += 0.1f;
+            if (this->transform.position.x < 1.0f) {
+                this->transform.position.x += 1.0f;
+            }
             break;
         // Down
         case 2:
-            this->transform.position.z += 0.1f;
+            if (this->transform.position.z < 2.0f) {
+                this->transform.position.z += 1.0f;
+            }
             break;
         // Left
         case 3:
-            this->transform.position.x -= 0.1f;
+            if (this->transform.position.x > -1.0f) {
+                this->transform.position.x -= 1.0f;
+            }
             break;
     }
 }
