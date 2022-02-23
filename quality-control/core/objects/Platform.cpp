@@ -5,7 +5,7 @@
 #include "Platform.hpp"
 #include "Assert.hpp"
 
-Platform::Platform()
+Platform::Platform() : GameObject()
 { }
 
 void Platform::Awake()
@@ -24,6 +24,16 @@ void Platform::Draw()
     glm::mat4 mvp = this->_mvpMatrix;
     this->shader.SetUniform4f("_color", 1.0f, 0.0f, 0.5f, 1.0f);
     this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
+    
+    // Platform Position
+    this->transform.position.x = 0.0f;
+    this->transform.position.y = -1.0f;
+    this->transform.Translate();
+    
+    // Platform Scale
+    this->transform.scale.x = 2.0f;
+    this->transform.scale.y = 0.5f;
+    this->transform.Scale();
     
     // Draw cube mesh
     this->mesh.Draw();

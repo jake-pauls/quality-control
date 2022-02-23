@@ -17,6 +17,8 @@ public:
     void Draw();
     void Update();
     
+    void MoveCube(int keyCode);
+    
 public:
     // Rotation testing
     float rotAngle;

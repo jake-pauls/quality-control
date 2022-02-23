@@ -15,6 +15,9 @@
 - (void)awake;
 - (void)update;
 - (void)draw;
+    
+// Testing input handling
+- (void)handleInput:(int) keyCode;
 
 // Called from C++ to load shader files
 + (const char*)RetrieveFilePathByName:(const char*)fileName;

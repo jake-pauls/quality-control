@@ -10,6 +10,7 @@
 
 #import "ViewRenderer.h"
 
+#include "Cube.hpp"
 #include "Game.hpp"
 #include "Assert.hpp"
 
@@ -66,6 +67,14 @@
 - (void)update
 {
     game.Update();
+}
+
+/**
+ * Passes Swift input to game for handling inside C++
+ */
+- (void)handleInput:(int)keyCode
+{
+    game.HandleInput(keyCode);
 }
 
 /**

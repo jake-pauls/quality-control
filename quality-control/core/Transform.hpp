@@ -22,16 +22,16 @@ public:
     glm::vec3 scale;
     
     // API methods
-    void Translate(float x, float y, float z);
-    void Rotate(float xAngle, float yAngle, float zAngle);
-    void Scale(glm::vec3 scaleFactor);
+    void Translate();
+    void Rotate();
+    void Scale();
     
     bool IsModelMatrixUpdated();
     glm::mat4 GetModelMatrix();
     
+    glm::mat4 _translationMatrix;
 private:
     glm::mat4 _rotationMatrix;
-    glm::mat4 _translationMatrix;
     glm::mat4 _scalingMatrix;
     
     // Used for comparing model matrices between frames

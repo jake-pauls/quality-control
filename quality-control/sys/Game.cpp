@@ -6,8 +6,8 @@
 #include "Renderer.hpp"
 #include "Assert.hpp"
 
-#include "Cube.hpp"
 #include "Platform.hpp"
+#include "Projectile.hpp"
 
 Game::Game()
 { }
@@ -28,7 +28,7 @@ void Game::Init()
     projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
     
     viewMatrix = glm::lookAt(
-        glm::vec3(0, 0, 4),
+        glm::vec3(2, 3, 8),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
@@ -41,8 +41,59 @@ void Game::Init()
  */
 void Game::InitializeGameObjects()
 {
-    g_GameObjects.insert(new Cube());
+    // Track a reference of the player
+    player = new Cube();
+    g_GameObjects.insert(player);
+    
     g_GameObjects.insert(new Platform());
+
+    Projectile* projectile = new Projectile(glm::vec3(-8,0,0), glm::vec3(0,0,0));
+    g_GameObjects.insert(projectile);
+    g_GameObjectsProjectiles.insert(projectile);
+}
+
+void Game::DetectCollisions()
+{
+    for (GameObjectSet::iterator proj = g_GameObjectsProjectiles.begin(); proj != g_GameObjectsProjectiles.end(); proj++)
+    {
+        bool collision = GameObject::IsCollisionDetected(*player, *(*proj));
+        
+        if (collision) {
+            // Player was hit by this projectile
+            // Perform some game logic
+        } else {
+            // No collisions detected
+            // Check if transform is outside of the screen to destroy
+            // Implement other directions/bounds for this logic
+            if ((*proj)->transform.position.x >= 5.0f ) {
+                DestroyGameObject(*(*proj));
+            } else if ((*proj)->transform.position.y >= 5.0f) {
+                DestroyGameObject(*(*proj));
+            }
+        }
+    }
+        
+}
+
+/**
+ * Destroys a reference to a GameObject within the globale GameObject set
+ * As this is a pointer, it also calls the GameObject destructor
+ */
+void Game::DestroyGameObject(GameObject &proj)
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        if ((*obj)->id == proj.id) {
+            LOG("Successfully destroyed a GameObject with id #" << (*obj)->id);
+            g_GameObjects.erase(obj);
+            break;
+        }
+    }
+}
+
+void Game::HandleInput(int keyCode)
+{
+    player->MoveCube(keyCode);
 }
 
 /**
@@ -81,4 +132,6 @@ void Game::Update()
             (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
         }
     }
+    
+    DetectCollisions();
 }
