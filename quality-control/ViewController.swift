@@ -10,6 +10,7 @@ extension ViewController: GLKViewControllerDelegate {
      */
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
+        score.text = String(format:"(%)",viewRenderer.score);
     }
 }
 
@@ -26,6 +27,7 @@ class ViewController: GLKViewController {
     @IBOutlet weak var leftButton: UIImageView!
     @IBOutlet weak var downButton: UIImageView!
     
+    @IBOutlet weak var score: UITextField!
     /**
      * Initializes the GL view from a Swift context
      * Awakens and initializes the game state

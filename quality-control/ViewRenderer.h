@@ -11,11 +11,13 @@
 
 @interface ViewRenderer : NSObject
 
+@property float score;
+
 - (void)setup:(GLKView*)view;
 - (void)awake;
 - (void)update;
 - (void)draw;
-
+- (void)updateScore:(float)newScore;
 // Called from C++ to load shader files
 + (const char*)RetrieveFilePathByName:(const char*)fileName;
 
