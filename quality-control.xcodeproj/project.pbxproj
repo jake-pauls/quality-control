@@ -27,6 +27,7 @@
 		9CAD53B727C0C99300B4C46C /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD53B527C0C99300B4C46C /* Renderer.cpp */; };
 		9CE555BB27C06ED700FC6A72 /* ViewRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE555BA27C06ED700FC6A72 /* ViewRenderer.mm */; };
 		9CE555BF27C0710700FC6A72 /* Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CE555BD27C0710700FC6A72 /* Assert.cpp */; };
+		C4F6200227C621AE00A0468C /* ProjectileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C4F6200027C621AE00A0468C /* ProjectileManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		9CE555BC27C06EFB00FC6A72 /* ViewRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewRenderer.h; sourceTree = "<group>"; };
 		9CE555BD27C0710700FC6A72 /* Assert.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Assert.cpp; sourceTree = "<group>"; };
 		9CE555BE27C0710700FC6A72 /* Assert.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Assert.hpp; sourceTree = "<group>"; };
+		C4F6200027C621AE00A0468C /* ProjectileManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectileManager.cpp; sourceTree = "<group>"; };
+		C4F6200127C621AE00A0468C /* ProjectileManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProjectileManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +141,8 @@
 				9C9CF4C227C1A8A800650B07 /* Game.hpp */,
 				9CAD53B527C0C99300B4C46C /* Renderer.cpp */,
 				9CAD53B627C0C99300B4C46C /* Renderer.hpp */,
+				C4F6200027C621AE00A0468C /* ProjectileManager.cpp */,
+				C4F6200127C621AE00A0468C /* ProjectileManager.hpp */,
 			);
 			path = sys;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				9C26E07127C220E400522AFF /* Mesh.cpp in Sources */,
 				40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */,
 				9CE555BF27C0710700FC6A72 /* Assert.cpp in Sources */,
+				C4F6200227C621AE00A0468C /* ProjectileManager.cpp in Sources */,
 				9CAD53A527C0BFBF00B4C46C /* Shader.cpp in Sources */,
 				40BF4A8E27A1E8F500D45FB6 /* SceneDelegate.swift in Sources */,
 				9CAD53B127C0C2FC00B4C46C /* GameObject.cpp in Sources */,
