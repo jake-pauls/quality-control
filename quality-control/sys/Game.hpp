@@ -11,7 +11,10 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "GameObject.hpp"
 #include "Renderer.hpp"
+#include "Cube.hpp"
+#include "Projectile.hpp"
 
 typedef std::set<GameObject *> GameObjectSet;
 
@@ -19,22 +22,28 @@ class Game
 {
 private:
     void InitializeGameObjects();
+    void DetectCollisions();
     
 public:
     Game();
     Game(GLfloat viewWidth, GLfloat viewHeight);
     
-    // Static set of global game objects
+    // Set of global game objects
     GameObjectSet g_GameObjects;
+    
+    // Unique set for references to projectiles
+    GameObjectSet g_GameObjectsProjectiles;
+    
+    void DestroyGameObject(GameObject &proj);
     
     void Init();
     
-    // Setup for gameObjects
+    // Lifecycle methods
     void Awake();
-    
-    // Game Loops
     void Render();
     void Update();
+    
+    void HandleInput(int keyCode);
 
 private:
     GLfloat _viewWidth;
@@ -45,6 +54,9 @@ public:
     
     glm::mat4 projectionMatrix;
     glm::mat4 viewMatrix;
+    
+    // Player Test
+    Cube* player;
 };
 
 #endif /* Game_hpp */

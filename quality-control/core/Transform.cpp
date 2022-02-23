@@ -16,25 +16,28 @@ Transform::Transform()
     _scalingMatrix = glm::mat4(1.0);
 }
 
-void Transform::Translate(float x = 0.0f, float y = 0.0f, float z = 0.0f)
+/// For Translate(), Rotate(), and Scale() update the transform's
+/// 'position', 'rotation', and 'scale' properties to see results
+
+void Transform::Translate()
 {
-    _translationMatrix = glm::translate(glm::mat4(1.0), glm::vec3(x, y, z));
+    _translationMatrix = glm::translate(glm::mat4(1.0), position);
 }
 
 /**
  * Updates the transforms _rotationMatrix with the passed angles
  * Note: the 'x' and 'y' angles are reversed for an intuitive API
  */
-void Transform::Rotate(float xAngle = 0.0f, float yAngle = 0.0f, float zAngle = 0.0f)
+void Transform::Rotate()
 {
-    _rotationMatrix = glm::rotate(glm::mat4(1.0), xAngle, glm::vec3(0.0, 1.0, 0.0));
-    _rotationMatrix = glm::rotate(_rotationMatrix, yAngle, glm::vec3(1.0, 0.0, 0.0));
-    _rotationMatrix = glm::rotate(_rotationMatrix, zAngle, glm::vec3(0.0, 0.0, 1.0));
+    _rotationMatrix = glm::rotate(glm::mat4(1.0), rotation.x, glm::vec3(0.0, 1.0, 0.0));
+    _rotationMatrix = glm::rotate(_rotationMatrix, rotation.y, glm::vec3(1.0, 0.0, 0.0));
+    _rotationMatrix = glm::rotate(_rotationMatrix, rotation.z, glm::vec3(0.0, 0.0, 1.0));
 }
 
-void Transform::Scale(glm::vec3 scaleFactor)
+void Transform::Scale()
 {
-    _scalingMatrix = glm::scale(glm::mat4(1.0), scaleFactor);
+    _scalingMatrix = glm::scale(glm::mat4(1.0), scale);
 }
 
 /**

@@ -18,6 +18,10 @@
 - (void)update;
 - (void)draw;
 - (void)updateScore:(float)newScore;
+    
+// Testing input handling
+- (void)handleInput:(int) keyCode;
+
 // Called from C++ to load shader files
 + (const char*)RetrieveFilePathByName:(const char*)fileName;
 
