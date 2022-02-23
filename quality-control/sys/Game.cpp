@@ -175,7 +175,7 @@ void Game::SpawnProjectiles()
     
     Projectile* projectile;
     float margin = 5.0;
-    
+    	
     projectile = new Projectile(glm::vec3(xrandom + 0.5, 0, 0), glm::vec3(0, 0, 1));
     g_GameObjects.insert(projectile);
     
