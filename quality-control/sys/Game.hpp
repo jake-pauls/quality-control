@@ -15,6 +15,7 @@
 #include "Renderer.hpp"
 #include "Cube.hpp"
 #include "Projectile.hpp"
+#include "Timer.hpp"
 
 typedef std::set<GameObject *> GameObjectSet;
 
@@ -44,12 +45,15 @@ public:
     int GetScore();
     
     void HandleInput(int keyCode);
+    void SpawnProjectiles();
 
 private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
     
-    int score;
+    int _gameScore;
+    Timer _projectileTimer;
+    
 public:
     Renderer renderer;
     

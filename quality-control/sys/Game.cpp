@@ -8,12 +8,15 @@
 
 #include "Platform.hpp"
 #include "Projectile.hpp"
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 
 Game::Game()
 { }
 
 Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
-    _viewWidth(viewWidth), _viewHeight(viewHeight)
+    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0)
 { }
 
 /**
@@ -23,6 +26,7 @@ Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
  */
 void Game::Init()
 {
+    srand(time(NULL));
     float aspectRatio = _viewWidth / _viewHeight;
     
     projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
@@ -32,7 +36,7 @@ void Game::Init()
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
-    score = 0;
+    
     InitializeGameObjects();
 }
 
@@ -41,14 +45,15 @@ void Game::Init()
  */
 void Game::InitializeGameObjects()
 {
+    // Start the projectile timer
+    _projectileTimer.Reset();
+    
     // Track a reference of the player
     player = new Cube();
     g_GameObjects.insert(player);
     
     g_GameObjects.insert(new Platform());
 
-    Projectile* projectile = new Projectile(glm::vec3(-8,0,0), glm::vec3(0,0,0));
-    g_GameObjects.insert(projectile);
 }
 
 void Game::DetectCollisions()
@@ -61,17 +66,22 @@ void Game::DetectCollisions()
             if (collision) {
                 // Player was hit by this projectile
                 // Perform some game logic
+                DestroyGameObject(*(*obj));
+                _gameScore--;
+                break;
             } else {
                 // No collisions detected
                 // Check if transform is outside of the screen to destroy
                 // Implement other directions/bounds for this logic
-                if ((*obj)->transform.position.x >= 5.0f ) {
+                float despawnRange = 10.0f;
+                
+                if (abs((*obj)->transform.position.x) >= despawnRange) {
                     DestroyGameObject(*(*obj));
-                    score++;
+                    _gameScore++;
                     break;
-                } else if ((*obj)->transform.position.y >= 5.0f) {
+                } else if (abs((*obj)->transform.position.y) >= despawnRange) {
                     DestroyGameObject(*(*obj));
-                    score++;
+                    _gameScore++;
                     break;
                 }
             }
@@ -83,7 +93,7 @@ void Game::DetectCollisions()
  * Objective-C++ Trampoline to Update UI Score
  */
 int Game::GetScore(){
-    return score;
+    return _gameScore;
 }
 
 /**
@@ -146,4 +156,36 @@ void Game::Update()
     }
     
     DetectCollisions();
+    
+    if (_projectileTimer.GetElapsedTime() >= 2)
+    {
+        SpawnProjectiles();
+        _projectileTimer.Reset();
+    }
+}
+
+void Game::SpawnProjectiles()
+{
+    int random = rand() % 4 + 1;
+    
+    Projectile* projectile;
+    
+    switch (random) {
+        case 1:
+            projectile = new Projectile(glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            g_GameObjects.insert(projectile);
+            break;
+        case 2:
+            projectile = new Projectile(glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            g_GameObjects.insert(projectile);
+            break;
+        case 3:
+            projectile = new Projectile(glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            g_GameObjects.insert(projectile);
+            break;
+        case 4:
+            projectile = new Projectile(glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            g_GameObjects.insert(projectile);
+            break;
+    }
 }
