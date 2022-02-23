@@ -38,11 +38,7 @@ void Platform::Draw()
     this->transform.Scale();
     
     this->mesh.Draw();
-    
-    this->shader.Unbind();
 }
 
 void Platform::Update()
-{
-    
-}
+{ }
