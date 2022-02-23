@@ -12,6 +12,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Renderer.hpp"
+#include "Cube.hpp"
 
 typedef std::set<GameObject *> GameObjectSet;
 
@@ -35,6 +36,8 @@ public:
     // Game Loops
     void Render();
     void Update();
+    
+    void HandleInput(int keyCode);
 
 private:
     GLfloat _viewWidth;
@@ -45,6 +48,9 @@ public:
     
     glm::mat4 projectionMatrix;
     glm::mat4 viewMatrix;
+    
+    // Player Test
+    Cube* player;
 };
 
 #endif /* Game_hpp */

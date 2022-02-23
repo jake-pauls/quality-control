@@ -88,17 +88,16 @@ class ViewController: GLKViewController {
     @objc func arrowTapped(gesture:ArrowRecognizer) {
         if (gesture.view as? UIImageView) != nil {
             switch gesture.id {
-            case 1:
-                print("Up");
-            case 2:
-                print("Right");
-            case 3:
-                print("Down");
-            case 4:
-                print("Left");
-            default:
-                print("Default");
-               
+                case 1:
+                    viewRenderer.handleInput(0);
+                case 2:
+                    viewRenderer.handleInput(1);
+                case 3:
+                    viewRenderer.handleInput(2);
+                case 4:
+                    viewRenderer.handleInput(3);
+                default:
+                    break;
             }
         }
     }

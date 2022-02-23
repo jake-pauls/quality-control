@@ -6,7 +6,6 @@
 #include "Renderer.hpp"
 #include "Assert.hpp"
 
-#include "Cube.hpp"
 #include "Platform.hpp"
 
 Game::Game()
@@ -28,7 +27,7 @@ void Game::Init()
     projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
     
     viewMatrix = glm::lookAt(
-        glm::vec3(0, 0, 4),
+        glm::vec3(2, 3, 8),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
@@ -41,8 +40,15 @@ void Game::Init()
  */
 void Game::InitializeGameObjects()
 {
-    g_GameObjects.insert(new Cube());
+    player = new Cube();
+    
+    g_GameObjects.insert(player);
     g_GameObjects.insert(new Platform());
+}
+
+void Game::HandleInput(int keyCode)
+{
+    player->MoveCube(keyCode);
 }
 
 /**

@@ -29,9 +29,9 @@ public:
     bool IsModelMatrixUpdated();
     glm::mat4 GetModelMatrix();
     
+    glm::mat4 _translationMatrix;
 private:
     glm::mat4 _rotationMatrix;
-    glm::mat4 _translationMatrix;
     glm::mat4 _scalingMatrix;
     
     // Used for comparing model matrices between frames

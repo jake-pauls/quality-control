@@ -20,7 +20,7 @@ void Cube::Awake()
     this->shader = Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
     
     // Game Logic
-    isRotating = true;
+    isRotating = false;
     isTranslating = false;
     isScaling = false;
     
@@ -88,7 +88,33 @@ void Cube::Update()
     
     // MARK: API Examples (Rotate, Translate, Scale)
     /// Transform operations are based on the 'position', 'rotation', and 'scale' properties of the respective GameObject
+     
     this->transform.Rotate();
     this->transform.Translate();
     this->transform.Scale();
+}
+
+/**
+ * UI Gestures are handled by Swift and "Trampolined" into C++
+ */
+void Cube::MoveCube(int keyCode)
+{
+    switch (keyCode) {
+        // Up
+        case 0:
+            this->transform.position.z -= 0.1f;
+            break;
+        // Right
+        case 1:
+            this->transform.position.x += 0.1f;
+            break;
+        // Down
+        case 2:
+            this->transform.position.z += 0.1f;
+            break;
+        // Left
+        case 3:
+            this->transform.position.x -= 0.1f;
+            break;
+    }
 }
