@@ -42,8 +42,9 @@ void Projectile::Draw()
     this->shader.SetUniform4f("_color", 1.0f, 0.0f, 0.0f, 1.0f);
     this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
     
-    // Draw cube mesh
     this->mesh.Draw();
+    
+    this->shader.Unbind();
 }
 
 void Projectile::Update()

@@ -70,7 +70,6 @@
 {
     game.Update();
     score = game.GetScore();
-    printf("%d", game.GetScore());
 }
 
 /**

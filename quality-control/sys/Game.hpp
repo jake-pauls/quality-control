@@ -30,10 +30,7 @@ public:
     
     // Set of global game objects
     GameObjectSet g_GameObjects;
-    
-    // Unique set for references to projectiles
-    GameObjectSet g_GameObjectsProjectiles;
-    
+   
     void DestroyGameObject(GameObject &proj);
     
     void Init();
