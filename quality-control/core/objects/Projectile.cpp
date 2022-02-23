@@ -23,6 +23,8 @@ Projectile::Projectile(glm::vec3 position, glm::vec3 direction)
 
 void Projectile::Awake()
 {
+    // Set Projectile Speed
+    
     // Setup Cube Mesh
     this->mesh = Renderer().ParseCubeVertexData();
     
@@ -41,7 +43,7 @@ void Projectile::Draw()
     glm::mat4 mvp = this->_mvpMatrix;
     this->shader.SetUniform4f("_color", 1.0f, 0.0f, 0.0f, 1.0f);
     this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
-    
+        
     // Draw cube mesh
     this->mesh.Draw();
 }
@@ -50,18 +52,17 @@ void Projectile::Update()
 {
     auto currentTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
-    lastTime = currentTime;
-    
-    std::chrono::time_point<std::chrono::steady_clock> lastTime;
+//    lastTime = currentTime;
+//
+//    std::chrono::time_point<std::chrono::steady_clock> lastTime;
     
     this->transform.Translate();
     
+    float vectorUpdate = 0.0005f * elapsedTime;
+    
     if (isTranslating) {
-        // if direction (1, 0, 0)
-        this->transform.position.x += 0.005f * elapsedTime;
-        
-//        if (this->transform.position.x >= 8.0f) {
-//            std::cout << "Destroyed Projectile from projectile set" << std::endl;
-//        }
+        glm::vec3 vector = glm::vec3(vectorUpdate, 0, vectorUpdate) * _direction;
+        this->transform.position += vector;
+            
     }
 }

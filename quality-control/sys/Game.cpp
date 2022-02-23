@@ -47,7 +47,7 @@ void Game::InitializeGameObjects()
     
     g_GameObjects.insert(new Platform());
 
-    Projectile* projectile = new Projectile(glm::vec3(-8,0,0), glm::vec3(0,0,0));
+    Projectile* projectile = new Projectile(glm::vec3(-8,0,0), glm::vec3(1,0,0));
     g_GameObjects.insert(projectile);
     g_GameObjectsProjectiles.insert(projectile);
 }
@@ -65,9 +65,12 @@ void Game::DetectCollisions()
             // No collisions detected
             // Check if transform is outside of the screen to destroy
             // Implement other directions/bounds for this logic
-            if ((*proj)->transform.position.x >= 5.0f ) {
+            
+            float despawnRange = 10.0f;
+            
+            if (abs((*proj)->transform.position.x) >= despawnRange ) {
                 DestroyGameObject(*(*proj));
-            } else if ((*proj)->transform.position.y >= 5.0f) {
+            } else if (abs((*proj)->transform.position.z) >= despawnRange) {
                 DestroyGameObject(*(*proj));
             }
         }
@@ -132,6 +135,8 @@ void Game::Update()
             (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
         }
     }
+    
+    
     
     DetectCollisions();
 }
