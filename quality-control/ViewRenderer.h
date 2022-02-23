@@ -11,16 +11,18 @@
 
 @interface ViewRenderer : NSObject
 
-@property float score;
+@property int score;
 
 - (void)setup:(GLKView*)view;
 - (void)awake;
 - (void)update;
 - (void)draw;
-- (void)updateScore:(float)newScore;
     
 // Testing input handling
 - (void)handleInput:(int) keyCode;
+
+// Update score value
+- (void)updateScore:(float)newScore;
 
 // Called from C++ to load shader files
 + (const char*)RetrieveFilePathByName:(const char*)fileName;

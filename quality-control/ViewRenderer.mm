@@ -69,11 +69,8 @@
 - (void)update
 {
     game.Update();
-}
-
--(void)updateScore:(float)newScore
-{
-    score = newScore;
+    score = game.GetScore();
+    printf("%d", game.GetScore());
 }
 
 /**
@@ -99,5 +96,4 @@ const char* RetrieveObjectiveCPath(const char* fileName)
 {
     return [ViewRenderer RetrieveFilePathByName: fileName];
 }
-
 @end

@@ -10,7 +10,7 @@ extension ViewController: GLKViewControllerDelegate {
      */
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
-        score.text = String(format:"(%)",viewRenderer.score);
+        score.text = String(format:"Score: (%d)",viewRenderer.score);
     }
 }
 
@@ -49,7 +49,7 @@ class ViewController: GLKViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        
+        score.textColor = UIColor.white;
         /*
          Tapgesture Recognizer for up button
          id = 1

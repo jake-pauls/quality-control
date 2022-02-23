@@ -43,12 +43,16 @@ public:
     void Render();
     void Update();
     
+    // Retrieve Score Value
+    int GetScore();
+    
     void HandleInput(int keyCode);
 
 private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
     
+    int score;
 public:
     Renderer renderer;
     

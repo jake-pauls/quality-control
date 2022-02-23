@@ -32,7 +32,7 @@ void Game::Init()
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
-    
+    score = 0;
     InitializeGameObjects();
 }
 
@@ -67,12 +67,19 @@ void Game::DetectCollisions()
             // Implement other directions/bounds for this logic
             if ((*proj)->transform.position.x >= 5.0f ) {
                 DestroyGameObject(*(*proj));
+                score++;
+                //printf("Score Incremented");
             } else if ((*proj)->transform.position.y >= 5.0f) {
                 DestroyGameObject(*(*proj));
+                score++;
+                //printf("Score Incremented");
             }
         }
     }
-        
+}
+
+int Game::GetScore(){
+    return score;
 }
 
 /**
