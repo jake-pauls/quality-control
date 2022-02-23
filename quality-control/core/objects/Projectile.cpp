@@ -19,10 +19,7 @@ Projectile::Projectile(glm::vec3 position, glm::vec3 direction)
     
     this->transform.Scale();
     this->transform.Translate();
-}
-
-void Projectile::Awake()
-{
+ 
     // Setup Cube Mesh
     this->mesh = Renderer().ParseCubeVertexData();
     
@@ -30,6 +27,11 @@ void Projectile::Awake()
     this->shader = Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
     
     lastTime = std::chrono::steady_clock::now();
+}
+
+void Projectile::Awake()
+{
+
 }
 
 void Projectile::Draw()

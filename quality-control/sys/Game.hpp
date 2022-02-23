@@ -45,6 +45,7 @@ public:
     int GetScore();
     
     void HandleInput(int keyCode);
+    void SpawnProjectiles();
 
 private:
     GLfloat _viewWidth;

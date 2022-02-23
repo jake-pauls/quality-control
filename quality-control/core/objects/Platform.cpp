@@ -21,7 +21,7 @@ void Platform::Awake()
     this->transform.position.y = -2.25f;
     
     // Platform Scale
-    this->transform.scale.x = 3.0f;
+    this->transform.scale.x = 5.0f;
     this->transform.scale.z = 5.0f;
     this->transform.scale.y = 0.25f;
 }
