@@ -32,7 +32,7 @@ void Game::Init()
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
-    
+    score = 0;
     InitializeGameObjects();
 }
 
@@ -49,30 +49,41 @@ void Game::InitializeGameObjects()
 
     Projectile* projectile = new Projectile(glm::vec3(-8,0,0), glm::vec3(0,0,0));
     g_GameObjects.insert(projectile);
-    g_GameObjectsProjectiles.insert(projectile);
 }
 
 void Game::DetectCollisions()
 {
-    for (GameObjectSet::iterator proj = g_GameObjectsProjectiles.begin(); proj != g_GameObjectsProjectiles.end(); proj++)
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
-        bool collision = GameObject::IsCollisionDetected(*player, *(*proj));
-        
-        if (collision) {
-            // Player was hit by this projectile
-            // Perform some game logic
-        } else {
-            // No collisions detected
-            // Check if transform is outside of the screen to destroy
-            // Implement other directions/bounds for this logic
-            if ((*proj)->transform.position.x >= 5.0f ) {
-                DestroyGameObject(*(*proj));
-            } else if ((*proj)->transform.position.y >= 5.0f) {
-                DestroyGameObject(*(*proj));
+        if (dynamic_cast<Projectile *>((*obj)) != nullptr) {
+            bool collision = GameObject::IsCollisionDetected(*player, *(*obj));
+            
+            if (collision) {
+                // Player was hit by this projectile
+                // Perform some game logic
+            } else {
+                // No collisions detected
+                // Check if transform is outside of the screen to destroy
+                // Implement other directions/bounds for this logic
+                if ((*obj)->transform.position.x >= 5.0f ) {
+                    DestroyGameObject(*(*obj));
+                    score++;
+                    break;
+                } else if ((*obj)->transform.position.y >= 5.0f) {
+                    DestroyGameObject(*(*obj));
+                    score++;
+                    break;
+                }
             }
         }
     }
-        
+}
+
+/**
+ * Objective-C++ Trampoline to Update UI Score
+ */
+int Game::GetScore(){
+    return score;
 }
 
 /**
@@ -85,6 +96,7 @@ void Game::DestroyGameObject(GameObject &proj)
     {
         if ((*obj)->id == proj.id) {
             LOG("Successfully destroyed a GameObject with id #" << (*obj)->id);
+            delete *obj;
             g_GameObjects.erase(obj);
             break;
         }

@@ -40,6 +40,9 @@ void Cube::Draw()
     
     // Draw cube mesh
     this->mesh.Draw();
+    
+    // Unbind shader
+    this->shader.Unbind();
 }
 
 /// Update is called once per frame

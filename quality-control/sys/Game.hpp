@@ -30,10 +30,7 @@ public:
     
     // Set of global game objects
     GameObjectSet g_GameObjects;
-    
-    // Unique set for references to projectiles
-    GameObjectSet g_GameObjectsProjectiles;
-    
+   
     void DestroyGameObject(GameObject &proj);
     
     void Init();
@@ -43,12 +40,16 @@ public:
     void Render();
     void Update();
     
+    // Retrieve Score Value
+    int GetScore();
+    
     void HandleInput(int keyCode);
 
 private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
     
+    int score;
 public:
     Renderer renderer;
     

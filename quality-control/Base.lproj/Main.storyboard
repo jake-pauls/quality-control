@@ -32,6 +32,16 @@
                                 <rect key="frame" x="176" y="792" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
+                                <rect key="frame" x="57" y="56" width="146" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -40,6 +50,7 @@
                         <outlet property="downButton" destination="vaU-WS-I0i" id="EsL-oj-foo"/>
                         <outlet property="leftButton" destination="Xqg-kZ-A3r" id="cE0-fm-s1I"/>
                         <outlet property="rightButton" destination="8E7-qE-lD8" id="yU9-y4-lso"/>
+                        <outlet property="score" destination="Evf-Th-ibC" id="Lsh-Kw-eGJ"/>
                         <outlet property="upButton" destination="3UF-KM-Bk2" id="aoN-QQ-PeW"/>
                     </connections>
                 </viewController>

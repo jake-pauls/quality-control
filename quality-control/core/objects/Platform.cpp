@@ -37,8 +37,9 @@ void Platform::Draw()
     this->transform.Translate();
     this->transform.Scale();
     
-    // Draw cube mesh
     this->mesh.Draw();
+    
+    this->shader.Unbind();
 }
 
 void Platform::Update()

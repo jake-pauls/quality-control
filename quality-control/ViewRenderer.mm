@@ -22,7 +22,7 @@
 @end
 
 @implementation ViewRenderer
-
+@synthesize score;
 /**
  * Sets up OpenGLES context with default settings
  * Extracts data from GLKView
@@ -40,6 +40,8 @@
     GL_CALL(glEnable(GL_DEPTH_TEST));
     GL_CALL(glEnable(GL_CULL_FACE));
     GL_CALL(glEnable(GL_BLEND));
+    
+    score = 0;
 }
 
 // MARK: Lifecycle Methods (Awake, Draw, Update)
@@ -67,6 +69,7 @@
 - (void)update
 {
     game.Update();
+    score = game.GetScore();
 }
 
 /**
@@ -92,5 +95,4 @@ const char* RetrieveObjectiveCPath(const char* fileName)
 {
     return [ViewRenderer RetrieveFilePathByName: fileName];
 }
-
 @end
