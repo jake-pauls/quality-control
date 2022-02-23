@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="quality_control" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GLKView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
-                                <rect key="frame" x="57" y="12" width="146" height="28"/>
+                                <rect key="frame" x="57" y="70" width="172" height="78"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -26,26 +27,26 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hEo-vn-cCw" userLabel="Up Button">
-                                <rect key="frame" x="20" y="111" width="374" height="200"/>
+                                <rect key="frame" x="20" y="191" width="374" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="W6H-0M-1G2"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="506-kv-90k" userLabel="Left Button">
-                                <rect key="frame" x="-76" y="319" width="200" height="200"/>
+                                <rect key="frame" x="-76" y="399" width="200" height="200"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UCt-nU-TWY" userLabel="Center">
-                                <rect key="frame" x="132" y="344" width="150" height="150"/>
+                                <rect key="frame" x="132" y="424" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="IV7-OB-QdB"/>
                                     <constraint firstAttribute="height" constant="150" id="uOy-wz-ZVw"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QUM-CI-U9a" userLabel="Down Button">
-                                <rect key="frame" x="16" y="527" width="382" height="154"/>
+                                <rect key="frame" x="16" y="607" width="382" height="200"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fZ-eQ-7PC" userLabel="Right Button">
-                                <rect key="frame" x="290" y="319" width="200" height="200"/>
+                                <rect key="frame" x="290" y="399" width="200" height="200"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -53,14 +54,14 @@
                         <constraints>
                             <constraint firstItem="UCt-nU-TWY" firstAttribute="leading" secondItem="506-kv-90k" secondAttribute="trailing" constant="8" id="5Wq-6B-aDg"/>
                             <constraint firstItem="UCt-nU-TWY" firstAttribute="centerX" secondItem="QUM-CI-U9a" secondAttribute="centerX" id="7Uc-Xa-hoF"/>
-                            <constraint firstItem="Evf-Th-ibC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="7Y9-2o-F7U"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="7Y9-2o-F7U"/>
                             <constraint firstItem="506-kv-90k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-96" id="8Fr-bb-rC0"/>
                             <constraint firstItem="506-kv-90k" firstAttribute="centerY" secondItem="UCt-nU-TWY" secondAttribute="centerY" id="AIr-Uz-6xp"/>
                             <constraint firstItem="506-kv-90k" firstAttribute="top" secondItem="5fZ-eQ-7PC" secondAttribute="top" id="E2k-9t-adv"/>
                             <constraint firstItem="506-kv-90k" firstAttribute="bottom" secondItem="5fZ-eQ-7PC" secondAttribute="bottom" id="KpH-eF-wHM"/>
                             <constraint firstItem="UCt-nU-TWY" firstAttribute="top" secondItem="hEo-vn-cCw" secondAttribute="bottom" constant="33" id="KyU-gr-w6J"/>
                             <constraint firstItem="QUM-CI-U9a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="LtE-ui-fOy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="211" id="SLC-Eh-tyM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="185" id="SLC-Eh-tyM"/>
                             <constraint firstItem="UCt-nU-TWY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="51" id="Upp-Ns-xf2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5fZ-eQ-7PC" secondAttribute="trailing" constant="-96" id="Uww-zU-DCc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QUM-CI-U9a" secondAttribute="bottom" constant="55" id="Wt6-sH-lHJ"/>
@@ -68,7 +69,7 @@
                             <constraint firstItem="hEo-vn-cCw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cNa-1c-g2X"/>
                             <constraint firstItem="506-kv-90k" firstAttribute="top" secondItem="hEo-vn-cCw" secondAttribute="bottom" constant="8" id="dt8-s0-Nm4"/>
                             <constraint firstItem="QUM-CI-U9a" firstAttribute="top" secondItem="506-kv-90k" secondAttribute="bottom" constant="8" id="hxb-So-mdc"/>
-                            <constraint firstItem="hEo-vn-cCw" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="71" id="nTc-gp-3EM"/>
+                            <constraint firstItem="hEo-vn-cCw" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="43" id="nTc-gp-3EM"/>
                             <constraint firstItem="hEo-vn-cCw" firstAttribute="centerX" secondItem="UCt-nU-TWY" secondAttribute="centerX" id="ppZ-MH-jpI"/>
                             <constraint firstItem="5fZ-eQ-7PC" firstAttribute="leading" secondItem="UCt-nU-TWY" secondAttribute="trailing" constant="8" id="qZG-wI-J0F"/>
                             <constraint firstItem="hEo-vn-cCw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tAw-L1-2dJ"/>
