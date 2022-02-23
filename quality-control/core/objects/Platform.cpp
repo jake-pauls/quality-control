@@ -15,6 +15,15 @@ void Platform::Awake()
     
     // Setup Cube Shader
     this->shader = Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
+    
+    // Platform Position
+    this->transform.position.x = 0.0f;
+    this->transform.position.y = -2.25f;
+    
+    // Platform Scale
+    this->transform.scale.x = 3.0f;
+    this->transform.scale.z = 5.0f;
+    this->transform.scale.y = 0.25f;
 }
 
 void Platform::Draw()
@@ -22,17 +31,10 @@ void Platform::Draw()
     this->shader.Bind();
     
     glm::mat4 mvp = this->_mvpMatrix;
-    this->shader.SetUniform4f("_color", 1.0f, 0.0f, 0.5f, 1.0f);
+    this->shader.SetUniform4f("_color", 0.0f, 0.6f, 1.0f, 1.0f);
     this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
     
-    // Platform Position
-    this->transform.position.x = 0.0f;
-    this->transform.position.y = -1.0f;
     this->transform.Translate();
-    
-    // Platform Scale
-    this->transform.scale.x = 2.0f;
-    this->transform.scale.y = 0.5f;
     this->transform.Scale();
     
     // Draw cube mesh
