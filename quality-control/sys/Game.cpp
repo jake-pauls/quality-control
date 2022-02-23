@@ -13,7 +13,7 @@ Game::Game()
 { }
 
 Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
-    _viewWidth(viewWidth), _viewHeight(viewHeight)
+    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0)
 { }
 
 /**
@@ -32,7 +32,7 @@ void Game::Init()
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
-    score = 0;
+    
     InitializeGameObjects();
 }
 
@@ -41,6 +41,9 @@ void Game::Init()
  */
 void Game::InitializeGameObjects()
 {
+    // Start the projectile timer
+    _projectileTimer.Reset();
+    
     // Track a reference of the player
     player = new Cube();
     g_GameObjects.insert(player);
@@ -67,11 +70,11 @@ void Game::DetectCollisions()
                 // Implement other directions/bounds for this logic
                 if ((*obj)->transform.position.x >= 5.0f ) {
                     DestroyGameObject(*(*obj));
-                    score++;
+                    _gameScore++;
                     break;
                 } else if ((*obj)->transform.position.y >= 5.0f) {
                     DestroyGameObject(*(*obj));
-                    score++;
+                    _gameScore++;
                     break;
                 }
             }
@@ -83,7 +86,7 @@ void Game::DetectCollisions()
  * Objective-C++ Trampoline to Update UI Score
  */
 int Game::GetScore(){
-    return score;
+    return _gameScore;
 }
 
 /**
@@ -146,4 +149,10 @@ void Game::Update()
     }
     
     DetectCollisions();
+    
+    if (_projectileTimer.GetElapsedTime() >= 3)
+    {
+        std::cout << "Fire" << std::endl;
+        _projectileTimer.Reset();
+    }
 }

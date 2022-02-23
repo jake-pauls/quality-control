@@ -43,8 +43,6 @@ void Projectile::Draw()
     this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
     
     this->mesh.Draw();
-    
-    this->shader.Unbind();
 }
 
 void Projectile::Update()
