@@ -30,9 +30,7 @@ Projectile::Projectile(glm::vec3 position, glm::vec3 direction)
 }
 
 void Projectile::Awake()
-{
-
-}
+{ }
 
 void Projectile::Draw()
 {
@@ -50,13 +48,11 @@ void Projectile::Update()
 {
     auto currentTime = std::chrono::steady_clock::now();
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
-//    lastTime = currentTime;
-//
-//    std::chrono::time_point<std::chrono::steady_clock> lastTime;
+    lastTime = currentTime;
     
     this->transform.Translate();
     
-    float vectorUpdate = 0.0005f * elapsedTime;
+    float vectorUpdate = 0.01f * elapsedTime;
     
     glm::vec3 vector = glm::vec3(vectorUpdate, 0, vectorUpdate) * _direction;
     this->transform.position += vector;

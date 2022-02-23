@@ -32,7 +32,7 @@ void Game::Init()
     projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
     
     viewMatrix = glm::lookAt(
-        glm::vec3(2, 10, 14),
+        glm::vec3(2, 5, 8),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
@@ -66,11 +66,14 @@ void Game::DetectCollisions()
             if (collision) {
                 // Player was hit by this projectile
                 // Perform some game logic
+                DestroyGameObject(*(*obj));
+                _gameScore--;
+                break;
             } else {
                 // No collisions detected
                 // Check if transform is outside of the screen to destroy
                 // Implement other directions/bounds for this logic
-                float despawnRange = 20.0f;
+                float despawnRange = 10.0f;
                 
                 if (abs((*obj)->transform.position.x) >= despawnRange) {
                     DestroyGameObject(*(*obj));
@@ -152,13 +155,10 @@ void Game::Update()
         }
     }
     
-    
-    
     DetectCollisions();
     
-    if (_projectileTimer.GetElapsedTime() >= 3)
+    if (_projectileTimer.GetElapsedTime() >= 2)
     {
-        std::cout << "Fire" << std::endl;
         SpawnProjectiles();
         _projectileTimer.Reset();
     }
@@ -166,36 +166,26 @@ void Game::Update()
 
 void Game::SpawnProjectiles()
 {
-    float x = 5;
-    float z = 5;
-
-    int random = rand()%4 + 1;
-    int xrandom = rand()%5;
-    std::cout<<"xrandom " <<xrandom;
+    int random = rand() % 4 + 1;
     
     Projectile* projectile;
-    float margin = 5.0;
-    	
-    projectile = new Projectile(glm::vec3(xrandom + 0.5, 0, 0), glm::vec3(0, 0, 1));
-    g_GameObjects.insert(projectile);
     
-//
-//    switch (random) {
-//        case 1:
-//            projectile = new Projectile(glm::vec3(xrandom + 0.5, 0, -margin), glm::vec3(0, 0, 1));
-//            g_GameObjects.insert(projectile);
-//            break;
-//        case 2:
-//             projectile = new Projectile(glm::vec3(xrandom + 0.5, 0, margin + 5), glm::vec3(0, 0, -1));
-//            g_GameObjects.insert(projectile);
-//            break;
-//        case 3:
-//             projectile = new Projectile(glm::vec3(-margin, 0, xrandom + 0.5), glm::vec3(1, 0, 0));
-//            g_GameObjects.insert(projectile);
-//            break;
-//        case 4:
-//             projectile = new Projectile(glm::vec3(margin + 5, 0, xrandom + 0.5), glm::vec3(-1, 0, 0));
-//            g_GameObjects.insert(projectile);
-//            break;
-//    }
+    switch (random) {
+        case 1:
+            projectile = new Projectile(glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            g_GameObjects.insert(projectile);
+            break;
+        case 2:
+            projectile = new Projectile(glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            g_GameObjects.insert(projectile);
+            break;
+        case 3:
+            projectile = new Projectile(glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            g_GameObjects.insert(projectile);
+            break;
+        case 4:
+            projectile = new Projectile(glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            g_GameObjects.insert(projectile);
+            break;
+    }
 }

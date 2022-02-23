@@ -108,7 +108,7 @@ void Cube::MoveCube(int keyCode)
             break;
         // Right
         case 1:
-            if (this->transform.position.x < 1.0f) {
+            if (this->transform.position.x < 2.0f) {
                 this->transform.position.x += 1.0f;
             }
             break;
@@ -120,7 +120,7 @@ void Cube::MoveCube(int keyCode)
             break;
         // Left
         case 3:
-            if (this->transform.position.x > -1.0f) {
+            if (this->transform.position.x > -2.0f) {
                 this->transform.position.x -= 1.0f;
             }
             break;
