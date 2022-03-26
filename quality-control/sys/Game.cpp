@@ -155,6 +155,7 @@ void Game::Update()
         }
     }
     
+    // This is where game objects are detected and IMMEDIATELY destroyed
     DetectCollisions();
     
     if (_projectileTimer.GetElapsedTime() >= 2)
