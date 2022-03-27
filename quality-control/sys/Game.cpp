@@ -2,15 +2,18 @@
 // Game.cpp
 // 2022-02-19
 
-#include "Game.hpp"
-#include "Renderer.hpp"
-#include "Assert.hpp"
-
-#include "Platform.hpp"
-#include "Projectile.hpp"
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+
+#include "Obj-C-Utils-Interface.h"
+
+#include "Game.hpp"
+#include "Assert.hpp"
+#include "Shader.hpp"
+#include "Renderer.hpp"
+#include "Platform.hpp"
+#include "Projectile.hpp"
 
 Game::Game()
 { }
@@ -27,6 +30,7 @@ Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
 void Game::Init()
 {
     srand(time(NULL));
+    
     float aspectRatio = _viewWidth / _viewHeight;
     
     projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
@@ -37,7 +41,17 @@ void Game::Init()
         glm::vec3(0, 1, 0)
     );
     
+    // TODO: Add logic for multiple shaders if required
+    // Setup default shader for basic lighting across game objects
+    _defaultShaderProgram = new Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
+    _defaultShaderProgram->Bind();
+    
     InitializeGameObjects();
+}
+
+void Game::LoadModels()
+{
+    Renderer::CubeMesh = Renderer::ParseCubeVertexData();
 }
 
 /**
@@ -48,12 +62,12 @@ void Game::InitializeGameObjects()
     // Start the projectile timer
     _projectileTimer.Reset();
     
-    // Track a reference of the player
-    player = new Cube();
-    g_GameObjects.insert(player);
+    // Create the base platform
+    g_GameObjects.insert(new Platform(_defaultShaderProgram));
     
-    g_GameObjects.insert(new Platform());
-
+    // Track a reference of the player
+//    player = new Cube(_defaultShaderProgram);
+//    g_GameObjects.insert(player);
 }
 
 void Game::DetectCollisions()
@@ -92,7 +106,8 @@ void Game::DetectCollisions()
 /**
  * Objective-C++ Trampoline to Update UI Score
  */
-int Game::GetScore(){
+int Game::GetScore()
+{
     return _gameScore;
 }
 
@@ -136,8 +151,13 @@ void Game::Render()
 {
     renderer.Clear();
     
-    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+        // Only recalculate this matrix if the transform changes
+        // TODO: This might have been where sometimes the floor didn't spawn in
+        (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
+        
         (*obj)->Draw();
+    }
 }
 
 /**
@@ -146,23 +166,17 @@ void Game::Render()
  */
 void Game::Update()
 {
-    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
         (*obj)->Update();
-        
-        // Only recalculate this matrix if the transform changes
-        if ((*obj)->transform.IsModelMatrixUpdated()) {
-            (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
-        }
-    }
     
     // This is where game objects are detected and IMMEDIATELY destroyed
-    DetectCollisions();
+    // DetectCollisions();
     
-    if (_projectileTimer.GetElapsedTime() >= 2)
-    {
-        SpawnProjectiles();
-        _projectileTimer.Reset();
-    }
+//    if (_projectileTimer.GetElapsedTime() >= 2)
+//    {
+//        SpawnProjectiles();
+//        _projectileTimer.Reset();
+//    }
 }
 
 void Game::SpawnProjectiles()
@@ -173,19 +187,19 @@ void Game::SpawnProjectiles()
     
     switch (random) {
         case 1:
-            projectile = new Projectile(glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
             g_GameObjects.insert(projectile);
             break;
     }

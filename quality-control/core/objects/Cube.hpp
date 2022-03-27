@@ -10,7 +10,7 @@
 class Cube : public GameObject
 {
 public:
-    Cube();
+    using GameObject::GameObject;
     
     // Implement lifecycle methods
     void Awake();
@@ -18,21 +18,6 @@ public:
     void Update();
     
     void MoveCube(int keyCode);
-    
-public:
-    // Rotation testing
-    float rotAngle;
-    bool isRotating;
-    
-    // Translation testing
-    bool isRight;
-    bool isTranslating;
-    
-    // Scale testing
-    bool isMovingForward;
-    bool isScaling;
-    
-    std::chrono::time_point<std::chrono::steady_clock> lastTime;
 };
 
 #endif /* Cube_hpp */

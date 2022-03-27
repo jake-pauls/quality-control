@@ -3,12 +3,16 @@
 // 2022-02-18
 
 #include <iostream>
+
 #include "GameObject.hpp"
 #include "Game.hpp"
+#include "Assert.hpp"
 
-GameObject::GameObject()
+GameObject::GameObject(Shader* shaderProgram)
+    : shader(shaderProgram)
 {
     id = g_GameObjectIdCount++;
+    LOG("CREATED GAMEOBJECT WITH ID " << id);
 }
 
 void GameObject::SetObjectMVPMatrix(glm::mat4 mvpMatrix)

@@ -41,6 +41,8 @@
 		40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40BF4A9727A1E8F600D45FB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40BF4A9927A1E8F600D45FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E2A5ED27EFD71F00644AF7 /* CubeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeData.h; sourceTree = "<group>"; };
+		40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cube_Grass_Single.fbx; sourceTree = "<group>"; };
 		9C26E06F27C220E400522AFF /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		9C26E07027C220E400522AFF /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		9C2FB47027C2FB5A00AE1F69 /* Obj-C-Utils-Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Obj-C-Utils-Interface.h"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */,
 				40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */,
 				40BF4A9927A1E8F600D45FB6 /* Info.plist */,
+				40F9D6EF27F00BDC00A43997 /* assets */,
 				40A987E827A9AEA4003B5236 /* vendor */,
 				9CAD53AA27C0C14000B4C46C /* res */,
 				9CAD53A227C0BF9D00B4C46C /* sys */,
@@ -117,6 +120,22 @@
 				9C2FB47027C2FB5A00AE1F69 /* Obj-C-Utils-Interface.h */,
 			);
 			path = "quality-control";
+			sourceTree = "<group>";
+		};
+		40E2A5EC27EFD71500644AF7 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				40E2A5ED27EFD71F00644AF7 /* CubeData.h */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		40F9D6EF27F00BDC00A43997 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */,
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 		9C9CF4C427C1BCE700650B07 /* objects */ = {
@@ -135,6 +154,7 @@
 		9CAD53A227C0BF9D00B4C46C /* sys */ = {
 			isa = PBXGroup;
 			children = (
+				40E2A5EC27EFD71500644AF7 /* data */,
 				9C9CF4C127C1A8A800650B07 /* Game.cpp */,
 				9C9CF4C227C1A8A800650B07 /* Game.hpp */,
 				9CAD53B527C0C99300B4C46C /* Renderer.cpp */,

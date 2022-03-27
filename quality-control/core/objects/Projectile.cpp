@@ -8,9 +8,10 @@
 #include "Game.hpp"
 #include "Projectile.hpp"
 
-Projectile::Projectile(glm::vec3 position, glm::vec3 direction)
-    : GameObject(), _startingPosition(position), _direction(direction)
+Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction)
+    : GameObject(shaderProgram), _startingPosition(position), _direction(direction)
 {
+    // Set transform data
     this->transform.position = position;
     
     this->transform.scale.x = 0.25f;
@@ -21,10 +22,7 @@ Projectile::Projectile(glm::vec3 position, glm::vec3 direction)
     this->transform.Translate();
  
     // Setup Cube Mesh
-    this->mesh = Renderer().ParseCubeVertexData();
-    
-    // Setup Cube Shader
-    this->shader = Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
+    this->mesh = &Renderer::CubeMesh;
     
     lastTime = std::chrono::steady_clock::now();
 }
@@ -34,14 +32,12 @@ void Projectile::Awake()
 
 void Projectile::Draw()
 {
-    this->shader.Bind();
-    
     glm::mat4 mvp = this->_mvpMatrix;
-    this->shader.SetUniform4f("_color", 1.0f, 0.0f, 0.0f, 1.0f);
-    this->shader.SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
+    this->shader->SetUniform4f("_color", 1.0f, 0.0f, 0.0f, 1.0f);
+    this->shader->SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
         
     // Draw cube mesh
-    this->mesh.Draw();
+    this->mesh->Draw();
 }
 
 void Projectile::Update()

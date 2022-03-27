@@ -10,7 +10,10 @@
 class Projectile : public GameObject
 {
 public:
-    Projectile(glm::vec3 position, glm::vec3 direction);
+    using GameObject::GameObject;
+    
+    // GameObject specific constructor
+    Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction);
     
     // Implement lifecycle methods
     void Awake();
