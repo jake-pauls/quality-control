@@ -12,8 +12,10 @@ Transform::Transform()
     rotation = glm::vec3(0, 0, 0);
     scale = glm::vec3(1, 1, 1);
     
-    // Set the default scaling matrix to the identity matrix
-    _scalingMatrix = glm::mat4(1.0);
+    // Set the default matrices to the identity matrix
+    _translationMatrix = glm::mat4(1.0f);
+    _rotationMatrix = glm::mat4(1.0f);
+    _scalingMatrix = glm::mat4(1.0f);
 }
 
 /// For Translate(), Rotate(), and Scale() update the transform's
@@ -65,9 +67,8 @@ bool Transform::IsModelMatrixUpdated()
 {
     glm::mat4 newModelMatrix = GetModelMatrix();
     
-    if (newModelMatrix == _lastModelMatrix) {
+    if (newModelMatrix == _lastModelMatrix)
         return false;
-    }
     
     _lastModelMatrix = newModelMatrix;
     

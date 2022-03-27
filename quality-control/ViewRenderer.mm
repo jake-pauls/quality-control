@@ -68,8 +68,8 @@
 
 - (void)update
 {
-    _game.renderer.drawableWidth = _viewport.drawableWidth;
-    _game.renderer.drawableHeight = _viewport.drawableHeight;
+    _game.Renderer.drawableWidth = _viewport.drawableWidth;
+    _game.Renderer.drawableHeight = _viewport.drawableHeight;
     
     _game.Update();
     gameScore = _game.GetScore();

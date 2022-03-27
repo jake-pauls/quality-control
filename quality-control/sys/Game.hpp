@@ -61,13 +61,13 @@ private:
     Timer _projectileTimer;
     
 public:
-    Renderer renderer;
+    Renderer Renderer;
     
-    glm::mat4 projectionMatrix;
-    glm::mat4 viewMatrix;
+    glm::mat4 ProjectionMatrix;
+    glm::mat4 ViewMatrix;
     
     // Player test
-    Cube* player;
+    Cube* Player;
     
     // Model test
     inline static Model TestModel;

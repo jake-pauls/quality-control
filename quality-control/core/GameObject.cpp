@@ -12,7 +12,7 @@ GameObject::GameObject(Shader* shaderProgram)
     : shader(shaderProgram)
 {
     id = g_GameObjectIdCount++;
-    LOG("CREATED GAMEOBJECT WITH ID " << id);
+    LOG("Created a GameObject with ID #" << id);
 }
 
 void GameObject::SetObjectMVPMatrix(glm::mat4 mvpMatrix)

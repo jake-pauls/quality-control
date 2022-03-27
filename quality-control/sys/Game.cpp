@@ -34,15 +34,14 @@ void Game::Init()
     
     float aspectRatio = _viewWidth / _viewHeight;
     
-    projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
+    ProjectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
     
-    viewMatrix = glm::lookAt(
+    ViewMatrix = glm::lookAt(
         glm::vec3(2, 7, 11),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
     
-    // TODO: Add logic for multiple shaders if required
     // Setup default shader for basic lighting across game objects
     _defaultShaderProgram = new Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
     _defaultShaderProgram->Bind();
@@ -69,8 +68,8 @@ void Game::InitializeGameObjects()
     g_GameObjects.insert(new Platform(_defaultShaderProgram));
     
     // Track a reference of the player
-    // player = new Cube(_defaultShaderProgram);
-    // g_GameObjects.insert(player);
+    Player = new Cube(_defaultShaderProgram);
+    g_GameObjects.insert(Player);
 }
 
 void Game::DetectCollisions()
@@ -78,7 +77,7 @@ void Game::DetectCollisions()
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if (dynamic_cast<Projectile *>((*obj)) != nullptr) {
-            bool collision = GameObject::IsCollisionDetected(*player, *(*obj));
+            bool collision = GameObject::IsCollisionDetected(*Player, *(*obj));
             
             if (collision) {
                 // Player was hit by this projectile
@@ -90,13 +89,13 @@ void Game::DetectCollisions()
                 // No collisions detected
                 // Check if transform is outside of the screen to destroy
                 // Implement other directions/bounds for this logic
-                float despawnRange = 10.0f;
+                float despawnRange = 20.0f;
                 
                 if (abs((*obj)->transform.position.x) >= despawnRange) {
                     DestroyGameObject(*(*obj));
                     _gameScore++;
                     break;
-                } else if (abs((*obj)->transform.position.y) >= despawnRange) {
+                } else if (abs((*obj)->transform.position.z) >= despawnRange) {
                     DestroyGameObject(*(*obj));
                     _gameScore++;
                     break;
@@ -123,7 +122,7 @@ void Game::DestroyGameObject(GameObject &proj)
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if ((*obj)->id == proj.id) {
-            LOG("Successfully destroyed a GameObject with id #" << (*obj)->id);
+            LOG("Destroyed a GameObject with id #" << (*obj)->id);
             delete *obj;
             g_GameObjects.erase(obj);
             break;
@@ -133,7 +132,7 @@ void Game::DestroyGameObject(GameObject &proj)
 
 void Game::HandleInput(int keyCode)
 {
-    player->MoveCube(keyCode);
+    Player->MoveCube(keyCode);
 }
 
 /**
@@ -152,12 +151,13 @@ void Game::Awake()
  */
 void Game::Render()
 {
-    renderer.Clear();
+    Renderer.Clear();
     
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
         // Only recalculate this matrix if the transform changes
-        // TODO: This might have been where sometimes the floor didn't spawn in
-        (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
+        if ((*obj)->transform.IsModelMatrixUpdated()) {
+            (*obj)->SetObjectMVPMatrix(ProjectionMatrix * ViewMatrix * (*obj)->transform.GetModelMatrix());
+        }
         
         (*obj)->Draw();
     }
@@ -173,13 +173,13 @@ void Game::Update()
         (*obj)->Update();
     
     // This is where game objects are detected and IMMEDIATELY destroyed
-    // DetectCollisions();
+    DetectCollisions();
     
-//    if (_projectileTimer.GetElapsedTime() >= 2)
-//    {
-//        SpawnProjectiles();
-//        _projectileTimer.Reset();
-//    }
+    if (_projectileTimer.GetElapsedTime() >= 2)
+    {
+        SpawnProjectiles();
+        _projectileTimer.Reset();
+    }
 }
 
 void Game::SpawnProjectiles()

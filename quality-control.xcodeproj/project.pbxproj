@@ -121,7 +121,6 @@
 				40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */,
 				40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */,
 				40BF4A9927A1E8F600D45FB6 /* Info.plist */,
-				40F9D6EF27F00BDC00A43997 /* assets */,
 				40A987E827A9AEA4003B5236 /* vendor */,
 				9CAD53AA27C0C14000B4C46C /* res */,
 				9CAD53A227C0BF9D00B4C46C /* sys */,
@@ -162,12 +161,12 @@
 			path = data;
 			sourceTree = "<group>";
 		};
-		40F9D6EF27F00BDC00A43997 /* assets */ = {
+		40F9D6EF27F00BDC00A43997 /* models */ = {
 			isa = PBXGroup;
 			children = (
 				40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */,
 			);
-			path = assets;
+			path = models;
 			sourceTree = "<group>";
 		};
 		9C9CF4C427C1BCE700650B07 /* objects */ = {
@@ -199,6 +198,7 @@
 		9CAD53AA27C0C14000B4C46C /* res */ = {
 			isa = PBXGroup;
 			children = (
+				40F9D6EF27F00BDC00A43997 /* models */,
 				9CAD53AB27C0C14000B4C46C /* shader */,
 			);
 			path = res;
