@@ -11,9 +11,10 @@
 
 @interface ViewRenderer : NSObject
 
-@property int score;
+@property int gameScore;
 
 - (void)setup:(GLKView*)view;
+- (void)loadModels;
 - (void)awake;
 - (void)update;
 - (void)draw;

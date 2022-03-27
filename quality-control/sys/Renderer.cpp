@@ -7,111 +7,10 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "CubeData.h"
+
 #include "Renderer.hpp"
 #include "Assert.hpp"
-
-int numVertices = 24;
-int numIndices = 36;
-
-float cubeVerts[] =
-{
-    -0.5f, -0.5f, -0.5f,
-    -0.5f, -0.5f,  0.5f,
-    0.5f, -0.5f,  0.5f,
-    0.5f, -0.5f, -0.5f,
-    -0.5f,  0.5f, -0.5f,
-    -0.5f,  0.5f,  0.5f,
-    0.5f,  0.5f,  0.5f,
-    0.5f,  0.5f, -0.5f,
-    -0.5f, -0.5f, -0.5f,
-    -0.5f,  0.5f, -0.5f,
-    0.5f,  0.5f, -0.5f,
-    0.5f, -0.5f, -0.5f,
-    -0.5f, -0.5f, 0.5f,
-    -0.5f,  0.5f, 0.5f,
-    0.5f,  0.5f, 0.5f,
-    0.5f, -0.5f, 0.5f,
-    -0.5f, -0.5f, -0.5f,
-    -0.5f, -0.5f,  0.5f,
-    -0.5f,  0.5f,  0.5f,
-    -0.5f,  0.5f, -0.5f,
-    0.5f, -0.5f, -0.5f,
-    0.5f, -0.5f,  0.5f,
-    0.5f,  0.5f,  0.5f,
-    0.5f,  0.5f, -0.5f,
-};
-
-float cubeNormals[] =
-{
-    0.0f, -1.0f, 0.0f,
-    0.0f, -1.0f, 0.0f,
-    0.0f, -1.0f, 0.0f,
-    0.0f, -1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 0.0f, -1.0f,
-    0.0f, 0.0f, -1.0f,
-    0.0f, 0.0f, -1.0f,
-    0.0f, 0.0f, -1.0f,
-    0.0f, 0.0f, 1.0f,
-    0.0f, 0.0f, 1.0f,
-    0.0f, 0.0f, 1.0f,
-    0.0f, 0.0f, 1.0f,
-    -1.0f, 0.0f, 0.0f,
-    -1.0f, 0.0f, 0.0f,
-    -1.0f, 0.0f, 0.0f,
-    -1.0f, 0.0f, 0.0f,
-    1.0f, 0.0f, 0.0f,
-    1.0f, 0.0f, 0.0f,
-    1.0f, 0.0f, 0.0f,
-    1.0f, 0.0f, 0.0f,
-};
-
-float cubeTex[] =
-{
-    0.0f, 0.0f,
-    0.0f, 1.0f,
-    1.0f, 1.0f,
-    1.0f, 0.0f,
-    1.0f, 0.0f,
-    1.0f, 1.0f,
-    0.0f, 1.0f,
-    0.0f, 0.0f,
-    0.0f, 0.0f,
-    0.0f, 1.0f,
-    1.0f, 1.0f,
-    1.0f, 0.0f,
-    0.0f, 0.0f,
-    0.0f, 1.0f,
-    1.0f, 1.0f,
-    1.0f, 0.0f,
-    0.0f, 0.0f,
-    0.0f, 1.0f,
-    1.0f, 1.0f,
-    1.0f, 0.0f,
-    0.0f, 0.0f,
-    0.0f, 1.0f,
-    1.0f, 1.0f,
-    1.0f, 0.0f,
-};
-
-GLuint cubeIndices[] =
-{
-    0, 2, 1,
-    0, 3, 2,
-    4, 5, 6,
-    4, 6, 7,
-    8, 9, 10,
-    8, 10, 11,
-    12, 15, 14,
-    12, 14, 13,
-    16, 17, 18,
-    16, 18, 19,
-    20, 23, 22,
-    20, 22, 21
-};
 
 /**
  * Clears the viewport before each draw call
@@ -133,7 +32,7 @@ Mesh Renderer::ParseCubeVertexData()
     
     int stride3 = 0;
     int stride2 = 0;
-    for (int i = 0; i < numVertices; i++)
+    for (int i = 0; i < NumberOfCubeVertices; i++)
     {
         Vertex vertex;
         glm::vec3 vector;
@@ -142,28 +41,28 @@ Mesh Renderer::ParseCubeVertexData()
         stride2 = i * 2;
         
         // Position data
-        vector.x = cubeVerts[stride3];
-        vector.y = cubeVerts[stride3+1];
-        vector.z = cubeVerts[stride3+2];
+        vector.x = CubeVertices[stride3];
+        vector.y = CubeVertices[stride3+1];
+        vector.z = CubeVertices[stride3+2];
         vertex.Position = vector;
         
         // Normal data
-        vector.x = cubeNormals[stride3];
-        vector.y = cubeNormals[stride3+1];
-        vector.z = cubeNormals[stride3+2];
+        vector.x = CubeNormals[stride3];
+        vector.y = CubeNormals[stride3+1];
+        vector.z = CubeNormals[stride3+2];
         vertex.Normal = vector;
         
         // Texture data
-        vector.x = cubeTex[stride2];
-        vector.y = cubeTex[stride2+1];
+        vector.x = CubeTexCoords[stride2];
+        vector.y = CubeTexCoords[stride2+1];
         vertex.TexCoords = vector;
         
         vertices.push_back(vertex);
     }
     
-    for (int i = 0; i < numIndices; i++)
+    for (int i = 0; i < NumberOfCubeIndices; i++)
     {
-        indices.push_back(cubeIndices[i]);
+        indices.push_back(CubeIndices[i]);
     }
     
     return Mesh{ vertices, indices, textures };

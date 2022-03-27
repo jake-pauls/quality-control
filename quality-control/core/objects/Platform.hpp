@@ -10,7 +10,7 @@
 class Platform : public GameObject
 {
 public:
-    Platform();
+    using GameObject::GameObject;
     
     // Implement lifecycle methods
     void Awake();

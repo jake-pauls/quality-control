@@ -2,15 +2,19 @@
 // Game.cpp
 // 2022-02-19
 
-#include "Game.hpp"
-#include "Renderer.hpp"
-#include "Assert.hpp"
-
-#include "Platform.hpp"
-#include "Projectile.hpp"
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+
+#include "Obj-C-Utils-Interface.h"
+
+#include "Game.hpp"
+#include "Assert.hpp"
+#include "Shader.hpp"
+#include "Model.hpp"
+#include "Renderer.hpp"
+#include "Platform.hpp"
+#include "Projectile.hpp"
 
 Game::Game()
 { }
@@ -27,17 +31,29 @@ Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
 void Game::Init()
 {
     srand(time(NULL));
+    
     float aspectRatio = _viewWidth / _viewHeight;
     
-    projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
+    ProjectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
     
-    viewMatrix = glm::lookAt(
+    ViewMatrix = glm::lookAt(
         glm::vec3(2, 7, 11),
         glm::vec3(0, 0, 0),
         glm::vec3(0, 1, 0)
     );
     
+    // Setup default shader for basic lighting across game objects
+    _defaultShaderProgram = new Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
+    _defaultShaderProgram->Bind();
+    
     InitializeGameObjects();
+}
+
+void Game::LoadModels()
+{
+    Renderer::CubeMesh = Renderer::ParseCubeVertexData();
+    
+    TestModel = Model(RetrieveObjectiveCPath("Cube_Grass_Single.fbx"));
 }
 
 /**
@@ -47,13 +63,13 @@ void Game::InitializeGameObjects()
 {
     // Start the projectile timer
     _projectileTimer.Reset();
+   
+    // Create the base platform
+    g_GameObjects.insert(new Platform(_defaultShaderProgram));
     
     // Track a reference of the player
-    player = new Cube();
-    g_GameObjects.insert(player);
-    
-    g_GameObjects.insert(new Platform());
-
+    Player = new Cube(_defaultShaderProgram);
+    g_GameObjects.insert(Player);
 }
 
 void Game::DetectCollisions()
@@ -61,7 +77,7 @@ void Game::DetectCollisions()
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if (dynamic_cast<Projectile *>((*obj)) != nullptr) {
-            bool collision = GameObject::IsCollisionDetected(*player, *(*obj));
+            bool collision = GameObject::IsCollisionDetected(*Player, *(*obj));
             
             if (collision) {
                 // Player was hit by this projectile
@@ -73,13 +89,13 @@ void Game::DetectCollisions()
                 // No collisions detected
                 // Check if transform is outside of the screen to destroy
                 // Implement other directions/bounds for this logic
-                float despawnRange = 10.0f;
+                float despawnRange = 20.0f;
                 
                 if (abs((*obj)->transform.position.x) >= despawnRange) {
                     DestroyGameObject(*(*obj));
                     _gameScore++;
                     break;
-                } else if (abs((*obj)->transform.position.y) >= despawnRange) {
+                } else if (abs((*obj)->transform.position.z) >= despawnRange) {
                     DestroyGameObject(*(*obj));
                     _gameScore++;
                     break;
@@ -92,7 +108,8 @@ void Game::DetectCollisions()
 /**
  * Objective-C++ Trampoline to Update UI Score
  */
-int Game::GetScore(){
+int Game::GetScore()
+{
     return _gameScore;
 }
 
@@ -105,7 +122,7 @@ void Game::DestroyGameObject(GameObject &proj)
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if ((*obj)->id == proj.id) {
-            LOG("Successfully destroyed a GameObject with id #" << (*obj)->id);
+            LOG("Destroyed a GameObject with id #" << (*obj)->id);
             delete *obj;
             g_GameObjects.erase(obj);
             break;
@@ -115,7 +132,7 @@ void Game::DestroyGameObject(GameObject &proj)
 
 void Game::HandleInput(int keyCode)
 {
-    player->MoveCube(keyCode);
+    Player->MoveCube(keyCode);
 }
 
 /**
@@ -134,10 +151,16 @@ void Game::Awake()
  */
 void Game::Render()
 {
-    renderer.Clear();
+    Renderer.Clear();
     
-    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+        // Only recalculate this matrix if the transform changes
+        if ((*obj)->transform.IsModelMatrixUpdated()) {
+            (*obj)->SetObjectMVPMatrix(ProjectionMatrix * ViewMatrix * (*obj)->transform.GetModelMatrix());
+        }
+        
         (*obj)->Draw();
+    }
 }
 
 /**
@@ -146,14 +169,8 @@ void Game::Render()
  */
 void Game::Update()
 {
-    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
         (*obj)->Update();
-        
-        // Only recalculate this matrix if the transform changes
-        if ((*obj)->transform.IsModelMatrixUpdated()) {
-            (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
-        }
-    }
     
     // This is where game objects are detected and IMMEDIATELY destroyed
     DetectCollisions();
@@ -173,19 +190,19 @@ void Game::SpawnProjectiles()
     
     switch (random) {
         case 1:
-            projectile = new Projectile(glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            projectile = new Projectile(_defaultShaderProgram, glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
             g_GameObjects.insert(projectile);
             break;
     }

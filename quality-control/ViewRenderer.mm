@@ -15,14 +15,17 @@
 #include "Assert.hpp"
 
 @interface ViewRenderer() {
-    GLKView* _view;
-    Game game;
+    GLKView* _viewport;
+    
+    Game _game;
 }
 
 @end
 
 @implementation ViewRenderer
-@synthesize score;
+
+@synthesize gameScore;
+
 /**
  * Sets up OpenGLES context with default settings
  * Extracts data from GLKView
@@ -34,42 +37,42 @@
     
     [EAGLContext setCurrentContext:view.context];
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    _view = view;
+    _viewport = view;
     
     GL_CALL(glClearColor(0, 0, 0, 0));
     GL_CALL(glEnable(GL_DEPTH_TEST));
     GL_CALL(glEnable(GL_CULL_FACE));
-    GL_CALL(glEnable(GL_BLEND));
     
-    score = 0;
+    gameScore = 0;
 }
 
+- (void)loadModels
+{
+    _game.LoadModels();
+}
+    
 // MARK: Lifecycle Methods (Awake, Draw, Update)
 
 - (void)awake
 {
-    game = Game(_view.bounds.size.width, _view.bounds.size.height);
-    game.Init();
+    _game = Game(_viewport.bounds.size.width, _viewport.bounds.size.height);
+    _game.Init();
     
-    game.Awake();
+    _game.Awake();
 }
 
 - (void)draw
 {
-    // Check if we can update the drawableWidth/Height before rendering objects
-    if (game.renderer.drawableWidth != _view.drawableWidth)
-        game.renderer.drawableWidth = _view.drawableWidth;
-    
-    if (game.renderer.drawableHeight != _view.drawableHeight)
-        game.renderer.drawableHeight = _view.drawableHeight;
-    
-    game.Render();
+    _game.Render();
 }
 
 - (void)update
 {
-    game.Update();
-    score = game.GetScore();
+    _game.Renderer.drawableWidth = _viewport.drawableWidth;
+    _game.Renderer.drawableHeight = _viewport.drawableHeight;
+    
+    _game.Update();
+    gameScore = _game.GetScore();
 }
 
 /**
@@ -77,7 +80,7 @@
  */
 - (void)handleInput:(int)keyCode
 {
-    game.HandleInput(keyCode);
+    _game.HandleInput(keyCode);
 }
 
 /**
@@ -95,4 +98,5 @@ const char* RetrieveObjectiveCPath(const char* fileName)
 {
     return [ViewRenderer RetrieveFilePathByName: fileName];
 }
+
 @end
