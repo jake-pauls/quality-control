@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2803A00027F0270900FAB22C /* 104917-German_MP44_STG44_machine_gun_single_shot_close_perspective_01-SFXBible-ss06776.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFD27F0270900FAB22C /* 104917-German_MP44_STG44_machine_gun_single_shot_close_perspective_01-SFXBible-ss06776.wav */; };
+		2803A00127F0270900FAB22C /* 542680-zapsplat-foley-clothes-clothing-fast-movement-short-swipe-punch-or-kick-etc-002-54902.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFE27F0270900FAB22C /* 542680-zapsplat-foley-clothes-clothing-fast-movement-short-swipe-punch-or-kick-etc-002-54902.wav */; };
+		2803A00227F0270900FAB22C /* Avicii - Levels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFF27F0270900FAB22C /* Avicii - Levels.mp3 */; };
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28039FFD27F0270900FAB22C /* 104917-German_MP44_STG44_machine_gun_single_shot_close_perspective_01-SFXBible-ss06776.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "104917-German_MP44_STG44_machine_gun_single_shot_close_perspective_01-SFXBible-ss06776.wav"; sourceTree = "<group>"; };
+		28039FFE27F0270900FAB22C /* 542680-zapsplat-foley-clothes-clothing-fast-movement-short-swipe-punch-or-kick-etc-002-54902.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "542680-zapsplat-foley-clothes-clothing-fast-movement-short-swipe-punch-or-kick-etc-002-54902.wav"; sourceTree = "<group>"; };
+		28039FFF27F0270900FAB22C /* Avicii - Levels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Avicii - Levels.mp3"; sourceTree = "<group>"; };
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
@@ -79,6 +85,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28892F8227F0120500FF27CB /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				28039FFD27F0270900FAB22C /* 104917-German_MP44_STG44_machine_gun_single_shot_close_perspective_01-SFXBible-ss06776.wav */,
+				28039FFE27F0270900FAB22C /* 542680-zapsplat-foley-clothes-clothing-fast-movement-short-swipe-punch-or-kick-etc-002-54902.wav */,
+				28039FFF27F0270900FAB22C /* Avicii - Levels.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		40BF4A7F27A1E8F500D45FB6 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +163,7 @@
 		9CAD53AA27C0C14000B4C46C /* res */ = {
 			isa = PBXGroup;
 			children = (
+				28892F8227F0120500FF27CB /* sounds */,
 				9CAD53AB27C0C14000B4C46C /* shader */,
 			);
 			path = res;
@@ -239,8 +256,11 @@
 				40A987E927A9AEA5003B5236 /* vendor in Resources */,
 				40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */,
 				9C9CF4C027C18C8300650B07 /* Shader.vsh in Resources */,
+				2803A00027F0270900FAB22C /* 104917-German_MP44_STG44_machine_gun_single_shot_close_perspective_01-SFXBible-ss06776.wav in Resources */,
 				40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */,
+				2803A00227F0270900FAB22C /* Avicii - Levels.mp3 in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
+				2803A00127F0270900FAB22C /* 542680-zapsplat-foley-clothes-clothing-fast-movement-short-swipe-punch-or-kick-etc-002-54902.wav in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Shader.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
