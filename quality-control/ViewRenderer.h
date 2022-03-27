@@ -13,6 +13,8 @@
 @interface ViewRenderer : NSObject
 
 @property int score;
+@property bool play;
+@property bool triggerMenu;
 
 - (void)setup:(GLKView*)view;
 - (void)awake;

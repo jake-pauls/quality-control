@@ -11,6 +11,10 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         score.text = String(format:"Score: (%d)",viewRenderer.score);
+        if (viewRenderer.triggerMenu) {
+            triggerHide(false);
+            viewRenderer.triggerMenu = false;
+        }
     }
 }
 
@@ -27,7 +31,9 @@ class ViewController: GLKViewController {
     @IBOutlet weak var leftButton: UIImageView!
     @IBOutlet weak var downButton: UIImageView!
     
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var score: UITextField!
+    
     /**
      * Initializes the GL view from a Swift context
      * Awakens and initializes the game state
@@ -108,6 +114,18 @@ class ViewController: GLKViewController {
      */
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
         viewRenderer.draw()
+    }
+    
+    func triggerHide(_ hide:Bool) {
+        playButton.isHidden = hide;
+        upButton.isHidden = !hide;
+        downButton.isHidden = !hide;
+        rightButton.isHidden = !hide;
+        leftButton.isHidden = !hide;
+    }
+    @IBAction func Play(_ sender: UIButton) {
+        triggerHide(true);
+        viewRenderer.play = true;
     }
 }
 

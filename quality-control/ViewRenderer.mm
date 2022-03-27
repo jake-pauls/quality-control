@@ -23,6 +23,8 @@
 
 @implementation ViewRenderer
 @synthesize score;
+@synthesize play;
+@synthesize triggerMenu;
 /**
  * Sets up OpenGLES context with default settings
  * Extracts data from GLKView
@@ -42,6 +44,7 @@
     GL_CALL(glEnable(GL_BLEND));
     
     score = 0;
+    triggerMenu = false;
 }
 
 // MARK: Lifecycle Methods (Awake, Draw, Update)
