@@ -36,7 +36,7 @@ void Projectile::Draw()
     this->shader->SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
         
     // Draw cube mesh
-    this->mesh->Draw();
+//    this->mesh->Draw();
 }
 
 void Projectile::Update()

@@ -26,15 +26,15 @@ void Renderer::Clear()
  */
 Mesh Renderer::ParseCubeVertexData()
 {
-    std::vector<Vertex> vertices;
+    std::vector<Mesh::Vertex> vertices;
     std::vector<GLuint> indices;
-    std::vector<Texture> textures;
+    std::vector<Mesh::Texture> textures;
     
     int stride3 = 0;
     int stride2 = 0;
     for (int i = 0; i < NumberOfCubeVertices; i++)
     {
-        Vertex vertex;
+        Mesh::Vertex vertex;
         glm::vec3 vector;
         
         stride3 = i * 3;

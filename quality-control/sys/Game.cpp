@@ -42,8 +42,12 @@ void Game::Init()
         glm::vec3(0, 1, 0)
     );
     
+    // Setup the flat shader program for textured models
+    _flatShaderProgram = new Shader(RetrieveObjectiveCPath("Flat.vsh"), RetrieveObjectiveCPath("Flat.fsh"));
+    _flatShaderProgram->Bind();
+    
     // Setup default shader for basic lighting across game objects
-    _defaultShaderProgram = new Shader(RetrieveObjectiveCPath("Shader.vsh"), RetrieveObjectiveCPath("Shader.fsh"));
+    _defaultShaderProgram = new Shader(RetrieveObjectiveCPath("Passthrough.vsh"), RetrieveObjectiveCPath("Passthrough.fsh"));
     _defaultShaderProgram->Bind();
     
     InitializeGameObjects();
@@ -68,7 +72,7 @@ void Game::InitializeGameObjects()
     g_GameObjects.insert(new Platform(_defaultShaderProgram));
     
     // Track a reference of the player
-    Player = new Cube(_defaultShaderProgram);
+    Player = new Cube(_flatShaderProgram);
     g_GameObjects.insert(Player);
 }
 
@@ -173,13 +177,13 @@ void Game::Update()
         (*obj)->Update();
     
     // This is where game objects are detected and IMMEDIATELY destroyed
-    DetectCollisions();
-    
-    if (_projectileTimer.GetElapsedTime() >= 2)
-    {
-        SpawnProjectiles();
-        _projectileTimer.Reset();
-    }
+//    DetectCollisions();
+//
+//    if (_projectileTimer.GetElapsedTime() >= 2)
+//    {
+//        SpawnProjectiles();
+//        _projectileTimer.Reset();
+//    }
 }
 
 void Game::SpawnProjectiles()

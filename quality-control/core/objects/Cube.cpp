@@ -5,12 +5,13 @@
 #include <iostream>
 #include <chrono>
 
+#include "Game.hpp"
 #include "Cube.hpp"
 
 /// Awake is called when the object is initialized at setup
 void Cube::Awake()
 {
-    this->mesh = &Renderer::CubeMesh;
+    this->model = &Game::TestModel;
 }
 
 /// Draw is called when the renderer processes draw calls
@@ -21,11 +22,10 @@ void Cube::Draw()
     
     // Set shader uniforms
     glm::mat4 mvp = this->_mvpMatrix;
-    this->shader->SetUniform4f("_color", 0.0f, 1.0f, 0.0f, 1.0f);
     this->shader->SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
     
     // Draw cube mesh
-    this->mesh->Draw();
+    this->model->Draw(shader);
 }
 
 /// Update is called once per frame

@@ -3,16 +3,15 @@
 
 layout(location = 0) in vec4 position;
 layout(location = 1) in vec3 normal;
-layout(location = 2) in vec3 texCoordIn;
+layout(location = 2) in vec2 texCoordIn;
 
-out vec4 v_color;
+out vec2 texCoordOut;
 
 uniform mat4 _mvpMatrix;
-uniform vec4 _color;
 
 void main()
 {
-    v_color = _color;
-
+    texCoordOut = texCoordIn;
+    
     gl_Position = _mvpMatrix * position;
 }

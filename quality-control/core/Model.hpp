@@ -8,6 +8,10 @@
 #include <string>
 #include <vector>
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 #include "Model.hpp"
 #include "Shader.hpp"
 #include "Mesh.hpp"
@@ -18,13 +22,17 @@ public:
     Model();
     Model(const std::string& modelFilePath);
     
-    void Draw(Shader& shader);
+    void Draw(Shader* shader);
+    
+    std::vector<Mesh::Texture> LoadedTextures;
+    std::vector<Mesh> Meshes;
+    std::string ModelDirectory;
     
 private:
-    std::vector<Mesh> _meshes;
-    std::string _directory;
-    
     void LoadModel(const std::string& modelFilePath);
+    void ProcessNode(aiNode* node, const aiScene* scene);
+    Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
+    std::vector<Mesh::Texture> LoadMaterialTexture(aiMaterial* material, aiTextureType type, std::string typeName);
 };
 
 #endif /* Model_hpp */

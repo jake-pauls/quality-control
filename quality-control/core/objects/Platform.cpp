@@ -26,12 +26,13 @@ void Platform::Awake()
 
 void Platform::Draw()
 {
-    glm::mat4 mvp = this->_mvpMatrix;
+    this->shader->Bind();
     
+    glm::mat4 mvp = this->_mvpMatrix;
     this->shader->SetUniform4f("_color", 0.0f, 0.6f, 1.0f, 1.0f);
     this->shader->SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
     
-    this->mesh->Draw();
+    this->mesh->BasicDraw();
 }
 
 void Platform::Update()

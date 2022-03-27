@@ -56,6 +56,7 @@ private:
     GLfloat _viewHeight;
     
     Shader* _defaultShaderProgram;
+    Shader* _flatShaderProgram;
     
     int _gameScore;
     Timer _projectileTimer;
