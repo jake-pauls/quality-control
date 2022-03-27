@@ -43,7 +43,7 @@
     GL_CALL(glEnable(GL_DEPTH_TEST));
     GL_CALL(glEnable(GL_CULL_FACE));
     
-    score = 0;
+    gameScore = 0;
     triggerMenu = false;
 }
 

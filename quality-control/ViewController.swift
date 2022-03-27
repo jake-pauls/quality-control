@@ -119,10 +119,10 @@ class ViewController: GLKViewController {
     
     func triggerHide(_ hide:Bool) {
         playButton.isHidden = hide;
-        upButton.isHidden = !hide;
-        downButton.isHidden = !hide;
-        rightButton.isHidden = !hide;
-        leftButton.isHidden = !hide;
+        //upButton.isHidden = !hide;
+        //downButton.isHidden = !hide;
+        //rightButton.isHidden = !hide;
+        //leftButton.isHidden = !hide;
     }
     @IBAction func Play(_ sender: UIButton) {
         triggerHide(true);
