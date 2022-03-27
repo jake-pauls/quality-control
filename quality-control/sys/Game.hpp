@@ -12,6 +12,7 @@
 #include <glm/gtc/matrix_transform.hpp>
     
 #include "Mesh.hpp"
+#include "Model.hpp"
 #include "GameObject.hpp"
 #include "Renderer.hpp"
 #include "Cube.hpp"
@@ -37,7 +38,7 @@ public:
     
     // Startup methods
     void Init();
-    static void LoadModels();
+    void LoadModels();
     
     // Lifecycle methods
     void Awake();
@@ -67,6 +68,9 @@ public:
     
     // Player test
     Cube* player;
+    
+    // Model test
+    inline static Model TestModel;
 };
 
 #endif /* Game_hpp */

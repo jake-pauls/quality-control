@@ -10,7 +10,6 @@
 /// Awake is called when the object is initialized at setup
 void Cube::Awake()
 {
-    // Select Cube Mesh
     this->mesh = &Renderer::CubeMesh;
 }
 

@@ -11,6 +11,7 @@
 #include "Game.hpp"
 #include "Assert.hpp"
 #include "Shader.hpp"
+#include "Model.hpp"
 #include "Renderer.hpp"
 #include "Platform.hpp"
 #include "Projectile.hpp"
@@ -52,6 +53,8 @@ void Game::Init()
 void Game::LoadModels()
 {
     Renderer::CubeMesh = Renderer::ParseCubeVertexData();
+    
+    TestModel = Model(RetrieveObjectiveCPath("Cube_Grass_Single.fbx"));
 }
 
 /**
@@ -61,13 +64,13 @@ void Game::InitializeGameObjects()
 {
     // Start the projectile timer
     _projectileTimer.Reset();
-    
+   
     // Create the base platform
     g_GameObjects.insert(new Platform(_defaultShaderProgram));
     
     // Track a reference of the player
-//    player = new Cube(_defaultShaderProgram);
-//    g_GameObjects.insert(player);
+    // player = new Cube(_defaultShaderProgram);
+    // g_GameObjects.insert(player);
 }
 
 void Game::DetectCollisions()

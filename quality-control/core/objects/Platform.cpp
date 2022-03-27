@@ -2,12 +2,12 @@
 // Platform.cpp
 // 2022-02-20
 
+#include <string>
 #include "Platform.hpp"
 #include "Assert.hpp"
 
 void Platform::Awake()
 {
-    // Setup Cube Mesh
     this->mesh = &Renderer::CubeMesh;
     
     // Platform Position

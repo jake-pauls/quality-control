@@ -21,7 +21,6 @@ public:
     GLfloat drawableWidth = 10.0f;
     GLfloat drawableHeight = 10.0f;
     
-    // Mesh Testing
     inline static Mesh CubeMesh;
 };
 

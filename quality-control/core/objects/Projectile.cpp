@@ -11,6 +11,8 @@
 Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction)
     : GameObject(shaderProgram), _startingPosition(position), _direction(direction)
 {
+    this->mesh = &Renderer::CubeMesh;
+    
     // Set transform data
     this->transform.position = position;
     
@@ -20,9 +22,6 @@ Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 dire
     
     this->transform.Scale();
     this->transform.Translate();
- 
-    // Setup Cube Mesh
-    this->mesh = &Renderer::CubeMesh;
     
     lastTime = std::chrono::steady_clock::now();
 }
