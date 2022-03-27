@@ -482,7 +482,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/quality-control/vendor/glm/",
-					"$(PROJECT_DIR)/quality-control/vendor/assimp-include/",
+					"$(PROJECT_DIR)/quality-control/vendor/assimp/",
 				);
 				INFOPLIST_FILE = "quality-control/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -523,7 +523,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/quality-control/vendor/glm/",
-					"$(PROJECT_DIR)/quality-control/vendor/assimp-include/",
+					"$(PROJECT_DIR)/quality-control/vendor/assimp/",
 				);
 				INFOPLIST_FILE = "quality-control/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
