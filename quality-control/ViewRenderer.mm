@@ -52,6 +52,11 @@
     game.Init();
     
     game.Awake();
+    
+    SystemSoundID soundID;
+    NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"bgm" ofType:@"mp3"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & soundID);
+    AudioServicesPlaySystemSound(soundID);
 }
 
 - (void)draw

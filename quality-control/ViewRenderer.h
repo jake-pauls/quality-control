@@ -6,6 +6,7 @@
 #define ViewRenderer_h
 
 #import <GLKit/GLKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 #include "Obj-C-Utils-Interface.h"
 
