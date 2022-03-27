@@ -22,11 +22,11 @@ class GameObject
 public:
     int id;
     Transform transform;
-    Mesh mesh;
-    Shader shader;
+    Mesh* mesh;
+    Shader* shader;
     
 public:
-    GameObject();
+    explicit GameObject(Shader* shaderProgram);
     
     void SetObjectMVPMatrix(glm::mat4 mvpMatrix);
     

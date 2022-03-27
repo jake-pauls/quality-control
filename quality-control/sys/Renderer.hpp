@@ -18,8 +18,10 @@ public:
     
     static Mesh ParseCubeVertexData();
     
-    GLfloat drawableWidth;
-    GLfloat drawableHeight;
+    GLfloat drawableWidth = 10.0f;
+    GLfloat drawableHeight = 10.0f;
+    
+    inline static Mesh CubeMesh;
 };
 
 #endif /* Renderer_hpp */

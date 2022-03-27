@@ -37,7 +37,8 @@ public:
     
     void Draw();
 private:
-    GLuint VAO, VBO, EBO;
+    GLuint VAO;
+    GLuint VBO, IBO;
     
     void SetupMesh();
 };

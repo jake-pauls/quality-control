@@ -10,7 +10,7 @@ extension ViewController: GLKViewControllerDelegate {
      */
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
-        score.text = String(format:"Score: (%d)",viewRenderer.score);
+        score.text = String(format:"Score: (%d)",viewRenderer.gameScore);
         if (viewRenderer.triggerMenu) {
             triggerHide(false);
             viewRenderer.triggerMenu = false;
@@ -48,6 +48,7 @@ class ViewController: GLKViewController {
             
             viewRenderer = ViewRenderer()
             viewRenderer.setup(view)
+            viewRenderer.loadModels()
             viewRenderer.awake()
         }
     }

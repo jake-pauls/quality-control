@@ -10,7 +10,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
+    
+#include "Mesh.hpp"
+#include "Model.hpp"
 #include "GameObject.hpp"
 #include "Renderer.hpp"
 #include "Cube.hpp"
@@ -34,7 +36,9 @@ public:
    
     void DestroyGameObject(GameObject &proj);
     
+    // Startup methods
     void Init();
+    void LoadModels();
     
     // Lifecycle methods
     void Awake();
@@ -51,17 +55,22 @@ private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
     
+    Shader* _defaultShaderProgram;
+    
     int _gameScore;
     Timer _projectileTimer;
     
 public:
-    Renderer renderer;
+    Renderer Renderer;
     
-    glm::mat4 projectionMatrix;
-    glm::mat4 viewMatrix;
+    glm::mat4 ProjectionMatrix;
+    glm::mat4 ViewMatrix;
     
-    // Player Test
-    Cube* player;
+    // Player test
+    Cube* Player;
+    
+    // Model test
+    inline static Model TestModel;
 };
 
 #endif /* Game_hpp */
