@@ -5,6 +5,8 @@
 #include "Mesh.hpp"
 #include "Assert.hpp"
 
+#include <assimp/Importer.hpp>
+
 Mesh::Mesh()
 { }
 

@@ -1,3 +1,6 @@
 [submodule "quality-control/vendor/glm"]
 	path = quality-control/vendor/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "quality-control/vendor/assimp"]
+	path = quality-control/vendor/assimp
+	url = https://github.com/assimp/assimp.git
