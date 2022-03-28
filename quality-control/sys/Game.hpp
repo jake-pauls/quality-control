@@ -58,6 +58,9 @@ private:
     Shader* _defaultShaderProgram;
     
     int _gameScore;
+    int _wave;
+    float _speed;
+    float _projectileCount;
     Timer _projectileTimer;
     
 public:
