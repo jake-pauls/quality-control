@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
-		40652BD427F11CD5002ECD34 /* Cube_Grass_Single.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40652BD227F11CD5002ECD34 /* Cube_Grass_Single.obj */; };
-		40652BD527F11CD5002ECD34 /* Cube_Grass_Single.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40652BD327F11CD5002ECD34 /* Cube_Grass_Single.mtl */; };
+		40815CA827F170AA00AF5789 /* Cube_Grass_Single.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40815CA627F170AA00AF5789 /* Cube_Grass_Single.obj */; };
+		40815CAB27F170EF00AF5789 /* Cube_Grass_Single.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CAA27F170EF00AF5789 /* Cube_Grass_Single.mtl */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
 		40BF4A8E27A1E8F500D45FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8D27A1E8F500D45FB6 /* SceneDelegate.swift */; };
@@ -20,7 +20,6 @@
 		40CEF00727F023E1005C174D /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40CEF00527F023E1005C174D /* Model.cpp */; };
 		40CEF00927F02A1C005C174D /* libassimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CEF00327F0203B005C174D /* libassimp.a */; };
 		40CEF00B27F02AE4005C174D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CEF00A27F02AE4005C174D /* libz.tbd */; };
-		40CEF00C27F02FC8005C174D /* Cube_Grass_Single.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */; };
 		40CEF01027F060D7005C174D /* TextureLoader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40CEF00F27F060D7005C174D /* TextureLoader.mm */; };
 		40CEF01527F06CFE005C174D /* Flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 40CEF01327F06CFE005C174D /* Flat.fsh */; };
 		40CEF01627F06CFE005C174D /* Flat.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 40CEF01427F06CFE005C174D /* Flat.vsh */; };
@@ -41,8 +40,8 @@
 /* Begin PBXFileReference section */
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
-		40652BD227F11CD5002ECD34 /* Cube_Grass_Single.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cube_Grass_Single.obj; path = ../../../../../../Downloads/Cube_Grass_Single.obj; sourceTree = "<group>"; };
-		40652BD327F11CD5002ECD34 /* Cube_Grass_Single.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cube_Grass_Single.mtl; path = ../../../../../../Downloads/Cube_Grass_Single.mtl; sourceTree = "<group>"; };
+		40815CA627F170AA00AF5789 /* Cube_Grass_Single.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Grass_Single.obj; sourceTree = "<group>"; };
+		40815CAA27F170EF00AF5789 /* Cube_Grass_Single.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Grass_Single.mtl; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
 		40BF4A8827A1E8F500D45FB6 /* quality-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quality-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +66,6 @@
 		40CEF01327F06CFE005C174D /* Flat.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Flat.fsh; sourceTree = "<group>"; };
 		40CEF01427F06CFE005C174D /* Flat.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Flat.vsh; sourceTree = "<group>"; };
 		40E2A5ED27EFD71F00644AF7 /* CubeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CubeData.h; sourceTree = "<group>"; };
-		40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cube_Grass_Single.fbx; sourceTree = "<group>"; };
 		9C26E06F27C220E400522AFF /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		9C26E07027C220E400522AFF /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		9C2FB47027C2FB5A00AE1F69 /* Obj-C-Utils-Interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Obj-C-Utils-Interface.h"; sourceTree = "<group>"; };
@@ -175,9 +173,8 @@
 		40F9D6EF27F00BDC00A43997 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				40652BD327F11CD5002ECD34 /* Cube_Grass_Single.mtl */,
-				40652BD227F11CD5002ECD34 /* Cube_Grass_Single.obj */,
-				40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */,
+				40815CAA27F170EF00AF5789 /* Cube_Grass_Single.mtl */,
+				40815CA627F170AA00AF5789 /* Cube_Grass_Single.obj */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -310,14 +307,13 @@
 				40A987E927A9AEA5003B5236 /* vendor in Resources */,
 				40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */,
 				9C9CF4C027C18C8300650B07 /* Passthrough.vsh in Resources */,
-				40652BD427F11CD5002ECD34 /* Cube_Grass_Single.obj in Resources */,
+				40815CA827F170AA00AF5789 /* Cube_Grass_Single.obj in Resources */,
 				40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Passthrough.fsh in Resources */,
 				40CEF01527F06CFE005C174D /* Flat.fsh in Resources */,
-				40652BD527F11CD5002ECD34 /* Cube_Grass_Single.mtl in Resources */,
+				40815CAB27F170EF00AF5789 /* Cube_Grass_Single.mtl in Resources */,
 				40CEF01627F06CFE005C174D /* Flat.vsh in Resources */,
-				40CEF00C27F02FC8005C174D /* Cube_Grass_Single.fbx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

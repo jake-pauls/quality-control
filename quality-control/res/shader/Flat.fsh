@@ -31,6 +31,8 @@ uniform Model _model;
 
 void main()
 {
+    float strength = 3.0f;
+    
     // Ambient
     vec4 ambient = _model.ambient  * texture(texSampler, TexCoords).rgba;
     
@@ -38,7 +40,7 @@ void main()
     vec3 norm = normalize(Normals);
     vec3 lightDir = normalize(_light.position - vec3(FragPos));
     float diff = max(dot(norm, lightDir), 0.0);
-    vec4 diffuse = _model.diffuse * diff;
+    vec4 diffuse = _model.diffuse * diff * strength;
     
     // Specular
     vec3 viewDir = normalize(_viewPosition - vec3(FragPos));

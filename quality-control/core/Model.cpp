@@ -38,9 +38,9 @@ void Model::LoadModel(const std::string& modelFilePath)
 
 void Model::Draw(Shader* shaderProgram)
 {
-    glm::vec3 _viewPosition(2, 7, 11);
-    glm::vec3 _lightPosition(2, 15, 11);
-    glm::vec3 _lightDirection(0, 0, 1);
+    glm::vec3 _viewPosition(0, 2, 0);
+    glm::vec3 _lightPosition(15, 80, 65);
+    glm::vec3 _lightDirection(1, 0, 1);
     
     shaderProgram->SetUniform3fv("_viewPosition", glm::value_ptr(_viewPosition));
     shaderProgram->SetUniform3fv("_light.position", glm::value_ptr(_lightPosition));
