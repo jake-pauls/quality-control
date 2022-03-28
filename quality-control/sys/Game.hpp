@@ -55,9 +55,9 @@ private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
     
-    Shader* _defaultShaderProgram;
-    Shader* _flatShaderProgram;
-    
+    Shader* _passthroughShaderProgram;
+    Shader* _modelLightingShaderProgram;
+   
     int _gameScore;
     Timer _projectileTimer;
     
@@ -69,9 +69,6 @@ public:
     
     // Player test
     Cube* Player;
-    
-    // Model test
-    inline static Model TestModel;
 };
 
 #endif /* Game_hpp */

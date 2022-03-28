@@ -7,6 +7,7 @@
 
 #include <OpenGLES/ES3/gl.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "Obj-C-Utils-Interface.h"
 

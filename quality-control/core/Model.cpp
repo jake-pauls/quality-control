@@ -20,7 +20,7 @@ Model::Model(const std::string& modelFilePath)
 void Model::LoadModel(const std::string& modelFilePath)
 {
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(modelFilePath, aiProcess_Triangulate | aiProcess_FlipUVs);
+    const aiScene* scene = importer.ReadFile(modelFilePath, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
     
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
@@ -38,14 +38,12 @@ void Model::LoadModel(const std::string& modelFilePath)
 
 void Model::Draw(Shader* shaderProgram)
 {
-    glm::vec3 _viewPosition(0, 2, 0);
-    glm::vec3 _lightPosition(15, 80, 65);
-    glm::vec3 _lightDirection(1, 0, 1);
+    glm::vec3 _viewPosition(2.0f, 2.0f, 20.0f);
+    glm::vec3 _lightPosition(15.0f, 80.0f, 65.0f);
     
     shaderProgram->SetUniform3fv("_viewPosition", glm::value_ptr(_viewPosition));
     shaderProgram->SetUniform3fv("_light.position", glm::value_ptr(_lightPosition));
-    shaderProgram->SetUniform3fv("_light.direction", glm::value_ptr(_lightDirection));
-    shaderProgram->SetUniform1f("_shininess", 1000.0f);
+    shaderProgram->SetUniform1f("_shininess", 32.0f);
     
     for (unsigned int i = 0; i < Meshes.size(); i++) {
         Mesh currentMesh = Meshes[i];

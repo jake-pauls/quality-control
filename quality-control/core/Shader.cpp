@@ -78,6 +78,11 @@ void Shader::SetUniform3fv(const std::string& name, const GLfloat* vector)
     GL_CALL(glUniform3fv(GetUniformLocation(name), 1, vector));
 }
 
+void Shader::SetUniformMatrix3fv(const std::string& name, const GLfloat* matrix)
+{
+    GL_CALL(glUniformMatrix3fv(GetUniformLocation(name), 1, GL_FALSE, matrix));
+}
+
 void Shader::SetUniformMatrix4fv(const std::string& name, const GLfloat* matrix)
 {
     GL_CALL(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, matrix));

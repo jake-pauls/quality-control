@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "CubeData.h"
+#include "Obj-C-Utils-Interface.h"
 
 #include "Renderer.hpp"
 #include "Assert.hpp"
@@ -21,8 +22,18 @@ void Renderer::Clear()
     GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
+void Renderer::LoadModelData()
+{
+    Renderer::Mesh_Cube = Renderer::ParseCubeVertexData();
+    
+    Renderer::Model_Character = Model(RetrieveObjectiveCPath("Character.fbx"));
+    Renderer::Model_Cube_Brick = Model(RetrieveObjectiveCPath("Brick.obj"));
+    Renderer::Model_Cube_Crate = Model(RetrieveObjectiveCPath("Cube_Crate.obj"));
+}
+
 /**
  * Uses the global cube data above to parse cube data into a mesh
+ * Basic geometry used for testing purposes only
  */
 Mesh Renderer::ParseCubeVertexData()
 {

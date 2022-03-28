@@ -43,21 +43,19 @@ void Game::Init()
     );
     
     // Setup the flat shader program for textured models
-    _flatShaderProgram = new Shader(RetrieveObjectiveCPath("Flat.vsh"), RetrieveObjectiveCPath("Flat.fsh"));
-    _flatShaderProgram->Bind();
+    _modelLightingShaderProgram = new Shader(RetrieveObjectiveCPath("ModelLighting.vsh"), RetrieveObjectiveCPath("ModelLighting.fsh"));
+    _modelLightingShaderProgram->Bind();
     
     // Setup default shader for basic lighting across game objects
-    _defaultShaderProgram = new Shader(RetrieveObjectiveCPath("Passthrough.vsh"), RetrieveObjectiveCPath("Passthrough.fsh"));
-    _defaultShaderProgram->Bind();
+    _passthroughShaderProgram = new Shader(RetrieveObjectiveCPath("Passthrough.vsh"), RetrieveObjectiveCPath("Passthrough.fsh"));
+    _passthroughShaderProgram->Bind();
     
     InitializeGameObjects();
 }
 
 void Game::LoadModels()
 {
-    Renderer::CubeMesh = Renderer::ParseCubeVertexData();
-    
-    TestModel = Model(RetrieveObjectiveCPath("Cube_Grass_Single.obj"));
+    Renderer::LoadModelData();
 }
 
 /**
@@ -69,10 +67,18 @@ void Game::InitializeGameObjects()
     _projectileTimer.Reset();
    
     // Create the base platform
-    g_GameObjects.insert(new Platform(_defaultShaderProgram));
+    g_GameObjects.insert(new Platform(_modelLightingShaderProgram, glm::vec3(0.0f, -1.0f, 0.0f)));
+    
+    for (int i = -2; i < 3; i++)
+    {
+        for (int j = -2; j < 3; j++)
+        {
+            g_GameObjects.insert(new Platform(_modelLightingShaderProgram, glm::vec3(i, -1.0f, j)));
+        }
+    }
     
     // Track a reference of the player
-    Player = new Cube(_flatShaderProgram);
+    Player = new Cube(_modelLightingShaderProgram);
     g_GameObjects.insert(Player);
 }
 
@@ -195,19 +201,19 @@ void Game::SpawnProjectiles()
     
     switch (random) {
         case 1:
-            projectile = new Projectile(_defaultShaderProgram, glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(_defaultShaderProgram, glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(_defaultShaderProgram, glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(_defaultShaderProgram, glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
             g_GameObjects.insert(projectile);
             break;
     }

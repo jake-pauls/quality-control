@@ -11,7 +11,7 @@
 Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction)
     : GameObject(shaderProgram), _startingPosition(position), _direction(direction)
 {
-    this->mesh = &Renderer::CubeMesh;
+    this->mesh = &Renderer::Mesh_Cube;
     
     // Set transform data
     this->transform.position = position;

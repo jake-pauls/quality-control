@@ -11,6 +11,8 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
 
 class Transform
 {
@@ -28,6 +30,7 @@ public:
     
     bool IsModelMatrixUpdated();
     glm::mat4 GetModelMatrix();
+    glm::mat3 GetNormalMatrix();
     
     glm::mat4 _translationMatrix;
 private:

@@ -32,9 +32,9 @@ void Transform::Translate()
  */
 void Transform::Rotate()
 {
-    _rotationMatrix = glm::rotate(glm::mat4(1.0), rotation.x, glm::vec3(0.0, 1.0, 0.0));
-    _rotationMatrix = glm::rotate(_rotationMatrix, rotation.y, glm::vec3(1.0, 0.0, 0.0));
-    _rotationMatrix = glm::rotate(_rotationMatrix, rotation.z, glm::vec3(0.0, 0.0, 1.0));
+    _rotationMatrix = glm::rotate(glm::mat4(1.0), glm::radians(rotation.x), glm::vec3(0.0, 1.0, 0.0));
+    _rotationMatrix = glm::rotate(_rotationMatrix, glm::radians(rotation.y), glm::vec3(1.0, 0.0, 0.0));
+    _rotationMatrix = glm::rotate(_rotationMatrix, glm::radians(rotation.z), glm::vec3(0.0, 0.0, 1.0));
 }
 
 void Transform::Scale()
@@ -58,6 +58,11 @@ glm::mat4 Transform::GetModelMatrix()
         _rotationMatrix = identityMatrix;
     
     return _scalingMatrix * _translationMatrix * _rotationMatrix;
+}
+
+glm::mat3 Transform::GetNormalMatrix()
+{
+    return glm::inverseTranspose(glm::mat3(GetModelMatrix()));
 }
 
 /**

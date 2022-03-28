@@ -5,7 +5,6 @@ precision highp float;
 
 struct Light {
     vec3 position;
-    vec3 direction;
 };
 
 struct Model {
@@ -31,22 +30,23 @@ uniform Model _model;
 
 void main()
 {
-    float strength = 3.0f;
-    
     // Ambient
-    vec4 ambient = _model.ambient  * texture(texSampler, TexCoords).rgba;
+    float ambientStrength = 10.2f;
+    vec4 ambient = _model.ambient  * texture(texSampler, TexCoords).rgba * ambientStrength;
     
     // Diffuse
+    float diffuseStrength = 2.2f;
     vec3 norm = normalize(Normals);
     vec3 lightDir = normalize(_light.position - vec3(FragPos));
     float diff = max(dot(norm, lightDir), 0.0);
-    vec4 diffuse = _model.diffuse * diff * strength;
+    vec4 diffuse = _model.diffuse * diff * diffuseStrength;
     
     // Specular
+    float specularStrength = 0.5f;
     vec3 viewDir = normalize(_viewPosition - vec3(FragPos));
     vec3 reflectDir = reflect(-lightDir, norm);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), _shininess);
-    vec4 specular = _model.specular * spec;
+    vec4 specular = _model.specular * spec * specularStrength;
     
     if (spec < 0.0f) {
         specular = vec4(0.0f, 0.0f, 0.0f, 0.0f);
