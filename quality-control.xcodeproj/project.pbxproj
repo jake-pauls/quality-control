@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
+		40652BD427F11CD5002ECD34 /* Cube_Grass_Single.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40652BD227F11CD5002ECD34 /* Cube_Grass_Single.obj */; };
+		40652BD527F11CD5002ECD34 /* Cube_Grass_Single.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40652BD327F11CD5002ECD34 /* Cube_Grass_Single.mtl */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
 		40BF4A8E27A1E8F500D45FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8D27A1E8F500D45FB6 /* SceneDelegate.swift */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
+		40652BD227F11CD5002ECD34 /* Cube_Grass_Single.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cube_Grass_Single.obj; path = ../../../../../../Downloads/Cube_Grass_Single.obj; sourceTree = "<group>"; };
+		40652BD327F11CD5002ECD34 /* Cube_Grass_Single.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cube_Grass_Single.mtl; path = ../../../../../../Downloads/Cube_Grass_Single.mtl; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
 		40BF4A8827A1E8F500D45FB6 /* quality-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quality-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 		40F9D6EF27F00BDC00A43997 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				40652BD327F11CD5002ECD34 /* Cube_Grass_Single.mtl */,
+				40652BD227F11CD5002ECD34 /* Cube_Grass_Single.obj */,
 				40F9D6F027F00BED00A43997 /* Cube_Grass_Single.fbx */,
 			);
 			path = models;
@@ -304,10 +310,12 @@
 				40A987E927A9AEA5003B5236 /* vendor in Resources */,
 				40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */,
 				9C9CF4C027C18C8300650B07 /* Passthrough.vsh in Resources */,
+				40652BD427F11CD5002ECD34 /* Cube_Grass_Single.obj in Resources */,
 				40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Passthrough.fsh in Resources */,
 				40CEF01527F06CFE005C174D /* Flat.fsh in Resources */,
+				40652BD527F11CD5002ECD34 /* Cube_Grass_Single.mtl in Resources */,
 				40CEF01627F06CFE005C174D /* Flat.vsh in Resources */,
 				40CEF00C27F02FC8005C174D /* Cube_Grass_Single.fbx in Resources */,
 			);

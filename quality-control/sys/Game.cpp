@@ -57,7 +57,7 @@ void Game::LoadModels()
 {
     Renderer::CubeMesh = Renderer::ParseCubeVertexData();
     
-    TestModel = Model(RetrieveObjectiveCPath("Cube_Grass_Single.fbx"));
+    TestModel = Model(RetrieveObjectiveCPath("Cube_Grass_Single.obj"));
 }
 
 /**
@@ -158,6 +158,7 @@ void Game::Render()
     Renderer.Clear();
     
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+        
         // Only recalculate this matrix if the transform changes
         if ((*obj)->transform.IsModelMatrixUpdated()) {
             (*obj)->SetObjectMVPMatrix(ProjectionMatrix * ViewMatrix * (*obj)->transform.GetModelMatrix());

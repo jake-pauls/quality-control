@@ -8,8 +8,8 @@
 Mesh::Mesh()
 { }
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures)
-    : vertices(vertices), indices(indices), textures(textures)
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures, Color colors)
+    : vertices(vertices), indices(indices), textures(textures), colors(colors)
 {
     LOG("Successfully initialized new mesh.");
     SetupMesh();

@@ -65,5 +65,11 @@ Mesh Renderer::ParseCubeVertexData()
         indices.push_back(CubeIndices[i]);
     }
     
-    return Mesh{ vertices, indices, textures };
+    Mesh::Color color;
+    color.diffuse.r = 0.5f;
+    color.diffuse.g = 0.5f;
+    color.diffuse.b = 0.5f;
+    color.diffuse.a = 1.0f;
+    
+    return Mesh{ vertices, indices, textures, color };
 }

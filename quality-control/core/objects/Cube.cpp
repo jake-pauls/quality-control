@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 
+
 #include "Game.hpp"
 #include "Cube.hpp"
 
@@ -23,6 +24,7 @@ void Cube::Draw()
     // Set shader uniforms
     glm::mat4 mvp = this->_mvpMatrix;
     this->shader->SetUniformMatrix4fv("_mvpMatrix", &mvp[0][0]);
+    
     
     // Draw cube mesh
     this->model->Draw(shader);

@@ -63,9 +63,19 @@ void Shader::SetUniform1i(const std::string& name, int i0)
     GL_CALL(glUniform1i(GetUniformLocation(name), i0));
 }
 
+void Shader::SetUniform1f(const std::string& name, float f0)
+{
+    GL_CALL(glUniform1f(GetUniformLocation(name), f0));
+}
+
 void Shader::SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3)
 {
     GL_CALL(glUniform4f(GetUniformLocation(name), f0, f1, f2, f3));
+}
+
+void Shader::SetUniform3fv(const std::string& name, const GLfloat* vector)
+{
+    GL_CALL(glUniform3fv(GetUniformLocation(name), 1, vector));
 }
 
 void Shader::SetUniformMatrix4fv(const std::string& name, const GLfloat* matrix)
@@ -129,7 +139,7 @@ GLenum Shader::CompileShader(GLenum type, const std::string& source)
         char* message = (char*) malloc(length * sizeof(char));
         GL_CALL(glGetShaderInfoLog(shaderId, length, &length, message));
         
-        std::cout << "Failed to compile" << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << std::endl;
+        std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragment") << " shader" << std::endl;
         std::cout << message << std::endl;
         
         GL_CALL(glDeleteShader(shaderId));
