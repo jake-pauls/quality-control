@@ -11,6 +11,8 @@
 @interface TextureLoader : NSObject
 
 + (GLuint)LoadTextureFile:(const char *)fileName;
++ (GLuint)CreateSkyboxCubeMap;
++ (void)ParseCubeMapImages:(NSString *)fileName:(unsigned int)i;
 
 @end
 

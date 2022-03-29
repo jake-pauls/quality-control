@@ -20,7 +20,7 @@ public:
     static void LoadModelData();
     
     static Mesh ParseCubeVertexData();
-    
+   
     GLfloat drawableWidth = 10.0f;
     GLfloat drawableHeight = 10.0f;
     

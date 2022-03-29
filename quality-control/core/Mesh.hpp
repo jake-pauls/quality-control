@@ -52,6 +52,7 @@ public:
     
     // Shader, Textures, and Model Geometry
     void Draw(Shader* shaderProgram);
+    
 private:
     GLuint VAO;
     GLuint VBO, IBO;
