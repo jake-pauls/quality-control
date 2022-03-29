@@ -62,7 +62,7 @@
     _game.Awake();
     
     SystemSoundID soundID;
-    NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"bgm" ofType:@"mp3"];
+    NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"gunfire" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & soundID);
     AudioServicesPlaySystemSound(soundID);
 }

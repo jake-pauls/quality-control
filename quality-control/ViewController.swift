@@ -3,6 +3,7 @@
 //  2022-01-26.
 
 import GLKit
+import AVFoundation
 
 extension ViewController: GLKViewControllerDelegate {
     /**
@@ -25,6 +26,7 @@ class ArrowRecognizer:UITapGestureRecognizer {
 class ViewController: GLKViewController {
     private var context: EAGLContext?
     private var viewRenderer: ViewRenderer!
+    private var AudioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var upButton: UIImageView!
     @IBOutlet weak var rightButton: UIImageView!
@@ -56,6 +58,11 @@ class ViewController: GLKViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
+                AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
+                AudioPlayer.prepareToPlay()
+                AudioPlayer.numberOfLoops = -1
+                AudioPlayer.play()
         score.textColor = UIColor.white;
         /*
          Tapgesture Recognizer for up button

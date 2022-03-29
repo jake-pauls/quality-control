@@ -7,7 +7,7 @@
 
 #import <GLKit/GLKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+#import <AVFoundation/AVFoundation.h>
 #include "Obj-C-Utils-Interface.h"
 
 @interface ViewRenderer : NSObject

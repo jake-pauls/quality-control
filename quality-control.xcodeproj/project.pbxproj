@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		2803A00027F0270900FAB22C /* gunfire.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFD27F0270900FAB22C /* gunfire.wav */; };
 		2803A00127F0270900FAB22C /* movement.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFE27F0270900FAB22C /* movement.wav */; };
-		2803A00227F0270900FAB22C /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFF27F0270900FAB22C /* bgm.mp3 */; };
+		286D7D6127F39C69009595B8 /* bgm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 286D7D6027F39C69009595B8 /* bgm.wav */; };
+		286D7D6327F39F0A009595B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286D7D6227F39F0A009595B8 /* AVFoundation.framework */; };
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
@@ -39,7 +40,8 @@
 /* Begin PBXFileReference section */
 		28039FFD27F0270900FAB22C /* gunfire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gunfire.wav; sourceTree = "<group>"; };
 		28039FFE27F0270900FAB22C /* movement.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = movement.wav; sourceTree = "<group>"; };
-		28039FFF27F0270900FAB22C /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
+		286D7D6027F39C69009595B8 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
+		286D7D6227F39F0A009595B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			files = (
 				40CEF00B27F02AE4005C174D /* libz.tbd in Frameworks */,
 				40CEF00927F02A1C005C174D /* libassimp.a in Frameworks */,
+				286D7D6327F39F0A009595B8 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +111,7 @@
 			children = (
 				28039FFD27F0270900FAB22C /* gunfire.wav */,
 				28039FFE27F0270900FAB22C /* movement.wav */,
-				28039FFF27F0270900FAB22C /* bgm.mp3 */,
+				286D7D6027F39C69009595B8 /* bgm.wav */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 		40CEEFF527F015FA005C174D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				286D7D6227F39F0A009595B8 /* AVFoundation.framework */,
 				40CEF00A27F02AE4005C174D /* libz.tbd */,
 				40CEEFFC27F01DE5005C174D /* libassimp.a */,
 				40CEEFFE27F01E07005C174D /* libassimp.a */,
@@ -215,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				28892F8227F0120500FF27CB /* sounds */,
-                40F9D6EF27F00BDC00A43997 /* models */,
+				40F9D6EF27F00BDC00A43997 /* models */,
 				9CAD53AB27C0C14000B4C46C /* shader */,
 			);
 			path = res;
@@ -312,7 +316,7 @@
 				9C9CF4C027C18C8300650B07 /* Shader.vsh in Resources */,
 				2803A00027F0270900FAB22C /* gunfire.wav in Resources */,
 				40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */,
-				2803A00227F0270900FAB22C /* bgm.mp3 in Resources */,
+				286D7D6127F39C69009595B8 /* bgm.wav in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
 				2803A00127F0270900FAB22C /* movement.wav in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Shader.fsh in Resources */,
