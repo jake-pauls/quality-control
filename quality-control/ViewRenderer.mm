@@ -10,7 +10,7 @@
 
 #import "ViewRenderer.h"
 
-#include "Cube.hpp"
+#include "Player.hpp"
 #include "Game.hpp"
 #include "Assert.hpp"
 

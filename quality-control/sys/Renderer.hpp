@@ -31,6 +31,8 @@ public:
     inline static Model Model_Character;
     inline static Model Model_Cube_Crate;
     inline static Model Model_Cube_Brick;
+    inline static Model Model_Projectile_Cannonball;
+    inline static Model Model_Projectile_SpikyBall;
 };
 
 #endif /* Renderer_hpp */

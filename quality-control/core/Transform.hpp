@@ -33,6 +33,7 @@ public:
     glm::mat3 GetNormalMatrix();
     
     glm::mat4 _translationMatrix;
+    
 private:
     glm::mat4 _rotationMatrix;
     glm::mat4 _scalingMatrix;

@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
+		404DBB3E27F25F6F00AD0B35 /* Character.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB3D27F25F6F00AD0B35 /* Character.fbx */; };
+		404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4027F27E1E00AD0B35 /* Cannonball.obj */; };
+		404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */; };
+		404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4427F2804500AD0B35 /* SpikyBall.mtl */; };
+		404DBB4727F2804500AD0B35 /* SpikyBall.obj in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4527F2804500AD0B35 /* SpikyBall.obj */; };
 		40815CAF27F1778500AF5789 /* Cube_Grass_Single.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CAD27F1778500AF5789 /* Cube_Grass_Single.mtl */; };
 		40815CB027F1778500AF5789 /* Cube_Grass_Single.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40815CAE27F1778500AF5789 /* Cube_Grass_Single.obj */; };
 		40815CB827F177B500AF5789 /* Cube_Crate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CB227F177B500AF5789 /* Cube_Crate.mtl */; };
 		40815CB927F177B500AF5789 /* Cube_Crate.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40815CB327F177B500AF5789 /* Cube_Crate.obj */; };
 		40815CBA27F177B500AF5789 /* Cube_Dirt_Single.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CB427F177B500AF5789 /* Cube_Dirt_Single.mtl */; };
 		40815CBC27F177B500AF5789 /* Cube_Dirt_Single.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40815CB627F177B500AF5789 /* Cube_Dirt_Single.obj */; };
-		40815CBF27F17BEC00AF5789 /* Character.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 40815CBE27F17B0400AF5789 /* Character.fbx */; };
 		40815CC827F1A86A00AF5789 /* Brick.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CC627F1A86A00AF5789 /* Brick.mtl */; };
 		40815CC927F1A86A00AF5789 /* Brick.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40815CC727F1A86A00AF5789 /* Brick.obj */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
@@ -34,7 +38,7 @@
 		9C2FB47327C3152500AE1F69 /* Platform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FB47127C3152500AE1F69 /* Platform.cpp */; };
 		9C9CF4C027C18C8300650B07 /* Passthrough.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD53AC27C0C14000B4C46C /* Passthrough.vsh */; };
 		9C9CF4C327C1A8A800650B07 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C127C1A8A800650B07 /* Game.cpp */; };
-		9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C527C1BD0600650B07 /* Cube.cpp */; };
+		9C9CF4C727C1BD0600650B07 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4C527C1BD0600650B07 /* Player.cpp */; };
 		9CAD53A527C0BFBF00B4C46C /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD53A327C0BFBF00B4C46C /* Shader.cpp */; };
 		9CAD53AE27C0C18C00B4C46C /* Passthrough.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD53AD27C0C18C00B4C46C /* Passthrough.fsh */; };
 		9CAD53B127C0C2FC00B4C46C /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD53AF27C0C2FC00B4C46C /* GameObject.cpp */; };
@@ -47,13 +51,17 @@
 /* Begin PBXFileReference section */
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
+		404DBB3D27F25F6F00AD0B35 /* Character.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Character.fbx; sourceTree = "<group>"; };
+		404DBB4027F27E1E00AD0B35 /* Cannonball.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cannonball.obj; sourceTree = "<group>"; };
+		404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cannonball.mtl; sourceTree = "<group>"; };
+		404DBB4427F2804500AD0B35 /* SpikyBall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpikyBall.mtl; sourceTree = "<group>"; };
+		404DBB4527F2804500AD0B35 /* SpikyBall.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpikyBall.obj; sourceTree = "<group>"; };
 		40815CAD27F1778500AF5789 /* Cube_Grass_Single.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Grass_Single.mtl; sourceTree = "<group>"; };
 		40815CAE27F1778500AF5789 /* Cube_Grass_Single.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Grass_Single.obj; sourceTree = "<group>"; };
 		40815CB227F177B500AF5789 /* Cube_Crate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Crate.mtl; sourceTree = "<group>"; };
 		40815CB327F177B500AF5789 /* Cube_Crate.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Crate.obj; sourceTree = "<group>"; };
 		40815CB427F177B500AF5789 /* Cube_Dirt_Single.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Dirt_Single.mtl; sourceTree = "<group>"; };
 		40815CB627F177B500AF5789 /* Cube_Dirt_Single.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Dirt_Single.obj; sourceTree = "<group>"; };
-		40815CBE27F17B0400AF5789 /* Character.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Character.fbx; sourceTree = "<group>"; };
 		40815CC627F1A86A00AF5789 /* Brick.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Brick.mtl; sourceTree = "<group>"; };
 		40815CC727F1A86A00AF5789 /* Brick.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Brick.obj; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
@@ -87,8 +95,8 @@
 		9C2FB47227C3152500AE1F69 /* Platform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Platform.hpp; sourceTree = "<group>"; };
 		9C9CF4C127C1A8A800650B07 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		9C9CF4C227C1A8A800650B07 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
-		9C9CF4C527C1BD0600650B07 /* Cube.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cube.cpp; sourceTree = "<group>"; };
-		9C9CF4C627C1BD0600650B07 /* Cube.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Cube.hpp; sourceTree = "<group>"; };
+		9C9CF4C527C1BD0600650B07 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		9C9CF4C627C1BD0600650B07 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 		9CAD53A327C0BFBF00B4C46C /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		9CAD53A427C0BFBF00B4C46C /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		9CAD53AC27C0C14000B4C46C /* Passthrough.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = Passthrough.vsh; sourceTree = "<group>"; };
@@ -120,6 +128,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		404DBB3F27F27E1100AD0B35 /* projectiles */ = {
+			isa = PBXGroup;
+			children = (
+				404DBB4427F2804500AD0B35 /* SpikyBall.mtl */,
+				404DBB4527F2804500AD0B35 /* SpikyBall.obj */,
+				404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */,
+				404DBB4027F27E1E00AD0B35 /* Cannonball.obj */,
+			);
+			path = projectiles;
+			sourceTree = "<group>";
+		};
 		40815CAC27F175E600AF5789 /* cubes */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +221,8 @@
 		40F9D6EF27F00BDC00A43997 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				40815CBE27F17B0400AF5789 /* Character.fbx */,
+				404DBB3D27F25F6F00AD0B35 /* Character.fbx */,
+				404DBB3F27F27E1100AD0B35 /* projectiles */,
 				40815CAC27F175E600AF5789 /* cubes */,
 			);
 			path = models;
@@ -211,8 +231,8 @@
 		9C9CF4C427C1BCE700650B07 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				9C9CF4C527C1BD0600650B07 /* Cube.cpp */,
-				9C9CF4C627C1BD0600650B07 /* Cube.hpp */,
+				9C9CF4C527C1BD0600650B07 /* Player.cpp */,
+				9C9CF4C627C1BD0600650B07 /* Player.hpp */,
 				9C2FB47127C3152500AE1F69 /* Platform.cpp */,
 				9C2FB47227C3152500AE1F69 /* Platform.hpp */,
 				404018D227C5E3D300DDDC1C /* Projectile.cpp */,
@@ -339,17 +359,21 @@
 				40815CB027F1778500AF5789 /* Cube_Grass_Single.obj in Resources */,
 				40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */,
 				40815CAF27F1778500AF5789 /* Cube_Grass_Single.mtl in Resources */,
+				404DBB3E27F25F6F00AD0B35 /* Character.fbx in Resources */,
 				40815CB827F177B500AF5789 /* Cube_Crate.mtl in Resources */,
 				40815CBA27F177B500AF5789 /* Cube_Dirt_Single.mtl in Resources */,
 				40815CC927F1A86A00AF5789 /* Brick.obj in Resources */,
 				40815CB927F177B500AF5789 /* Cube_Crate.obj in Resources */,
-				40815CBF27F17BEC00AF5789 /* Character.fbx in Resources */,
+				404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Passthrough.fsh in Resources */,
 				40CEF01527F06CFE005C174D /* ModelLighting.fsh in Resources */,
+				404DBB4727F2804500AD0B35 /* SpikyBall.obj in Resources */,
+				404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */,
 				40CEF01627F06CFE005C174D /* ModelLighting.vsh in Resources */,
 				40815CBC27F177B500AF5789 /* Cube_Dirt_Single.obj in Resources */,
 				40815CC827F1A86A00AF5789 /* Brick.mtl in Resources */,
+				404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +390,7 @@
 				9CE555BB27C06ED700FC6A72 /* ViewRenderer.mm in Sources */,
 				9C2FB47327C3152500AE1F69 /* Platform.cpp in Sources */,
 				40BF4A9027A1E8F500D45FB6 /* ViewController.swift in Sources */,
-				9C9CF4C727C1BD0600650B07 /* Cube.cpp in Sources */,
+				9C9CF4C727C1BD0600650B07 /* Player.cpp in Sources */,
 				404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */,
 				9CAD53B427C0C3A800B4C46C /* Transform.cpp in Sources */,
 				9C26E07127C220E400522AFF /* Mesh.cpp in Sources */,

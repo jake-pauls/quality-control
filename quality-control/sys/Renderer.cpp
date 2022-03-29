@@ -26,9 +26,16 @@ void Renderer::LoadModelData()
 {
     Renderer::Mesh_Cube = Renderer::ParseCubeVertexData();
     
+    // Character Model
     Renderer::Model_Character = Model(RetrieveObjectiveCPath("Character.fbx"));
+    
+    // Cubes/Platforms
     Renderer::Model_Cube_Brick = Model(RetrieveObjectiveCPath("Brick.obj"));
     Renderer::Model_Cube_Crate = Model(RetrieveObjectiveCPath("Cube_Crate.obj"));
+    
+    // Projectiles
+    Renderer::Model_Projectile_Cannonball = Model(RetrieveObjectiveCPath("Cannonball.obj"));
+    Renderer::Model_Projectile_SpikyBall = Model(RetrieveObjectiveCPath("SpikyBall.obj"));
 }
 
 /**

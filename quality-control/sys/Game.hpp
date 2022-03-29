@@ -15,7 +15,7 @@
 #include "Model.hpp"
 #include "GameObject.hpp"
 #include "Renderer.hpp"
-#include "Cube.hpp"
+#include "Player.hpp"
 #include "Projectile.hpp"
 #include "Timer.hpp"
 
@@ -68,7 +68,7 @@ public:
     glm::mat4 ViewMatrix;
     
     // Player test
-    Cube* Player;
+    Player* PlayerRef;
 };
 
 #endif /* Game_hpp */

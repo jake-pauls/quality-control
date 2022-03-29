@@ -38,7 +38,7 @@ void Game::Init()
     
     ViewMatrix = glm::lookAt(
         glm::vec3(2, 7, 11),
-        glm::vec3(0, 0, 0),
+        glm::vec3(0, 2, 0),
         glm::vec3(0, 1, 0)
     );
     
@@ -78,8 +78,8 @@ void Game::InitializeGameObjects()
     }
     
     // Track a reference of the player
-    Player = new Cube(_modelLightingShaderProgram);
-    g_GameObjects.insert(Player);
+    PlayerRef = new Player(_modelLightingShaderProgram);
+    g_GameObjects.insert(PlayerRef);
 }
 
 void Game::DetectCollisions()
@@ -87,7 +87,7 @@ void Game::DetectCollisions()
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if (dynamic_cast<Projectile *>((*obj)) != nullptr) {
-            bool collision = GameObject::IsCollisionDetected(*Player, *(*obj));
+            bool collision = GameObject::IsCollisionDetected(*PlayerRef, *(*obj));
             
             if (collision) {
                 // Player was hit by this projectile
@@ -142,7 +142,7 @@ void Game::DestroyGameObject(GameObject &proj)
 
 void Game::HandleInput(int keyCode)
 {
-    Player->MoveCube(keyCode);
+    PlayerRef->MoveCube(keyCode);
 }
 
 /**
@@ -184,13 +184,13 @@ void Game::Update()
         (*obj)->Update();
     
     // This is where game objects are detected and IMMEDIATELY destroyed
-//    DetectCollisions();
-//
-//    if (_projectileTimer.GetElapsedTime() >= 2)
-//    {
-//        SpawnProjectiles();
-//        _projectileTimer.Reset();
-//    }
+    DetectCollisions();
+
+    if (_projectileTimer.GetElapsedTime() >= 2)
+    {
+        SpawnProjectiles();
+        _projectileTimer.Reset();
+    }
 }
 
 void Game::SpawnProjectiles()
@@ -201,19 +201,19 @@ void Game::SpawnProjectiles()
     
     switch (random) {
         case 1:
-            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-8, 0.5, 0), glm::vec3(1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(0, 0.5, -8), glm::vec3(0, 0, 1));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(8, 0.5, 0), glm::vec3(-1, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(_passthroughShaderProgram, glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(0, 0.5, 8), glm::vec3(0, 0, -1));
             g_GameObjects.insert(projectile);
             break;
     }
