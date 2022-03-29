@@ -59,10 +59,13 @@ class ViewController: GLKViewController {
         super.viewDidLoad()
         self.setupView()
         let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
-                AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
-                AudioPlayer.prepareToPlay()
-                AudioPlayer.numberOfLoops = -1
-                AudioPlayer.play()
+        
+        AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
+        AudioPlayer.volume = 0.05
+        AudioPlayer.prepareToPlay()
+        AudioPlayer.numberOfLoops = -1
+        AudioPlayer.play()
+        
         score.textColor = UIColor.white;
         /*
          Tapgesture Recognizer for up button

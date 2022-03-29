@@ -7,4 +7,7 @@
 
 const char* RetrieveObjectiveCPath(const char* fileName);
 
+unsigned int RetrieveObjectiveCTextureData(const char* fileName);
+unsigned int RetrieveObjectiveCSkyboxData();
+
 #endif /* Obj_C_Utils_Interface_h */
