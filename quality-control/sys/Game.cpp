@@ -246,19 +246,19 @@ void Game::SpawnProjectiles()
     
     switch (randomside) {
         case 1:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-x-offset, 0, randomlocationz), glm::vec3(_speed, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-x-offset, 0.5, randomlocationz), glm::vec3(_speed, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0, -z-offset), glm::vec3(0, 0, _speed));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, -z-offset), glm::vec3(0, 0, _speed));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(x+offset, 0, randomlocationz), glm::vec3(-_speed, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(x+offset, 0.5, randomlocationz), glm::vec3(-_speed, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0, z+offset), glm::vec3(0, 0, -_speed));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, z+offset), glm::vec3(0, 0, -_speed));
             g_GameObjects.insert(projectile);
             break;
     }
