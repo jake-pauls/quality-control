@@ -65,6 +65,9 @@ private:
     Shader* _skyboxShaderProgram;
    
     int _gameScore;
+    int _wave;
+    float _speed;
+    float _projectileCount;
     Timer _projectileTimer;
     
     Skybox* _skybox;

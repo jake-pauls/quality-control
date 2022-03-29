@@ -71,7 +71,14 @@ void Game::InitializeGameObjects()
 {
     // Create the skybox
     _skybox = new Skybox(_skyboxShaderProgram, ViewMatrix, ProjectionMatrix);
+  
+    // Start the projectile timer
+    _projectileTimer.Reset();
     
+    _wave = 1;
+    _speed = 0.2;
+    _projectileCount = 1;
+  
     // Create the base platform
     for (int i = -2; i < 3; i++)
     {
@@ -196,11 +203,31 @@ void Game::Update()
     
     // This is where game objects are detected and IMMEDIATELY destroyed
     DetectCollisions();
-
-    if (_projectileTimer.GetElapsedTime() >= 2)
+    if (_projectileTimer.GetElapsedTime() >= 5)
     {
-        SpawnProjectiles();
         _projectileTimer.Reset();
+        
+        switch (_wave) {
+            case 1:
+                _speed += 0.2;
+                break;
+            case 5:
+                _speed += 0.1;
+                _projectileCount += 1;
+                break;
+            case 10:
+                _speed += 0.1;
+                _projectileCount += 1;
+                break;
+            default:
+                break;
+        }
+        
+        for (int i = 0; i < _projectileCount; i++){
+            SpawnProjectiles();
+        }
+        
+        _wave += 1;
     }
     
     _skybox->Update();
@@ -208,25 +235,30 @@ void Game::Update()
 
 void Game::SpawnProjectiles()
 {
-    int random = rand() % 4 + 1;
+    int x = 4;
+    int z = 4;
+    int offset = 8;
+    int randomside = rand() % 4 + 1;
+    int randomlocationx = rand() % x + (-x/2);
+    int randomlocationz = rand() % z + (-z/2);
     
     Projectile* projectile;
     
-    switch (random) {
+    switch (randomside) {
         case 1:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-8, 0.5, 0), glm::vec3(1, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-x-offset, 0, randomlocationz), glm::vec3(_speed, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(0, 0.5, -8), glm::vec3(0, 0, 1));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0, -z-offset), glm::vec3(0, 0, _speed));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(8, 0.5, 0), glm::vec3(-1, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(x+offset, 0, randomlocationz), glm::vec3(-_speed, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(0, 0.5, 8), glm::vec3(0, 0, -1));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0, z+offset), glm::vec3(0, 0, -_speed));
             g_GameObjects.insert(projectile);
             break;
     }
