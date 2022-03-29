@@ -7,12 +7,14 @@
 
 #include <OpenGLES/ES3/gl.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "Obj-C-Utils-Interface.h"
 
 #include "Renderer.hpp"
 #include "Transform.hpp"
 #include "Mesh.hpp"
+#include "Model.hpp"
 #include "Shader.hpp"
 
 static int g_GameObjectIdCount = 0;
@@ -23,6 +25,7 @@ public:
     int id;
     Transform transform;
     Mesh* mesh;
+    Model* model;
     Shader* shader;
     
 public:

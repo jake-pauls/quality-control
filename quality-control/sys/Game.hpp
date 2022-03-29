@@ -15,7 +15,7 @@
 #include "Model.hpp"
 #include "GameObject.hpp"
 #include "Renderer.hpp"
-#include "Cube.hpp"
+#include "Player.hpp"
 #include "Projectile.hpp"
 #include "Timer.hpp"
 
@@ -55,8 +55,9 @@ private:
     GLfloat _viewWidth;
     GLfloat _viewHeight;
     
-    Shader* _defaultShaderProgram;
-    
+    Shader* _passthroughShaderProgram;
+    Shader* _modelLightingShaderProgram;
+   
     int _gameScore;
     Timer _projectileTimer;
     
@@ -67,10 +68,7 @@ public:
     glm::mat4 ViewMatrix;
     
     // Player test
-    Cube* Player;
-    
-    // Model test
-    inline static Model TestModel;
+    Player* PlayerRef;
 };
 
 #endif /* Game_hpp */

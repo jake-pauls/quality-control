@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "CubeData.h"
+#include "Obj-C-Utils-Interface.h"
 
 #include "Renderer.hpp"
 #include "Assert.hpp"
@@ -21,20 +22,37 @@ void Renderer::Clear()
     GL_CALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
+void Renderer::LoadModelData()
+{
+    Renderer::Mesh_Cube = Renderer::ParseCubeVertexData();
+    
+    // Character Model
+    Renderer::Model_Character = Model(RetrieveObjectiveCPath("Character.fbx"));
+    
+    // Cubes/Platforms
+    Renderer::Model_Cube_Brick = Model(RetrieveObjectiveCPath("Brick.obj"));
+    Renderer::Model_Cube_Crate = Model(RetrieveObjectiveCPath("Cube_Crate.obj"));
+    
+    // Projectiles
+    Renderer::Model_Projectile_Cannonball = Model(RetrieveObjectiveCPath("Cannonball.obj"));
+    Renderer::Model_Projectile_SpikyBall = Model(RetrieveObjectiveCPath("SpikyBall.obj"));
+}
+
 /**
  * Uses the global cube data above to parse cube data into a mesh
+ * Basic geometry used for testing purposes only
  */
 Mesh Renderer::ParseCubeVertexData()
 {
-    std::vector<Vertex> vertices;
+    std::vector<Mesh::Vertex> vertices;
     std::vector<GLuint> indices;
-    std::vector<Texture> textures;
+    std::vector<Mesh::Texture> textures;
     
     int stride3 = 0;
     int stride2 = 0;
     for (int i = 0; i < NumberOfCubeVertices; i++)
     {
-        Vertex vertex;
+        Mesh::Vertex vertex;
         glm::vec3 vector;
         
         stride3 = i * 3;
@@ -65,5 +83,11 @@ Mesh Renderer::ParseCubeVertexData()
         indices.push_back(CubeIndices[i]);
     }
     
-    return Mesh{ vertices, indices, textures };
+    Mesh::Color color;
+    color.diffuse.r = 0.5f;
+    color.diffuse.g = 0.5f;
+    color.diffuse.b = 0.5f;
+    color.diffuse.a = 1.0f;
+    
+    return Mesh{ vertices, indices, textures, color };
 }
