@@ -13,6 +13,8 @@
 #include "Shader.hpp"
 #include "Model.hpp"
 #include "Renderer.hpp"
+
+#include "Skybox.hpp"
 #include "Platform.hpp"
 #include "Projectile.hpp"
 
@@ -34,12 +36,12 @@ void Game::Init()
     
     float aspectRatio = _viewWidth / _viewHeight;
     
-    ProjectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
+    ProjectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 1.0f, 20.0f);
     
     ViewMatrix = glm::lookAt(
-        glm::vec3(2, 7, 11),
-        glm::vec3(0, 2, 0),
-        glm::vec3(0, 1, 0)
+        CAMERA_POSITION,
+        CAMERA_LOOKS_AT,
+        CAMERA_UP
     );
     
     // Setup the flat shader program for textured models
@@ -49,6 +51,10 @@ void Game::Init()
     // Setup default shader for basic lighting across game objects
     _passthroughShaderProgram = new Shader(RetrieveObjectiveCPath("Passthrough.vsh"), RetrieveObjectiveCPath("Passthrough.fsh"));
     _passthroughShaderProgram->Bind();
+    
+    // Setup the skybox shader program with default sampler
+    _skyboxShaderProgram = new Shader(RetrieveObjectiveCPath("Skybox.vsh"), RetrieveObjectiveCPath("Skybox.fsh"));
+    _skyboxShaderProgram->Bind();
     
     InitializeGameObjects();
 }
@@ -63,23 +69,24 @@ void Game::LoadModels()
  */
 void Game::InitializeGameObjects()
 {
-    // Start the projectile timer
-    _projectileTimer.Reset();
-   
-    // Create the base platform
-    g_GameObjects.insert(new Platform(_modelLightingShaderProgram, glm::vec3(0.0f, -1.0f, 0.0f)));
+    // Create the skybox
+    _skybox = new Skybox(_skyboxShaderProgram, ViewMatrix, ProjectionMatrix);
     
+    // Create the base platform
     for (int i = -2; i < 3; i++)
     {
         for (int j = -2; j < 3; j++)
         {
-            g_GameObjects.insert(new Platform(_modelLightingShaderProgram, glm::vec3(i, -1.0f, j)));
+            g_GameObjects.insert(new Platform(_modelLightingShaderProgram, glm::vec3(i, -0.5f, j)));
         }
     }
     
     // Track a reference of the player
     PlayerRef = new Player(_modelLightingShaderProgram);
     g_GameObjects.insert(PlayerRef);
+    
+    // Start the projectile timer
+    _projectileTimer.Reset();
 }
 
 void Game::DetectCollisions()
@@ -153,6 +160,8 @@ void Game::Awake()
 {
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
         (*obj)->Awake();
+    
+    _skybox->Awake();
 }
 
 /**
@@ -172,6 +181,8 @@ void Game::Render()
         
         (*obj)->Draw();
     }
+    
+    _skybox->Draw();
 }
 
 /**
@@ -191,6 +202,8 @@ void Game::Update()
         SpawnProjectiles();
         _projectileTimer.Reset();
     }
+    
+    _skybox->Update();
 }
 
 void Game::SpawnProjectiles()

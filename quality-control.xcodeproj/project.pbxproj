@@ -13,6 +13,7 @@
 		404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */; };
 		404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4427F2804500AD0B35 /* SpikyBall.mtl */; };
 		404DBB4727F2804500AD0B35 /* SpikyBall.obj in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4527F2804500AD0B35 /* SpikyBall.obj */; };
+		404DBB4A27F2882000AD0B35 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404DBB4827F2882000AD0B35 /* Skybox.cpp */; };
 		40815CAF27F1778500AF5789 /* Cube_Grass_Single.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CAD27F1778500AF5789 /* Cube_Grass_Single.mtl */; };
 		40815CB027F1778500AF5789 /* Cube_Grass_Single.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40815CAE27F1778500AF5789 /* Cube_Grass_Single.obj */; };
 		40815CB827F177B500AF5789 /* Cube_Crate.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40815CB227F177B500AF5789 /* Cube_Crate.mtl */; };
@@ -28,6 +29,11 @@
 		40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9127A1E8F500D45FB6 /* Main.storyboard */; };
 		40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */; };
 		40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40BF4A9627A1E8F600D45FB6 /* LaunchScreen.storyboard */; };
+		40C5CEDE27F2A33200FEDE81 /* Skybox.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 40C5CEDC27F2A33200FEDE81 /* Skybox.fsh */; };
+		40C5CEDF27F2A33200FEDE81 /* Skybox.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 40C5CEDD27F2A33200FEDE81 /* Skybox.vsh */; };
+		40C5CEF827F2E32800FEDE81 /* Skybox_Bottom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40C5CEF227F2E32800FEDE81 /* Skybox_Bottom.jpg */; };
+		40C5CEF927F2E32800FEDE81 /* Skybox_Top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40C5CEF327F2E32800FEDE81 /* Skybox_Top.jpg */; };
+		40C5CEFC27F2EC8F00FEDE81 /* Skybox_Middle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40C5CEFB27F2EC8F00FEDE81 /* Skybox_Middle.jpg */; };
 		40CEF00727F023E1005C174D /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40CEF00527F023E1005C174D /* Model.cpp */; };
 		40CEF00927F02A1C005C174D /* libassimp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CEF00327F0203B005C174D /* libassimp.a */; };
 		40CEF00B27F02AE4005C174D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40CEF00A27F02AE4005C174D /* libz.tbd */; };
@@ -56,6 +62,8 @@
 		404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cannonball.mtl; sourceTree = "<group>"; };
 		404DBB4427F2804500AD0B35 /* SpikyBall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpikyBall.mtl; sourceTree = "<group>"; };
 		404DBB4527F2804500AD0B35 /* SpikyBall.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpikyBall.obj; sourceTree = "<group>"; };
+		404DBB4827F2882000AD0B35 /* Skybox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		404DBB4927F2882000AD0B35 /* Skybox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Skybox.hpp; sourceTree = "<group>"; };
 		40815CAD27F1778500AF5789 /* Cube_Grass_Single.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Grass_Single.mtl; sourceTree = "<group>"; };
 		40815CAE27F1778500AF5789 /* Cube_Grass_Single.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Grass_Single.obj; sourceTree = "<group>"; };
 		40815CB227F177B500AF5789 /* Cube_Crate.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cube_Crate.mtl; sourceTree = "<group>"; };
@@ -73,6 +81,12 @@
 		40BF4A9427A1E8F600D45FB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40BF4A9727A1E8F600D45FB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40BF4A9927A1E8F600D45FB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40C5CEDC27F2A33200FEDE81 /* Skybox.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Skybox.fsh; sourceTree = "<group>"; };
+		40C5CEDD27F2A33200FEDE81 /* Skybox.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Skybox.vsh; sourceTree = "<group>"; };
+		40C5CEEC27F2B51A00FEDE81 /* SkyboxData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkyboxData.h; sourceTree = "<group>"; };
+		40C5CEF227F2E32800FEDE81 /* Skybox_Bottom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Skybox_Bottom.jpg; sourceTree = "<group>"; };
+		40C5CEF327F2E32800FEDE81 /* Skybox_Top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Skybox_Top.jpg; sourceTree = "<group>"; };
+		40C5CEFB27F2EC8F00FEDE81 /* Skybox_Middle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Skybox_Middle.jpg; sourceTree = "<group>"; };
 		40CEEFF627F015FB005C174D /* libassimpd.5.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimpd.5.2.0.dylib; path = "quality-control/vendor/assimp-build/bin/Debug/libassimpd.5.2.0.dylib"; sourceTree = "<group>"; };
 		40CEEFF827F018AB005C174D /* libassimpd.5.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimpd.5.2.0.dylib; path = "quality-control/vendor/build/assimp/bin/Debug/libassimpd.5.2.0.dylib"; sourceTree = "<group>"; };
 		40CEEFFA27F01936005C174D /* assimpd */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = assimpd; path = "quality-control/vendor/build/assimp/bin/Debug/assimpd"; sourceTree = "<group>"; };
@@ -195,6 +209,16 @@
 			path = "quality-control";
 			sourceTree = "<group>";
 		};
+		40C5CECD27F29D3E00FEDE81 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				40C5CEF227F2E32800FEDE81 /* Skybox_Bottom.jpg */,
+				40C5CEFB27F2EC8F00FEDE81 /* Skybox_Middle.jpg */,
+				40C5CEF327F2E32800FEDE81 /* Skybox_Top.jpg */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
 		40CEEFF527F015FA005C174D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				40E2A5ED27EFD71F00644AF7 /* CubeData.h */,
+				40C5CEEC27F2B51A00FEDE81 /* SkyboxData.h */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -237,6 +262,8 @@
 				9C2FB47227C3152500AE1F69 /* Platform.hpp */,
 				404018D227C5E3D300DDDC1C /* Projectile.cpp */,
 				404018D327C5E3D300DDDC1C /* Projectile.hpp */,
+				404DBB4827F2882000AD0B35 /* Skybox.cpp */,
+				404DBB4927F2882000AD0B35 /* Skybox.hpp */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -259,6 +286,7 @@
 		9CAD53AA27C0C14000B4C46C /* res */ = {
 			isa = PBXGroup;
 			children = (
+				40C5CECD27F29D3E00FEDE81 /* textures */,
 				40F9D6EF27F00BDC00A43997 /* models */,
 				9CAD53AB27C0C14000B4C46C /* shader */,
 			);
@@ -268,6 +296,8 @@
 		9CAD53AB27C0C14000B4C46C /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				40C5CEDC27F2A33200FEDE81 /* Skybox.fsh */,
+				40C5CEDD27F2A33200FEDE81 /* Skybox.vsh */,
 				40CEF01327F06CFE005C174D /* ModelLighting.fsh */,
 				40CEF01427F06CFE005C174D /* ModelLighting.vsh */,
 				9CAD53AC27C0C14000B4C46C /* Passthrough.vsh */,
@@ -364,16 +394,21 @@
 				40815CBA27F177B500AF5789 /* Cube_Dirt_Single.mtl in Resources */,
 				40815CC927F1A86A00AF5789 /* Brick.obj in Resources */,
 				40815CB927F177B500AF5789 /* Cube_Crate.obj in Resources */,
+				40C5CEDE27F2A33200FEDE81 /* Skybox.fsh in Resources */,
 				404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */,
+				40C5CEF927F2E32800FEDE81 /* Skybox_Top.jpg in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Passthrough.fsh in Resources */,
+				40C5CEFC27F2EC8F00FEDE81 /* Skybox_Middle.jpg in Resources */,
 				40CEF01527F06CFE005C174D /* ModelLighting.fsh in Resources */,
 				404DBB4727F2804500AD0B35 /* SpikyBall.obj in Resources */,
 				404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */,
 				40CEF01627F06CFE005C174D /* ModelLighting.vsh in Resources */,
+				40C5CEF827F2E32800FEDE81 /* Skybox_Bottom.jpg in Resources */,
 				40815CBC27F177B500AF5789 /* Cube_Dirt_Single.obj in Resources */,
 				40815CC827F1A86A00AF5789 /* Brick.mtl in Resources */,
 				404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */,
+				40C5CEDF27F2A33200FEDE81 /* Skybox.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +426,7 @@
 				9C2FB47327C3152500AE1F69 /* Platform.cpp in Sources */,
 				40BF4A9027A1E8F500D45FB6 /* ViewController.swift in Sources */,
 				9C9CF4C727C1BD0600650B07 /* Player.cpp in Sources */,
+				404DBB4A27F2882000AD0B35 /* Skybox.cpp in Sources */,
 				404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */,
 				9CAD53B427C0C3A800B4C46C /* Transform.cpp in Sources */,
 				9C26E07127C220E400522AFF /* Mesh.cpp in Sources */,

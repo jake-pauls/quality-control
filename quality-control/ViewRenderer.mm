@@ -42,6 +42,8 @@
     GL_CALL(glClearColor(0, 0, 0, 0));
     GL_CALL(glEnable(GL_DEPTH_TEST));
     GL_CALL(glEnable(GL_CULL_FACE));
+    GL_CALL(glCullFace(GL_BACK));
+    GL_CALL(glFrontFace(GL_CCW));
     
     gameScore = 0;
 }

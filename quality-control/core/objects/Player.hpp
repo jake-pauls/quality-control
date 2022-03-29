@@ -1,9 +1,9 @@
 // quality-control
-// Cube.hpp
+// Player.hpp
 // 2022-02-19
 
-#ifndef Cube_hpp
-#define Cube_hpp
+#ifndef Player_hpp
+#define Player_hpp
 
 #include "GameObject.hpp"
 
@@ -20,4 +20,4 @@ public:
     void MoveCube(int keyCode);
 };
 
-#endif /* Cube_hpp */
+#endif /* Player_hpp */

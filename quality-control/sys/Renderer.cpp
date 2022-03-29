@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "CubeData.h"
+#include "SkyboxData.h"
 #include "Obj-C-Utils-Interface.h"
 
 #include "Renderer.hpp"

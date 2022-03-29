@@ -1,5 +1,5 @@
 // quality-control
-// Cube.cpp
+// Player.cpp
 // 2022-02-19
 
 #include <iostream>
@@ -7,7 +7,6 @@
 
 #include "Game.hpp"
 #include "Player.hpp"
-#include "Assert.hpp"
 
 /// Awake is called when the object is initialized at setup
 void Player::Awake()
