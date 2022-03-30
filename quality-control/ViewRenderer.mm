@@ -18,14 +18,19 @@
     GLKView* _viewport;
     
     Game _game;
+    
+    SystemSoundID _soundID[2];
 }
 
 @end
 
 @implementation ViewRenderer
+
 @synthesize gameScore;
-@synthesize play;
-@synthesize triggerMenu;
+@synthesize gameLives;
+@synthesize isGameStarted;
+@synthesize isGameOver;
+
 /**
  * Sets up OpenGLES context with default settings
  * Extracts data from GLKView
@@ -46,7 +51,9 @@
     GL_CALL(glFrontFace(GL_CCW));
     
     gameScore = 0;
-    triggerMenu = false;
+    gameLives = 3;
+    isGameOver = false;
+    isGameStarted = false;
 }
 
 - (void)loadModels
@@ -63,10 +70,11 @@
     
     _game.Awake();
     
-    SystemSoundID soundID;
     NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"gunfire" ofType:@"wav"];
-    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & soundID);
-    AudioServicesPlaySystemSound(soundID);
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[0]);
+    soundFile = [[NSBundle mainBundle] pathForResource:@"movement" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[1]);
+    
 }
 
 - (void)draw
@@ -79,8 +87,55 @@
     _game.Renderer.drawableWidth = _viewport.drawableWidth;
     _game.Renderer.drawableHeight = _viewport.drawableHeight;
     
-    _game.Update();
-    gameScore = _game.GetScore();
+    if (isGameStarted && _game.CurrentState != Game::GameState::GAME_OVER)
+    {
+        _game.CurrentState = Game::GameState::START;
+        
+        _game.Update();
+        gameScore = _game.GetScore();
+        gameLives = _game.GetLives();
+        
+        //use this for when calling bullet sound
+        if (_game.bulletFired) {
+            [self activateSFX:0];
+            _game.bulletFired = false;
+        }
+    }
+    
+    if (_game.CurrentState == Game::GameState::GAME_OVER)
+    {
+        isGameStarted = false;
+        isGameOver = true;
+        
+        _game.KillProjectiles();
+    }
+}
+
+- (void)reset
+{
+    LOG("[Lifecycle] The game is being reset");
+    
+    // Reset score and lives
+    _game.SetScore(0);
+    _game.SetLives(3);
+    
+    // Reset player position
+    _game.PlayerRef->transform.position.x = 0.0f;
+    _game.PlayerRef->transform.position.y = 0.0f;
+    _game.PlayerRef->transform.position.z = 0.0f;
+    
+    // Reset waves
+    _game.ResetWaves();
+    
+    // Reset Game State
+    _game.CurrentState = Game::GameState::START;
+    isGameOver = false;
+    isGameStarted = true;
+}
+
+- (void)activateSFX:(int)index
+{
+    AudioServicesPlaySystemSound(_soundID[index]);
 }
 
 /**
@@ -89,6 +144,7 @@
 - (void)handleInput:(int)keyCode
 {
     _game.HandleInput(keyCode);
+    [self activateSFX:1];
 }
 
 /**

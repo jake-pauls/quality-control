@@ -13,15 +13,18 @@
 @interface ViewRenderer : NSObject
 
 @property int gameScore;
-@property bool play;
-@property bool triggerMenu;
+@property int gameLives;
+@property bool isGameStarted;
+@property bool isGameOver;
 
 - (void)setup:(GLKView*)view;
 - (void)loadModels;
 - (void)awake;
 - (void)update;
 - (void)draw;
-    
+- (void)reset;
+- (void)activateSFX:(int) index;
+
 // Testing input handling
 - (void)handleInput:(int) keyCode;
 

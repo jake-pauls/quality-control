@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -16,98 +16,136 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
-                                <rect key="frame" x="57" y="70" width="172" height="28"/>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SCORE" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
+                                <rect key="frame" x="46" y="63" width="304" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hEo-vn-cCw" userLabel="Up Button">
-                                <rect key="frame" x="20" y="141" width="374" height="200"/>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="LIVES" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="dyc-Fb-7JX" userLabel="Lives Text Field">
+                                <rect key="frame" x="46" y="106" width="304" height="34"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="W6H-0M-1G2"/>
+                                    <constraint firstAttribute="height" constant="34" id="y3f-gS-FoC"/>
                                 </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Title.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E86-iW-glp">
+                                <rect key="frame" x="20" y="42.000000000000014" width="374" height="250.33333333333337"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QUM-CI-U9a" userLabel="Down Button">
-                                <rect key="frame" x="16" y="599" width="382" height="208"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fZ-eQ-7PC" userLabel="Right Button">
-                                <rect key="frame" x="218" y="349" width="176" height="242"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0c-US-hzU">
-                                <rect key="frame" x="147" y="446" width="122" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonConfiguration key="configuration" style="filled" buttonSize="medium">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Play">
-                                            <attributes>
-                                                <font key="NSFont" size="50" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
-                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg7-NW-5so">
+                                <rect key="frame" x="146" y="765" width="128" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="play.fill" catalog="system">
+                                    <color key="baseForegroundColor" red="0.047058823530000002" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="baseBackgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="Play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z5Q-rK-j5b"/>
+                                    <action selector="Play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CaR-C1-yzt"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="506-kv-90k" userLabel="Left Button">
-                                <rect key="frame" x="20" y="349" width="180" height="242"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAT-pV-eeX">
+                                <rect key="frame" x="146" y="726" width="128" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="arrow.clockwise" catalog="system">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="Restart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DbP-9y-sWZ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="GAME SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ul7-0M-2ZJ" userLabel="Final Score Text Field">
+                                <rect key="frame" x="88" y="392" width="238" height="28"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="242" id="eHH-i0-B4X"/>
-                                    <constraint firstAttribute="width" constant="200" id="oNu-IC-3Bx"/>
+                                    <constraint firstAttribute="height" constant="28" id="vMj-0V-VSC"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HIGH SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="X41-uh-yCb" userLabel="High Score Text Field">
+                                <rect key="frame" x="88" y="344" width="238" height="28"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="ZV8-2P-6dx"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameOver.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnc-qa-FU7">
+                                <rect key="frame" x="38" y="130" width="322" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="2pq-R9-7hg"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="QUM-CI-U9a" firstAttribute="centerX" secondItem="hEo-vn-cCw" secondAttribute="centerX" id="4NA-lh-pBg"/>
-                            <constraint firstItem="Evf-Th-ibC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="7Y9-2o-F7U"/>
-                            <constraint firstItem="506-kv-90k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-96" id="EjJ-IB-Utd"/>
-                            <constraint firstItem="506-kv-90k" firstAttribute="top" secondItem="hEo-vn-cCw" secondAttribute="bottom" constant="8" id="NUZ-te-rRv"/>
-                            <constraint firstItem="506-kv-90k" firstAttribute="top" secondItem="5fZ-eQ-7PC" secondAttribute="top" id="PRK-f5-ZdG"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="185" id="SLC-Eh-tyM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5fZ-eQ-7PC" secondAttribute="trailing" constant="-96" id="Uww-zU-DCc"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QUM-CI-U9a" secondAttribute="bottom" constant="55" id="X4P-dk-9m6"/>
-                            <constraint firstItem="Evf-Th-ibC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="XIq-iw-7LR"/>
-                            <constraint firstItem="5fZ-eQ-7PC" firstAttribute="leading" secondItem="506-kv-90k" secondAttribute="trailing" constant="14" id="c1J-B8-Ms8"/>
-                            <constraint firstItem="hEo-vn-cCw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cNa-1c-g2X"/>
-                            <constraint firstItem="506-kv-90k" firstAttribute="bottom" secondItem="5fZ-eQ-7PC" secondAttribute="bottom" id="kMx-k6-rOs"/>
-                            <constraint firstItem="hEo-vn-cCw" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="43" id="nTc-gp-3EM"/>
-                            <constraint firstItem="QUM-CI-U9a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="pOQ-Zp-EQ2"/>
-                            <constraint firstItem="hEo-vn-cCw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tAw-L1-2dJ"/>
-                            <constraint firstItem="QUM-CI-U9a" firstAttribute="top" secondItem="506-kv-90k" secondAttribute="bottom" constant="8" id="yVb-li-oxG"/>
+                            <constraint firstItem="E86-iW-glp" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3Gl-3R-8A1"/>
+                            <constraint firstItem="X41-uh-yCb" firstAttribute="centerX" secondItem="bnc-qa-FU7" secondAttribute="centerX" constant="8" id="4Ec-8P-y1a"/>
+                            <constraint firstItem="bAT-pV-eeX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="146" id="8O7-QH-Vtc"/>
+                            <constraint firstItem="X41-uh-yCb" firstAttribute="trailing" secondItem="Ul7-0M-2ZJ" secondAttribute="trailing" id="9F1-NA-R4X"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="64" id="D4B-bw-Pvx"/>
+                            <constraint firstItem="bnc-qa-FU7" firstAttribute="top" secondItem="dyc-Fb-7JX" secondAttribute="bottom" constant="-10" id="Ddf-E5-Tha"/>
+                            <constraint firstItem="E86-iW-glp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Igm-we-4A9"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="Ldf-Ue-pmf"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="leading" secondItem="dyc-Fb-7JX" secondAttribute="leading" id="LfX-FP-C5e"/>
+                            <constraint firstItem="X41-uh-yCb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="344" id="Nyn-nV-5QC"/>
+                            <constraint firstItem="E86-iW-glp" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="-50.999999999999986" id="QV6-Wi-0B9"/>
+                            <constraint firstItem="E86-iW-glp" firstAttribute="centerX" secondItem="bnc-qa-FU7" secondAttribute="centerX" constant="8" id="TPu-ap-f6P"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zg7-NW-5so" secondAttribute="bottom" constant="66" id="UGB-6P-wHH"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="trailing" secondItem="dyc-Fb-7JX" secondAttribute="trailing" id="UHe-8W-Pvi"/>
+                            <constraint firstItem="bAT-pV-eeX" firstAttribute="trailing" secondItem="zg7-NW-5so" secondAttribute="trailing" id="VoO-sa-hou"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bAT-pV-eeX" secondAttribute="trailing" constant="140" id="WM0-GI-25u"/>
+                            <constraint firstItem="dyc-Fb-7JX" firstAttribute="leading" secondItem="bnc-qa-FU7" secondAttribute="leading" constant="8" id="Wlt-7g-ScL"/>
+                            <constraint firstItem="bAT-pV-eeX" firstAttribute="leading" secondItem="zg7-NW-5so" secondAttribute="leading" id="hSx-Ps-YJQ"/>
+                            <constraint firstItem="Ul7-0M-2ZJ" firstAttribute="top" secondItem="X41-uh-yCb" secondAttribute="bottom" constant="20" id="jyD-7E-ekb"/>
+                            <constraint firstItem="zg7-NW-5so" firstAttribute="top" secondItem="bAT-pV-eeX" secondAttribute="bottom" constant="8" id="nMO-yJ-OHW"/>
+                            <constraint firstItem="X41-uh-yCb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="oT0-mN-B4m"/>
+                            <constraint firstItem="E86-iW-glp" firstAttribute="bottom" secondItem="bnc-qa-FU7" secondAttribute="bottom" constant="12.333333333333371" id="r6S-Em-xfQ"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="46" id="wa1-u9-b9M"/>
+                            <constraint firstItem="X41-uh-yCb" firstAttribute="leading" secondItem="Ul7-0M-2ZJ" secondAttribute="leading" id="yf2-RO-SJl"/>
+                            <constraint firstItem="dyc-Fb-7JX" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="13" id="z9m-Hm-rUd"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="downButton" destination="QUM-CI-U9a" id="WbW-rn-5ga"/>
-                        <outlet property="leftButton" destination="506-kv-90k" id="NM8-dE-ZG2"/>
-                        <outlet property="playButton" destination="X0c-US-hzU" id="LvS-PB-exZ"/>
-                        <outlet property="rightButton" destination="5fZ-eQ-7PC" id="fd3-4T-iq8"/>
-                        <outlet property="score" destination="Evf-Th-ibC" id="Lsh-Kw-eGJ"/>
-                        <outlet property="upButton" destination="hEo-vn-cCw" id="pjK-pp-01C"/>
+                        <outlet property="finalScoreTextField" destination="Ul7-0M-2ZJ" id="aUG-D8-Lre"/>
+                        <outlet property="gameOverImage" destination="bnc-qa-FU7" id="dZt-zC-eu1"/>
+                        <outlet property="highScoreTextField" destination="X41-uh-yCb" id="4Wv-oc-isd"/>
+                        <outlet property="livesTextField" destination="dyc-Fb-7JX" id="j41-J4-szH"/>
+                        <outlet property="playButton" destination="zg7-NW-5so" id="hr8-Fd-Udh"/>
+                        <outlet property="restartButton" destination="bAT-pV-eeX" id="agK-1z-G6t"/>
+                        <outlet property="scoreTextField" destination="Evf-Th-ibC" id="Lsh-Kw-eGJ"/>
+                        <outlet property="titleImage" destination="E86-iW-glp" id="Cx6-kj-sJe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.94202898550725" y="84.375"/>
+            <point key="canvasLocation" x="115.94202898550725" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>
+        <image name="GameOver.png" width="792" height="431"/>
+        <image name="Title.png" width="1190" height="537"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

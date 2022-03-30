@@ -33,6 +33,14 @@ private:
     void DetectCollisions();
     
 public:
+    enum GameState {
+        MENU,
+        START,
+        GAME_OVER
+    };
+    
+    GameState CurrentState = GameState::MENU;
+    
     Game();
     Game(GLfloat viewWidth, GLfloat viewHeight);
     
@@ -52,6 +60,15 @@ public:
     
     // Retrieve Score Value
     int GetScore();
+    void SetScore(int score);
+    
+    // Retrieve lives
+    int GetLives();
+    void SetLives(int lives);
+    
+    // Reset wave data
+    void ResetWaves();
+    void KillProjectiles();
     
     void HandleInput(int keyCode);
     void SpawnProjectiles();
@@ -65,6 +82,8 @@ private:
     Shader* _skyboxShaderProgram;
    
     int _gameScore;
+    int _gameLives;
+    
     int _wave;
     float _speed;
     float _projectileCount;
@@ -80,6 +99,8 @@ public:
     
     // Player test
     Player* PlayerRef;
+    
+    bool bulletFired = false;
 };
 
 #endif /* Game_hpp */

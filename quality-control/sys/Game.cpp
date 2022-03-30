@@ -22,7 +22,7 @@ Game::Game()
 { }
 
 Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
-    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0)
+    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0), _gameLives(3)
 { }
 
 /**
@@ -36,7 +36,7 @@ void Game::Init()
     
     float aspectRatio = _viewWidth / _viewHeight;
     
-    ProjectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 1.0f, 20.0f);
+    ProjectionMatrix = glm::perspective(glm::radians(55.0f), aspectRatio, 1.0f, 100.0f);
     
     ViewMatrix = glm::lookAt(
         CAMERA_POSITION,
@@ -106,9 +106,12 @@ void Game::DetectCollisions()
             
             if (collision) {
                 // Player was hit by this projectile
-                // Perform some game logic
+                // Check lose condition here
                 DestroyGameObject(*(*obj));
-                _gameScore--;
+                _gameLives--;
+                
+                if (_gameLives == 0)
+                    CurrentState = GameState::GAME_OVER;
                 break;
             } else {
                 // No collisions detected
@@ -136,6 +139,49 @@ void Game::DetectCollisions()
 int Game::GetScore()
 {
     return _gameScore;
+}
+
+void Game::SetScore(int score)
+{
+    _gameScore = score;
+}
+
+/**
+ * Objective-C++ Trampoline to Update UI Lives
+ */
+int Game::GetLives()
+{
+    return _gameLives;
+}
+
+void Game::SetLives(int lives)
+{
+    _gameLives = lives;
+}
+
+/**
+ * Objective-C++ Trampoline to reset waves and projectiles
+ */
+void Game::ResetWaves()
+{
+    _wave = 1;
+    _speed = 0.2;
+    _projectileCount = 1;
+    _projectileTimer.Reset();
+}
+
+void Game::KillProjectiles()
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        if (dynamic_cast<Projectile *>((*obj)) != nullptr)
+        {
+            // Destroy any remaining projectiles after the game ends
+            DestroyGameObject(*(*obj));
+            LOG("Killing game object -> " << (*obj)->id);
+            break;
+        }
+    }
 }
 
 /**
@@ -228,6 +274,7 @@ void Game::Update()
             SpawnProjectiles();
         }
         
+        bulletFired = true;
         _wave += 1;
     }
     

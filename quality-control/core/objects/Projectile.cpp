@@ -58,7 +58,7 @@ void Projectile::Update()
     auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
     lastTime = currentTime;
     
-    float vectorUpdate = 0.001f * elapsedTime;
+    float vectorUpdate = 0.01f * elapsedTime;
     float rotationUpdate = 0.15f * elapsedTime;
     
     glm::vec3 vector = glm::vec3(vectorUpdate, 0, vectorUpdate) * _direction;
