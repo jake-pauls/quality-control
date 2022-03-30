@@ -11,16 +11,15 @@ extension ViewController: GLKViewControllerDelegate {
      */
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
-        score.text = String(format:"Score: (%d)",viewRenderer.gameScore);
-        if (viewRenderer.triggerMenu) {
-            triggerHide(false);
-            viewRenderer.triggerMenu = false;
+        
+        scoreTextField.text = String(format:"Score: (%d)", viewRenderer.gameScore);
+        livesTextField.text = String(format:"Lives: (%d)", viewRenderer.gameLives);
+        
+        // Check if game is over
+        if (viewRenderer.isGameOver) {
+            toggleHideGameOverMenu(false)
         }
     }
-}
-
-class ArrowRecognizer:UITapGestureRecognizer {
-    var id = 0;
 }
 
 class ViewController: GLKViewController {
@@ -28,13 +27,15 @@ class ViewController: GLKViewController {
     private var viewRenderer: ViewRenderer!
     private var AudioPlayer = AVAudioPlayer()
     
-    @IBOutlet weak var upButton: UIImageView!
-    @IBOutlet weak var rightButton: UIImageView!
-    @IBOutlet weak var leftButton: UIImageView!
-    @IBOutlet weak var downButton: UIImageView!
+    /// Game UI Elements
+    @IBOutlet weak var scoreTextField: UITextField!
+    @IBOutlet weak var livesTextField: UITextField!
     
+    /// Menu UI Elements
+    @IBOutlet weak var titleImage: UIImageView!
+    @IBOutlet weak var gameOverImage: UIImageView!
+    @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var score: UITextField!
     
     /**
      * Initializes the GL view from a Swift context
@@ -55,9 +56,27 @@ class ViewController: GLKViewController {
         }
     }
     
+    /**
+     * Perform all core draw calls
+     */
+    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
+        viewRenderer.draw()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        
+        // Hide gameplay buttons (or gestures)
+        gameOverImage.isHidden = true
+        restartButton.isHidden = true
+        toggleHideMainMenu(false)
+        
+        // Set default gameplay booleans
+        viewRenderer.isGameStarted = false
+        viewRenderer.isGameOver = false
+        
+        // Setup audio
         let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
         
         AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
@@ -66,77 +85,74 @@ class ViewController: GLKViewController {
         AudioPlayer.numberOfLoops = -1
         AudioPlayer.play()
         
-        score.textColor = UIColor.white;
-        /*
-         Tapgesture Recognizer for up button
-         id = 1
-         */
-        let upButtonTap = ArrowRecognizer(target: self, action: #selector(ViewController.arrowTapped(gesture:)));
-        upButtonTap.id = 1;
-        upButton.addGestureRecognizer(upButtonTap);
-        upButton.isUserInteractionEnabled = true;
+        scoreTextField.textColor = UIColor.white
+        livesTextField.textColor = UIColor.white
         
-        /*
-         Tapgesture Recognizer for right button
-         id = 2
-         */
-        let rightButtonTap = ArrowRecognizer(target: self, action: #selector(ViewController.arrowTapped(gesture:)));
-        rightButtonTap.id = 2;
-        rightButton.addGestureRecognizer(rightButtonTap);
-        rightButton.isUserInteractionEnabled = true;
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.doSwipes(_:)))
+        swipeRight.direction = .right
+        view.addGestureRecognizer(swipeRight)
         
-        /*
-         Tapgesture Recognizer for down button
-         id = 3
-         */
-        let downButtonTap = ArrowRecognizer(target: self, action: #selector(ViewController.arrowTapped(gesture:)));
-        downButtonTap.id = 3;
-        downButton.addGestureRecognizer(downButtonTap);
-        downButton.isUserInteractionEnabled = true;
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.doSwipes(_:)))
+        swipeLeft.direction = .left
+        view.addGestureRecognizer(swipeLeft)
         
-        /*
-         Tapgesture Recognizer for left button
-         id = 4
-         */
-        let leftButtonTap = ArrowRecognizer(target: self, action: #selector(ViewController.arrowTapped(gesture:)));
-        leftButtonTap.id = 4;
-        leftButton.addGestureRecognizer(leftButtonTap);
-        leftButton.isUserInteractionEnabled = true;
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.doSwipes(_:)))
+        swipeDown.direction = .down
+        view.addGestureRecognizer(swipeDown)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.doSwipes(_:)))
+        swipeUp.direction = .up
+        view.addGestureRecognizer(swipeUp)
     }
     
-    @objc func arrowTapped(gesture:ArrowRecognizer) {
-        if (gesture.view as? UIImageView) != nil {
-            switch gesture.id {
-                case 1:
-                    viewRenderer.handleInput(0);
-                case 2:
-                    viewRenderer.handleInput(1);
-                case 3:
-                    viewRenderer.handleInput(2);
-                case 4:
-                    viewRenderer.handleInput(3);
+    @objc func doSwipes(_ gesture: UIGestureRecognizer) {
+        if viewRenderer.isGameStarted {
+            if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+                switch swipeGesture.direction {
+                case .right:
+                    viewRenderer.handleInput(1)
+                    break
+                case .left:
+                    viewRenderer.handleInput(3)
+                    break
+                case .down:
+                    viewRenderer.handleInput(2)
+                    break
+                case .up:
+                    viewRenderer.handleInput(0)
+                    break
                 default:
-                    break;
+                    break
+                }
             }
         }
     }
-    /**
-     * Perform all core draw calls
-     */
-    override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        viewRenderer.draw()
+    
+    func toggleHideMainMenu(_ hide: Bool) {
+        playButton.isHidden = hide;
+        titleImage.isHidden = hide;
+        
+        scoreTextField.isHidden = !hide;
+        livesTextField.isHidden = !hide;
     }
     
-    func triggerHide(_ hide:Bool) {
-        playButton.isHidden = hide;
-        //upButton.isHidden = !hide;
-        //downButton.isHidden = !hide;
-        //rightButton.isHidden = !hide;
-        //leftButton.isHidden = !hide;
+    func toggleHideGameOverMenu(_ hide: Bool) {
+        gameOverImage.isHidden = hide;
+        restartButton.isHidden = hide;
+        
+        scoreTextField.isHidden = !hide;
+        livesTextField.isHidden = !hide;
     }
+    
     @IBAction func Play(_ sender: UIButton) {
-        triggerHide(true);
-        viewRenderer.play = true;
+        toggleHideMainMenu(true);
+        viewRenderer.isGameStarted = true;
+    }
+    
+    @IBAction func Restart(_ sender: Any) {
+        viewRenderer.reset()
+        
+        toggleHideGameOverMenu(true)
     }
 }
 

@@ -22,7 +22,7 @@ Game::Game()
 { }
 
 Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
-    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0)
+    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0), _gameLives(3)
 { }
 
 /**
@@ -106,9 +106,14 @@ void Game::DetectCollisions()
             
             if (collision) {
                 // Player was hit by this projectile
-                // Perform some game logic
+                // Check lose condition here
                 DestroyGameObject(*(*obj));
                 _gameScore--;
+                _gameLives--;
+                
+                if (_gameLives == 0) {
+                    CurrentState = GameState::GAME_OVER;
+                }
                 break;
             } else {
                 // No collisions detected
@@ -136,6 +141,35 @@ void Game::DetectCollisions()
 int Game::GetScore()
 {
     return _gameScore;
+}
+
+void Game::SetScore(int score)
+{
+    _gameScore = score;
+}
+
+/**
+ * Objective-C++ Trampoline to Update UI Lives
+ */
+int Game::GetLives()
+{
+    return _gameLives;
+}
+
+void Game::SetLives(int lives)
+{
+    _gameLives = lives;
+}
+
+/**
+ * Objective-C++ Trampoline to reset waves
+ */
+void Game::ResetWaves()
+{
+    _wave = 1;
+    _speed = 0.2;
+    _projectileCount = 1;
+    _projectileTimer.Reset();
 }
 
 /**
