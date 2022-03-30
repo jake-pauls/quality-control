@@ -262,6 +262,7 @@ void Game::Update()
             SpawnProjectiles();
         }
         
+        bulletFired = true;
         _wave += 1;
     }
     

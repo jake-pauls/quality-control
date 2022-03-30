@@ -98,6 +98,8 @@ public:
     
     // Player test
     Player* PlayerRef;
+    
+    bool bulletFired = false;
 };
 
 #endif /* Game_hpp */
