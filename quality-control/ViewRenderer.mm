@@ -10,19 +10,27 @@
 
 #import "ViewRenderer.h"
 
-#include "Cube.hpp"
+#include "Player.hpp"
 #include "Game.hpp"
 #include "Assert.hpp"
 
 @interface ViewRenderer() {
-    GLKView* _view;
-    Game game;
+    GLKView* _viewport;
+    
+    Game _game;
+    
+    SystemSoundID _soundID[2];
 }
 
 @end
 
 @implementation ViewRenderer
-@synthesize score;
+
+@synthesize gameScore;
+@synthesize gameLives;
+@synthesize isGameStarted;
+@synthesize isGameOver;
+
 /**
  * Sets up OpenGLES context with default settings
  * Extracts data from GLKView
@@ -34,42 +42,100 @@
     
     [EAGLContext setCurrentContext:view.context];
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    _view = view;
+    _viewport = view;
     
     GL_CALL(glClearColor(0, 0, 0, 0));
     GL_CALL(glEnable(GL_DEPTH_TEST));
     GL_CALL(glEnable(GL_CULL_FACE));
-    GL_CALL(glEnable(GL_BLEND));
+    GL_CALL(glCullFace(GL_BACK));
+    GL_CALL(glFrontFace(GL_CCW));
     
-    score = 0;
+    gameScore = 0;
+    gameLives = 3;
+    isGameOver = false;
+    isGameStarted = false;
 }
 
+- (void)loadModels
+{
+    _game.LoadModels();
+}
+    
 // MARK: Lifecycle Methods (Awake, Draw, Update)
 
 - (void)awake
 {
-    game = Game(_view.bounds.size.width, _view.bounds.size.height);
-    game.Init();
+    _game = Game(_viewport.bounds.size.width, _viewport.bounds.size.height);
+    _game.Init();
     
-    game.Awake();
+    _game.Awake();
+    
+    NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"gunfire" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[0]);
+    soundFile = [[NSBundle mainBundle] pathForResource:@"movement" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[1]);
+    
 }
 
 - (void)draw
 {
-    // Check if we can update the drawableWidth/Height before rendering objects
-    if (game.renderer.drawableWidth != _view.drawableWidth)
-        game.renderer.drawableWidth = _view.drawableWidth;
-    
-    if (game.renderer.drawableHeight != _view.drawableHeight)
-        game.renderer.drawableHeight = _view.drawableHeight;
-    
-    game.Render();
+    _game.Render();
 }
 
 - (void)update
 {
-    game.Update();
-    score = game.GetScore();
+    _game.Renderer.drawableWidth = _viewport.drawableWidth;
+    _game.Renderer.drawableHeight = _viewport.drawableHeight;
+    
+    if (isGameStarted && _game.CurrentState != Game::GameState::GAME_OVER)
+    {
+        _game.CurrentState = Game::GameState::START;
+        
+        _game.Update();
+        gameScore = _game.GetScore();
+        gameLives = _game.GetLives();
+        
+        //use this for when calling bullet sound
+        if (_game.bulletFired) {
+            [self activateSFX:0];
+            _game.bulletFired = false;
+        }
+    }
+    
+    if (_game.CurrentState == Game::GameState::GAME_OVER)
+    {
+        isGameStarted = false;
+        isGameOver = true;
+        
+        _game.KillProjectiles();
+    }
+}
+
+- (void)reset
+{
+    LOG("[Lifecycle] The game is being reset");
+    
+    // Reset score and lives
+    _game.SetScore(0);
+    _game.SetLives(3);
+    
+    // Reset player position
+    _game.PlayerRef->transform.position.x = 0.0f;
+    _game.PlayerRef->transform.position.y = 0.0f;
+    _game.PlayerRef->transform.position.z = 0.0f;
+    
+    // Reset waves
+    _game.ResetWaves();
+    
+    // Reset Game State
+    _game.CurrentState = Game::GameState::START;
+    isGameOver = false;
+    isGameStarted = true;
+}
+
+- (void)activateSFX:(int)index
+{
+    AudioServicesPlaySystemSound(_soundID[index]);
 }
 
 /**
@@ -77,7 +143,8 @@
  */
 - (void)handleInput:(int)keyCode
 {
-    game.HandleInput(keyCode);
+    _game.HandleInput(keyCode);
+    [self activateSFX:1];
 }
 
 /**
@@ -95,4 +162,5 @@ const char* RetrieveObjectiveCPath(const char* fileName)
 {
     return [ViewRenderer RetrieveFilePathByName: fileName];
 }
+
 @end

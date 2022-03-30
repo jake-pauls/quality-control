@@ -10,12 +10,18 @@
 class Platform : public GameObject
 {
 public:
-    Platform();
+    using GameObject::GameObject;
+    
+    // GameObject specific constructor
+    Platform(Shader* shaderProgram, glm::vec3 position);
     
     // Implement lifecycle methods
     void Awake();
     void Draw();
     void Update();
+    
+private:
+    glm::vec3 _startingPosition;
 };
 
 

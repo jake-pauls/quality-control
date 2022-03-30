@@ -7,12 +7,14 @@
 
 #include <OpenGLES/ES3/gl.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "Obj-C-Utils-Interface.h"
 
 #include "Renderer.hpp"
 #include "Transform.hpp"
 #include "Mesh.hpp"
+#include "Model.hpp"
 #include "Shader.hpp"
 
 static int g_GameObjectIdCount = 0;
@@ -22,11 +24,12 @@ class GameObject
 public:
     int id;
     Transform transform;
-    Mesh mesh;
-    Shader shader;
+    Mesh* mesh;
+    Model* model;
+    Shader* shader;
     
 public:
-    GameObject();
+    explicit GameObject(Shader* shaderProgram);
     
     void SetObjectMVPMatrix(glm::mat4 mvpMatrix);
     

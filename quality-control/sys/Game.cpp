@@ -2,21 +2,27 @@
 // Game.cpp
 // 2022-02-19
 
-#include "Game.hpp"
-#include "Renderer.hpp"
-#include "Assert.hpp"
-
-#include "Platform.hpp"
-#include "Projectile.hpp"
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+
+#include "Obj-C-Utils-Interface.h"
+
+#include "Game.hpp"
+#include "Assert.hpp"
+#include "Shader.hpp"
+#include "Model.hpp"
+#include "Renderer.hpp"
+
+#include "Skybox.hpp"
+#include "Platform.hpp"
+#include "Projectile.hpp"
 
 Game::Game()
 { }
 
 Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
-    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0)
+    _viewWidth(viewWidth), _viewHeight(viewHeight), _gameScore(0), _gameLives(3)
 { }
 
 /**
@@ -27,17 +33,36 @@ Game::Game(GLfloat viewWidth, GLfloat viewHeight) :
 void Game::Init()
 {
     srand(time(NULL));
+    
     float aspectRatio = _viewWidth / _viewHeight;
     
-    projectionMatrix = glm::perspective(glm::radians(60.0f), aspectRatio, 1.0f, 20.0f);
+    ProjectionMatrix = glm::perspective(glm::radians(55.0f), aspectRatio, 1.0f, 100.0f);
     
-    viewMatrix = glm::lookAt(
-        glm::vec3(2, 7, 11),
-        glm::vec3(0, 0, 0),
-        glm::vec3(0, 1, 0)
+    ViewMatrix = glm::lookAt(
+        CAMERA_POSITION,
+        CAMERA_LOOKS_AT,
+        CAMERA_UP
     );
     
+    // Setup the flat shader program for textured models
+    _modelLightingShaderProgram = new Shader(RetrieveObjectiveCPath("ModelLighting.vsh"), RetrieveObjectiveCPath("ModelLighting.fsh"));
+    _modelLightingShaderProgram->Bind();
+    
+    // Setup default shader for basic lighting across game objects
+    _passthroughShaderProgram = new Shader(RetrieveObjectiveCPath("Passthrough.vsh"), RetrieveObjectiveCPath("Passthrough.fsh"));
+    _passthroughShaderProgram->Bind();
+    
+    // Setup the skybox shader program with default sampler
+    _skyboxShaderProgram = new Shader(RetrieveObjectiveCPath("Skybox.vsh"), RetrieveObjectiveCPath("Skybox.fsh"));
+    _skyboxShaderProgram->Bind();
+    
     InitializeGameObjects();
+    
+}
+
+void Game::LoadModels()
+{
+    Renderer::LoadModelData();
 }
 
 /**
@@ -45,15 +70,31 @@ void Game::Init()
  */
 void Game::InitializeGameObjects()
 {
+    // Create the skybox
+    _skybox = new Skybox(_skyboxShaderProgram, ViewMatrix, ProjectionMatrix);
+  
     // Start the projectile timer
     _projectileTimer.Reset();
     
-    // Track a reference of the player
-    player = new Cube();
-    g_GameObjects.insert(player);
+    _wave = 1;
+    _speed = 0.2;
+    _projectileCount = 1;
+  
+    // Create the base platform
+    for (int i = -2; i < 3; i++)
+    {
+        for (int j = -2; j < 3; j++)
+        {
+            g_GameObjects.insert(new Platform(_modelLightingShaderProgram, glm::vec3(i, -0.5f, j)));
+        }
+    }
     
-    g_GameObjects.insert(new Platform());
-
+    // Track a reference of the player
+    PlayerRef = new Player(_modelLightingShaderProgram);
+    g_GameObjects.insert(PlayerRef);
+    
+    // Start the projectile timer
+    _projectileTimer.Reset();
 }
 
 void Game::DetectCollisions()
@@ -61,25 +102,28 @@ void Game::DetectCollisions()
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if (dynamic_cast<Projectile *>((*obj)) != nullptr) {
-            bool collision = GameObject::IsCollisionDetected(*player, *(*obj));
+            bool collision = GameObject::IsCollisionDetected(*PlayerRef, *(*obj));
             
             if (collision) {
                 // Player was hit by this projectile
-                // Perform some game logic
+                // Check lose condition here
                 DestroyGameObject(*(*obj));
-                _gameScore--;
+                _gameLives--;
+                
+                if (_gameLives == 0)
+                    CurrentState = GameState::GAME_OVER;
                 break;
             } else {
                 // No collisions detected
                 // Check if transform is outside of the screen to destroy
                 // Implement other directions/bounds for this logic
-                float despawnRange = 10.0f;
+                float despawnRange = 20.0f;
                 
                 if (abs((*obj)->transform.position.x) >= despawnRange) {
                     DestroyGameObject(*(*obj));
                     _gameScore++;
                     break;
-                } else if (abs((*obj)->transform.position.y) >= despawnRange) {
+                } else if (abs((*obj)->transform.position.z) >= despawnRange) {
                     DestroyGameObject(*(*obj));
                     _gameScore++;
                     break;
@@ -92,8 +136,52 @@ void Game::DetectCollisions()
 /**
  * Objective-C++ Trampoline to Update UI Score
  */
-int Game::GetScore(){
+int Game::GetScore()
+{
     return _gameScore;
+}
+
+void Game::SetScore(int score)
+{
+    _gameScore = score;
+}
+
+/**
+ * Objective-C++ Trampoline to Update UI Lives
+ */
+int Game::GetLives()
+{
+    return _gameLives;
+}
+
+void Game::SetLives(int lives)
+{
+    _gameLives = lives;
+}
+
+/**
+ * Objective-C++ Trampoline to reset waves and projectiles
+ */
+void Game::ResetWaves()
+{
+    _wave = 1;
+    _speed = 0.2;
+    _projectileCount = 1;
+    _projectileTimer.Reset();
+}
+
+void Game::KillProjectiles()
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        if (dynamic_cast<Projectile *>((*obj)) != nullptr)
+        {
+            // Destroy any remaining projectiles after the game ends
+            DestroyGameObject(*(*obj));
+            LOG("Killing game object -> " << (*obj)->id);
+            break;
+        }
+    }
 }
 
 /**
@@ -105,7 +193,7 @@ void Game::DestroyGameObject(GameObject &proj)
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         if ((*obj)->id == proj.id) {
-            LOG("Successfully destroyed a GameObject with id #" << (*obj)->id);
+            LOG("Destroyed a GameObject with id #" << (*obj)->id);
             delete *obj;
             g_GameObjects.erase(obj);
             break;
@@ -115,7 +203,7 @@ void Game::DestroyGameObject(GameObject &proj)
 
 void Game::HandleInput(int keyCode)
 {
-    player->MoveCube(keyCode);
+    PlayerRef->MoveCube(keyCode);
 }
 
 /**
@@ -126,6 +214,8 @@ void Game::Awake()
 {
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
         (*obj)->Awake();
+    
+    _skybox->Awake();
 }
 
 /**
@@ -134,10 +224,19 @@ void Game::Awake()
  */
 void Game::Render()
 {
-    renderer.Clear();
+    Renderer.Clear();
     
-    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+        
+        // Only recalculate this matrix if the transform changes
+        if ((*obj)->transform.IsModelMatrixUpdated()) {
+            (*obj)->SetObjectMVPMatrix(ProjectionMatrix * ViewMatrix * (*obj)->transform.GetModelMatrix());
+        }
+        
         (*obj)->Draw();
+    }
+    
+    _skybox->Draw();
 }
 
 /**
@@ -146,45 +245,68 @@ void Game::Render()
  */
 void Game::Update()
 {
-    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++) {
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
         (*obj)->Update();
-        
-        // Only recalculate this matrix if the transform changes
-        if ((*obj)->transform.IsModelMatrixUpdated()) {
-            (*obj)->SetObjectMVPMatrix(projectionMatrix * viewMatrix * (*obj)->transform.GetModelMatrix());
-        }
-    }
     
+    // This is where game objects are detected and IMMEDIATELY destroyed
     DetectCollisions();
-    
-    if (_projectileTimer.GetElapsedTime() >= 2)
+    if (_projectileTimer.GetElapsedTime() >= 5)
     {
-        SpawnProjectiles();
         _projectileTimer.Reset();
+        
+        switch (_wave) {
+            case 1:
+                _speed += 0.2;
+                break;
+            case 5:
+                _speed += 0.1;
+                _projectileCount += 1;
+                break;
+            case 10:
+                _speed += 0.1;
+                _projectileCount += 1;
+                break;
+            default:
+                break;
+        }
+        
+        for (int i = 0; i < _projectileCount; i++){
+            SpawnProjectiles();
+        }
+        
+        bulletFired = true;
+        _wave += 1;
     }
+    
+    _skybox->Update();
 }
 
 void Game::SpawnProjectiles()
 {
-    int random = rand() % 4 + 1;
+    int x = 4;
+    int z = 4;
+    int offset = 8;
+    int randomside = rand() % 4 + 1;
+    int randomlocationx = rand() % x + (-x/2);
+    int randomlocationz = rand() % z + (-z/2);
     
     Projectile* projectile;
     
-    switch (random) {
+    switch (randomside) {
         case 1:
-            projectile = new Projectile(glm::vec3(-8, 0, 0), glm::vec3(1, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-x-offset, 0.5, randomlocationz), glm::vec3(_speed, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(glm::vec3(0, 0, -8), glm::vec3(0, 0, 1));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, -z-offset), glm::vec3(0, 0, _speed));
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(glm::vec3(8, 0, 0), glm::vec3(-1, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(x+offset, 0.5, randomlocationz), glm::vec3(-_speed, 0, 0));
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(glm::vec3(0, 0, 8), glm::vec3(0, 0, -1));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, z+offset), glm::vec3(0, 0, -_speed));
             g_GameObjects.insert(projectile);
             break;
     }

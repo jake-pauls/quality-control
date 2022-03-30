@@ -12,32 +12,50 @@
 
 #include "Shader.hpp"
 
-struct Vertex
-{
-    glm::vec3 Position;
-    glm::vec3 Normal;
-    glm::vec2 TexCoords;
-};
-
-struct Texture
-{
-    GLuint id;
-    std::string type;
-};
-
 class Mesh
 {
 public:
+    struct Vertex
+    {
+        glm::vec3 Position;
+        glm::vec3 Normal;
+        glm::vec2 TexCoords;
+        glm::vec3 Tangent;
+        glm::vec3 Bitangent;
+    };
+
+    struct Texture
+    {
+        GLuint id;
+        std::string type;
+        std::string path;
+    };
+    
+    struct Color
+    {
+        glm::vec4 ambient;
+        glm::vec4 diffuse;
+        glm::vec4 specular;
+        glm::vec4 emissive;
+    };
+    
     std::vector<Vertex> vertices;
     std::vector<GLuint> indices;
     std::vector<Texture> textures;
+    Color colors;
     
     Mesh();
-    Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures);
+    Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vector<Texture> textures, Color colors);
     
-    void Draw();
+    // No Shader, Basic Geometry with GL_TRIANGLES
+    void BasicDraw();
+    
+    // Shader, Textures, and Model Geometry
+    void Draw(Shader* shaderProgram);
+    
 private:
-    GLuint VAO, VBO, EBO;
+    GLuint VAO;
+    GLuint VBO, IBO;
     
     void SetupMesh();
 };

@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "Transform.hpp"
+#include "Assert.hpp"
 
 Transform::Transform()
 {
@@ -12,8 +13,10 @@ Transform::Transform()
     rotation = glm::vec3(0, 0, 0);
     scale = glm::vec3(1, 1, 1);
     
-    // Set the default scaling matrix to the identity matrix
-    _scalingMatrix = glm::mat4(1.0);
+    // Set the default matrices to the identity matrix
+    _translationMatrix = glm::mat4(1.0f);
+    _rotationMatrix = glm::mat4(1.0f);
+    _scalingMatrix = glm::mat4(1.0f);
 }
 
 /// For Translate(), Rotate(), and Scale() update the transform's
@@ -30,9 +33,9 @@ void Transform::Translate()
  */
 void Transform::Rotate()
 {
-    _rotationMatrix = glm::rotate(glm::mat4(1.0), rotation.x, glm::vec3(0.0, 1.0, 0.0));
-    _rotationMatrix = glm::rotate(_rotationMatrix, rotation.y, glm::vec3(1.0, 0.0, 0.0));
-    _rotationMatrix = glm::rotate(_rotationMatrix, rotation.z, glm::vec3(0.0, 0.0, 1.0));
+    _rotationMatrix = glm::rotate(glm::mat4(1.0), glm::radians(rotation.x), glm::vec3(0.0, 1.0, 0.0));
+    _rotationMatrix = glm::rotate(_rotationMatrix, glm::radians(rotation.y), glm::vec3(1.0, 0.0, 0.0));
+    _rotationMatrix = glm::rotate(_rotationMatrix, glm::radians(rotation.z), glm::vec3(0.0, 0.0, 1.0));
 }
 
 void Transform::Scale()
@@ -46,16 +49,12 @@ void Transform::Scale()
  */
 glm::mat4 Transform::GetModelMatrix()
 {
-    glm::mat4 zeroMatrix = glm::mat4(0.0);
-    glm::mat4 identityMatrix = glm::mat4(1.0);
-    
-    if (_translationMatrix == zeroMatrix)
-        _translationMatrix = identityMatrix;
-    
-    if (_rotationMatrix == zeroMatrix)
-        _rotationMatrix = identityMatrix;
-    
-    return _scalingMatrix * _translationMatrix * _rotationMatrix;
+    return _translationMatrix * _rotationMatrix * _scalingMatrix;
+}
+
+glm::mat3 Transform::GetNormalMatrix()
+{
+    return glm::inverseTranspose(glm::mat3(GetModelMatrix()));
 }
 
 /**
@@ -65,9 +64,8 @@ bool Transform::IsModelMatrixUpdated()
 {
     glm::mat4 newModelMatrix = GetModelMatrix();
     
-    if (newModelMatrix == _lastModelMatrix) {
+    if (newModelMatrix == _lastModelMatrix)
         return false;
-    }
     
     _lastModelMatrix = newModelMatrix;
     

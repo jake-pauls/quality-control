@@ -9,6 +9,7 @@
 #include <OpenGLES/ES3/gl.h>
 
 #include "Mesh.hpp"
+#include "Model.hpp"
 #include "GameObject.hpp"
 
 class Renderer
@@ -16,10 +17,22 @@ class Renderer
 public:
     void Clear();
     
-    static Mesh ParseCubeVertexData();
+    static void LoadModelData();
     
-    GLfloat drawableWidth;
-    GLfloat drawableHeight;
+    static Mesh ParseCubeVertexData();
+   
+    GLfloat drawableWidth = 10.0f;
+    GLfloat drawableHeight = 10.0f;
+    
+    // Global Mesh Types
+    inline static Mesh Mesh_Cube;
+    
+    // Global Model Types
+    inline static Model Model_Character;
+    inline static Model Model_Cube_Crate;
+    inline static Model Model_Cube_Brick;
+    inline static Model Model_Projectile_Cannonball;
+    inline static Model Model_Projectile_SpikyBall;
 };
 
 #endif /* Renderer_hpp */
