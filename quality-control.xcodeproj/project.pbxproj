@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DC7CC6527F4C24600BA8298 /* libassimp-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */; };
 		2803A00027F0270900FAB22C /* gunfire.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFD27F0270900FAB22C /* gunfire.wav */; };
 		2803A00127F0270900FAB22C /* movement.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFE27F0270900FAB22C /* movement.wav */; };
 		286D7D6127F39C69009595B8 /* bgm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 286D7D6027F39C69009595B8 /* bgm.wav */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libassimp-fat.a"; path = "quality-control/vendor/lib/iOS/libassimp-fat.a"; sourceTree = "<group>"; };
 		28039FFD27F0270900FAB22C /* gunfire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gunfire.wav; sourceTree = "<group>"; };
 		28039FFE27F0270900FAB22C /* movement.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = movement.wav; sourceTree = "<group>"; };
 		286D7D6027F39C69009595B8 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DC7CC6527F4C24600BA8298 /* libassimp-fat.a in Frameworks */,
 				40CEF00B27F02AE4005C174D /* libz.tbd in Frameworks */,
 				40CEF00927F02A1C005C174D /* libassimp.a in Frameworks */,
 				286D7D6327F39F0A009595B8 /* AVFoundation.framework in Frameworks */,
@@ -257,6 +260,7 @@
 		40CEEFF527F015FA005C174D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */,
 				286D7D6227F39F0A009595B8 /* AVFoundation.framework */,
 				40CEF00A27F02AE4005C174D /* libz.tbd */,
 				40CEEFFC27F01DE5005C174D /* libassimp.a */,
@@ -631,6 +635,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X2ARL8FJ3D;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"GLES_SILENCE_DEPRECATION=1",
 					"DEBUG=1",
@@ -655,6 +660,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/quality-control/vendor/lib/iOS/x86_64",
 					"$(PROJECT_DIR)/quality-control/vendor/lib/iOS/arm64",
+					"$(PROJECT_DIR)/quality-control/vendor/lib/iOS",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.btechgames.quality-control";
@@ -676,6 +682,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X2ARL8FJ3D;
 				GCC_PREPROCESSOR_DEFINITIONS = "GLES_SILENCE_DEPRECATION=1";
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -696,6 +703,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/quality-control/vendor/lib/iOS/x86_64",
 					"$(PROJECT_DIR)/quality-control/vendor/lib/iOS/arm64",
+					"$(PROJECT_DIR)/quality-control/vendor/lib/iOS",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.btechgames.quality-control";
