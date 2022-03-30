@@ -36,7 +36,7 @@ void Game::Init()
     
     float aspectRatio = _viewWidth / _viewHeight;
     
-    ProjectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 1.0f, 20.0f);
+    ProjectionMatrix = glm::perspective(glm::radians(55.0f), aspectRatio, 1.0f, 100.0f);
     
     ViewMatrix = glm::lookAt(
         CAMERA_POSITION,

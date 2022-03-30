@@ -5,6 +5,9 @@
 import GLKit
 import AVFoundation
 
+let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Galvji", size: 24.0)!, .foregroundColor: UIColor.white]
+
+
 extension ViewController: GLKViewControllerDelegate {
     /**
      * Performs core rendering updates
@@ -12,21 +15,35 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         
-        scoreTextField.text = String(format:"Score: (%d)", viewRenderer.gameScore)
-        livesTextField.text = String(format:"Lives: (%d)", viewRenderer.gameLives)
+        let scoreTextContent = String(format: "Score: %d", viewRenderer.gameScore)
+        let livesTextContent = String(format: "Lives: %d", viewRenderer.gameLives)
+       
+        let scoreTextAttrString = NSAttributedString(string: scoreTextContent, attributes: WhiteTextAttributes)
+        
+        let livesTextAttrString = NSAttributedString(string: livesTextContent, attributes: WhiteTextAttributes)
+        
+        scoreTextField.attributedText = scoreTextAttrString
+        livesTextField.attributedText = livesTextAttrString
         
         // Check if game is over
         if (viewRenderer.isGameOver) {
-            finalScoreTextField.text = String(format: "Final Score: %d", viewRenderer.gameScore)
+            // Yes, this makes the font bold
+            let font = UIFont(name: "Galvji", size: 30.0)!
+            var traits: UIFontDescriptor.SymbolicTraits = UIFontDescriptor.SymbolicTraits()
+            traits.insert(font.fontDescriptor.symbolicTraits)
+            traits.insert(.traitBold)
+            
+            let BlackTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(descriptor: font.fontDescriptor.withSymbolicTraits(traits)!, size: 30.0), .foregroundColor: UIColor.black]
+            
+            finalScoreTextField.attributedText = NSAttributedString(string: String(format: "Final Score %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
             
             if lastHighScore < viewRenderer.gameScore {
-                print("Setting new high score ", viewRenderer.gameScore)
                 UserDefaults.standard.set(viewRenderer.gameScore, forKey: "QC_HighScore")
                 
-                highScoreTextField.text = String(format: "High Score: %d", viewRenderer.gameScore)
+                highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
                 lastHighScore = Int(viewRenderer.gameScore)
             } else {
-                highScoreTextField.text = String(format: "High Score: %d", lastHighScore)
+                highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score %d", lastHighScore), attributes: BlackTextAttributes)
             }
             
             toggleHideGameOverMenu(false)
@@ -96,11 +113,10 @@ class ViewController: GLKViewController {
         
         // Retrieve last high score value
         lastHighScore = UserDefaults.standard.integer(forKey: "QC_HighScore")
-        print("Retrieved high score ", lastHighScore)
         
         // Setup audio
         let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
-        
+       
         AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
         AudioPlayer.volume = 0.05
         AudioPlayer.prepareToPlay()
