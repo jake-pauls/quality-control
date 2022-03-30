@@ -108,12 +108,10 @@ void Game::DetectCollisions()
                 // Player was hit by this projectile
                 // Check lose condition here
                 DestroyGameObject(*(*obj));
-                _gameScore--;
                 _gameLives--;
                 
-                if (_gameLives == 0) {
+                if (_gameLives == 0)
                     CurrentState = GameState::GAME_OVER;
-                }
                 break;
             } else {
                 // No collisions detected
@@ -162,7 +160,7 @@ void Game::SetLives(int lives)
 }
 
 /**
- * Objective-C++ Trampoline to reset waves
+ * Objective-C++ Trampoline to reset waves and projectiles
  */
 void Game::ResetWaves()
 {
@@ -170,6 +168,20 @@ void Game::ResetWaves()
     _speed = 0.2;
     _projectileCount = 1;
     _projectileTimer.Reset();
+}
+
+void Game::KillProjectiles()
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        if (dynamic_cast<Projectile *>((*obj)) != nullptr)
+        {
+            // Destroy any remaining projectiles after the game ends
+            DestroyGameObject(*(*obj));
+            LOG("Killing game object -> " << (*obj)->id);
+            break;
+        }
+    }
 }
 
 /**

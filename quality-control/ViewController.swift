@@ -12,11 +12,23 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         
-        scoreTextField.text = String(format:"Score: (%d)", viewRenderer.gameScore);
-        livesTextField.text = String(format:"Lives: (%d)", viewRenderer.gameLives);
+        scoreTextField.text = String(format:"Score: (%d)", viewRenderer.gameScore)
+        livesTextField.text = String(format:"Lives: (%d)", viewRenderer.gameLives)
         
         // Check if game is over
         if (viewRenderer.isGameOver) {
+            finalScoreTextField.text = String(format: "Final Score: %d", viewRenderer.gameScore)
+            
+            if lastHighScore < viewRenderer.gameScore {
+                print("Setting new high score ", viewRenderer.gameScore)
+                UserDefaults.standard.set(viewRenderer.gameScore, forKey: "QC_HighScore")
+                
+                highScoreTextField.text = String(format: "High Score: %d", viewRenderer.gameScore)
+                lastHighScore = Int(viewRenderer.gameScore)
+            } else {
+                highScoreTextField.text = String(format: "High Score: %d", lastHighScore)
+            }
+            
             toggleHideGameOverMenu(false)
         }
     }
@@ -25,6 +37,8 @@ extension ViewController: GLKViewControllerDelegate {
 class ViewController: GLKViewController {
     private var context: EAGLContext?
     private var viewRenderer: ViewRenderer!
+    private var lastHighScore: Int!
+    
     private var AudioPlayer = AVAudioPlayer()
     
     /// Game UI Elements
@@ -36,6 +50,8 @@ class ViewController: GLKViewController {
     @IBOutlet weak var gameOverImage: UIImageView!
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var finalScoreTextField: UITextField!
+    @IBOutlet weak var highScoreTextField: UITextField!
     
     /**
      * Initializes the GL view from a Swift context
@@ -70,11 +86,17 @@ class ViewController: GLKViewController {
         // Hide gameplay buttons (or gestures)
         gameOverImage.isHidden = true
         restartButton.isHidden = true
+        finalScoreTextField.isHidden = true
+        highScoreTextField.isHidden = true
         toggleHideMainMenu(false)
         
         // Set default gameplay booleans
         viewRenderer.isGameStarted = false
         viewRenderer.isGameOver = false
+        
+        // Retrieve last high score value
+        lastHighScore = UserDefaults.standard.integer(forKey: "QC_HighScore")
+        print("Retrieved high score ", lastHighScore)
         
         // Setup audio
         let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
@@ -85,6 +107,7 @@ class ViewController: GLKViewController {
         AudioPlayer.numberOfLoops = -1
         AudioPlayer.play()
         
+        // TODO: Use NSAttributeStrings for styling text fields
         scoreTextField.textColor = UIColor.white
         livesTextField.textColor = UIColor.white
         
@@ -129,24 +152,26 @@ class ViewController: GLKViewController {
     }
     
     func toggleHideMainMenu(_ hide: Bool) {
-        playButton.isHidden = hide;
-        titleImage.isHidden = hide;
+        playButton.isHidden = hide
+        titleImage.isHidden = hide
         
-        scoreTextField.isHidden = !hide;
-        livesTextField.isHidden = !hide;
+        scoreTextField.isHidden = !hide
+        livesTextField.isHidden = !hide
     }
     
     func toggleHideGameOverMenu(_ hide: Bool) {
-        gameOverImage.isHidden = hide;
-        restartButton.isHidden = hide;
+        gameOverImage.isHidden = hide
+        restartButton.isHidden = hide
+        finalScoreTextField.isHidden = hide
+        highScoreTextField.isHidden = hide
         
-        scoreTextField.isHidden = !hide;
-        livesTextField.isHidden = !hide;
+        scoreTextField.isHidden = !hide
+        livesTextField.isHidden = !hide
     }
     
     @IBAction func Play(_ sender: UIButton) {
-        toggleHideMainMenu(true);
-        viewRenderer.isGameStarted = true;
+        toggleHideMainMenu(true)
+        viewRenderer.isGameStarted = true
     }
     
     @IBAction func Restart(_ sender: Any) {

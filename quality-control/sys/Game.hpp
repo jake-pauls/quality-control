@@ -68,6 +68,7 @@ public:
     
     // Reset wave data
     void ResetWaves();
+    void KillProjectiles();
     
     void HandleInput(int keyCode);
     void SpawnProjectiles();

@@ -106,6 +106,8 @@
     {
         isGameStarted = false;
         isGameOver = true;
+        
+        _game.KillProjectiles();
     }
 }
 

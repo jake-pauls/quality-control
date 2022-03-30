@@ -16,22 +16,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SCORE" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
                                 <rect key="frame" x="55" y="26" width="172" height="28"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="dyc-Fb-7JX" userLabel="Lives">
-                                <rect key="frame" x="55" y="62" width="172" height="28"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="GAME SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ul7-0M-2ZJ" userLabel="Final Score Text Field">
+                                <rect key="frame" x="64" y="396" width="270" height="28"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="26"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="LIVES" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="dyc-Fb-7JX" userLabel="Lives Text Field">
+                                <rect key="frame" x="55" y="62" width="172" height="28"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Title.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E86-iW-glp">
@@ -71,11 +80,23 @@
                                     <action selector="Restart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DbP-9y-sWZ"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HIGH SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="X41-uh-yCb" userLabel="High Score Text Field">
+                                <rect key="frame" x="64" y="442" width="271" height="28"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="26"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Ul7-0M-2ZJ" firstAttribute="leading" secondItem="X41-uh-yCb" secondAttribute="leading" id="48T-5N-yl9"/>
                             <constraint firstItem="E86-iW-glp" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="9AN-HV-WvZ"/>
+                            <constraint firstItem="Ul7-0M-2ZJ" firstAttribute="centerX" secondItem="bnc-qa-FU7" secondAttribute="centerX" constant="-8" id="A4S-Bb-SP7"/>
+                            <constraint firstItem="Ul7-0M-2ZJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="64" id="BCb-9Y-TZx"/>
                             <constraint firstItem="dyc-Fb-7JX" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="8" id="Br4-et-8fI"/>
                             <constraint firstItem="E86-iW-glp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="C5c-Dt-M4R"/>
                             <constraint firstItem="zg7-NW-5so" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="146" id="Epm-a5-zTL"/>
@@ -84,8 +105,11 @@
                             <constraint firstItem="bAT-pV-eeX" firstAttribute="trailing" secondItem="zg7-NW-5so" secondAttribute="trailing" id="Gxh-lw-Sqs"/>
                             <constraint firstItem="E86-iW-glp" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="17" id="JBy-1Q-dg9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zg7-NW-5so" secondAttribute="bottom" constant="66" id="Ky4-Lc-Se9"/>
+                            <constraint firstItem="X41-uh-yCb" firstAttribute="top" secondItem="Ul7-0M-2ZJ" secondAttribute="bottom" constant="18" id="LIe-NY-cjT"/>
+                            <constraint firstItem="Ul7-0M-2ZJ" firstAttribute="trailing" secondItem="X41-uh-yCb" secondAttribute="trailing" constant="-1" id="OLV-xC-Edx"/>
                             <constraint firstItem="dyc-Fb-7JX" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" id="S35-9T-0hC"/>
                             <constraint firstItem="bAT-pV-eeX" firstAttribute="leading" secondItem="zg7-NW-5so" secondAttribute="leading" id="VgS-v4-JSo"/>
+                            <constraint firstItem="Ul7-0M-2ZJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="42" id="ZH0-Nx-t4Q"/>
                             <constraint firstItem="dyc-Fb-7JX" firstAttribute="leading" secondItem="Evf-Th-ibC" secondAttribute="leading" id="dif-4a-K6S"/>
                             <constraint firstItem="bAT-pV-eeX" firstAttribute="top" secondItem="zg7-NW-5so" secondAttribute="bottom" constant="-70" id="dt0-nN-UQE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="187" id="j6W-fZ-CCN"/>
@@ -97,7 +121,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="finalScoreTextField" destination="Ul7-0M-2ZJ" id="aUG-D8-Lre"/>
                         <outlet property="gameOverImage" destination="bnc-qa-FU7" id="dZt-zC-eu1"/>
+                        <outlet property="highScoreTextField" destination="X41-uh-yCb" id="4Wv-oc-isd"/>
                         <outlet property="livesTextField" destination="dyc-Fb-7JX" id="j41-J4-szH"/>
                         <outlet property="playButton" destination="zg7-NW-5so" id="hr8-Fd-Udh"/>
                         <outlet property="restartButton" destination="bAT-pV-eeX" id="agK-1z-G6t"/>
