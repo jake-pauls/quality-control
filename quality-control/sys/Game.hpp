@@ -35,6 +35,7 @@ private:
 public:
     Game();
     Game(GLfloat viewWidth, GLfloat viewHeight);
+    bool bulletFired;
     
     // Set of global game objects
     GameObjectSet g_GameObjects;

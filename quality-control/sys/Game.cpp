@@ -35,6 +35,7 @@ void Game::Init()
     srand(time(NULL));
     
     float aspectRatio = _viewWidth / _viewHeight;
+    bulletFired = false;
     
     ProjectionMatrix = glm::perspective(glm::radians(45.0f), aspectRatio, 1.0f, 20.0f);
     

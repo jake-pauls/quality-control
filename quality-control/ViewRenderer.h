@@ -21,7 +21,8 @@
 - (void)awake;
 - (void)update;
 - (void)draw;
-    
+
+- (void)activateSFX:(int) index;
 // Testing input handling
 - (void)handleInput:(int) keyCode;
 

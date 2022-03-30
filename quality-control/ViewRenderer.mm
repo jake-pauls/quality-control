@@ -18,6 +18,7 @@
     GLKView* _viewport;
     
     Game _game;
+    SystemSoundID _soundID[2];
 }
 
 @end
@@ -63,10 +64,11 @@
     
     _game.Awake();
     
-    SystemSoundID soundID;
     NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"gunfire" ofType:@"wav"];
-    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & soundID);
-    AudioServicesPlaySystemSound(soundID);
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[0]);
+    soundFile = [[NSBundle mainBundle] pathForResource:@"movement" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[1]);
+    
 }
 
 - (void)draw
@@ -81,14 +83,25 @@
     
     _game.Update();
     gameScore = _game.GetScore();
+    //use this for when calling bullet sound
+    if (_game.bulletFired) {
+        activateSFX:(0);
+        _game.bulletFired = false;
+    }
+    
 }
 
+- (void)activateSFX:(int)index
+{
+    AudioServicesPlaySystemSound(_soundID[index]);
+}
 /**
  * Passes Swift input to game for handling inside C++
  */
 - (void)handleInput:(int)keyCode
 {
     _game.HandleInput(keyCode);
+    activateSFX:(1);
 }
 
 /**
