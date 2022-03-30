@@ -35,15 +35,15 @@ extension ViewController: GLKViewControllerDelegate {
             
             let BlackTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(descriptor: font.fontDescriptor.withSymbolicTraits(traits)!, size: 30.0), .foregroundColor: UIColor.black]
             
-            finalScoreTextField.attributedText = NSAttributedString(string: String(format: "Final Score %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
+            finalScoreTextField.attributedText = NSAttributedString(string: String(format: "Final Score: %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
             
             if lastHighScore < viewRenderer.gameScore {
                 UserDefaults.standard.set(viewRenderer.gameScore, forKey: "QC_HighScore")
                 
-                highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
+                highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
                 lastHighScore = Int(viewRenderer.gameScore)
             } else {
-                highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score %d", lastHighScore), attributes: BlackTextAttributes)
+                highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", lastHighScore), attributes: BlackTextAttributes)
             }
             
             toggleHideGameOverMenu(false)
