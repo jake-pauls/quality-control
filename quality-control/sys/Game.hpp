@@ -20,7 +20,7 @@
 #include "Projectile.hpp"
 #include "Timer.hpp"
 
-#define CAMERA_POSITION glm::vec3(2, 9, 13)
+#define CAMERA_POSITION glm::vec3(0, 9, 13)
 #define CAMERA_LOOKS_AT glm::vec3(0, 2, 0)
 #define CAMERA_UP       glm::vec3(0, 1, 0)
 
