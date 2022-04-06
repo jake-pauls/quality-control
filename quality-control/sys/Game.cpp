@@ -107,6 +107,7 @@ void Game::DetectCollisions()
             if (collision) {
                 // Player was hit by this projectile
                 // Check lose condition here
+                playerHit = true;
                 DestroyGameObject(*(*obj));
                 _gameLives--;
                 
