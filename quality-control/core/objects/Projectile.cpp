@@ -9,8 +9,8 @@
 #include "Projectile.hpp"
 #include "Assert.hpp"
 
-Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction)
-    : GameObject(shaderProgram), _startingPosition(position), _direction(direction)
+Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction, char laneId)
+    : GameObject(shaderProgram), _startingPosition(position), _direction(direction), LaneId(laneId)
 {
     // Basic logic to provide variation to projectile models (or behaviours?)
     int random = rand() % 2;

@@ -76,7 +76,7 @@ void Game::InitializeGameObjects()
     // Start the projectile timer
     _projectileTimer.Reset();
     
-    _wave = 1;
+    _currentWave = 1;
     _speed = 0.2;
     _projectileCount = 1;
   
@@ -101,12 +101,19 @@ void Game::DetectCollisions()
 {
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
-        if (dynamic_cast<Projectile *>((*obj)) != nullptr) {
+        Projectile* proj = dynamic_cast<Projectile *>((*obj));
+        if (proj != nullptr) {
             bool collision = GameObject::IsCollisionDetected(*PlayerRef, *(*obj));
             
             if (collision) {
+                // Reset projectile lanes with particular ID's based on player location
+                if (proj->LaneId == 'x')
+                    ResetLaneModelsWithIndex(proj->transform.position.x, 'x');
+                
+                if (proj->LaneId == 'z')
+                    ResetLaneModelsWithIndex(proj->transform.position.z, 'z');
+                
                 // Player was hit by this projectile
-                // Check lose condition here
                 DestroyGameObject(*(*obj));
                 _gameLives--;
                 
@@ -117,6 +124,7 @@ void Game::DetectCollisions()
                 // No collisions detected
                 // Check if transform is outside of the screen to destroy
                 // Implement other directions/bounds for this logic
+                // Reset lane tiles
                 float despawnRange = 20.0f;
                 
                 if (abs((*obj)->transform.position.x) >= despawnRange) {
@@ -164,7 +172,7 @@ void Game::SetLives(int lives)
  */
 void Game::ResetWaves()
 {
-    _wave = 1;
+    _currentWave = 1;
     _speed = 0.2;
     _projectileCount = 1;
     _projectileTimer.Reset();
@@ -174,8 +182,12 @@ void Game::KillProjectiles()
 {
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
-        if (dynamic_cast<Projectile *>((*obj)) != nullptr)
+        Projectile* proj = dynamic_cast<Projectile *>((*obj));
+        if (proj != nullptr)
         {
+            // Reset all projectile lanes
+            ResetLaneModels();
+            
             // Destroy any remaining projectiles after the game ends
             DestroyGameObject(*(*obj));
             LOG("Killing game object -> " << (*obj)->id);
@@ -252,9 +264,12 @@ void Game::Update()
     DetectCollisions();
     if (_projectileTimer.GetElapsedTime() >= 5)
     {
+        // Reset all projectile lanes at the start of the wave
+        ResetLaneModels();
+        
         _projectileTimer.Reset();
         
-        switch (_wave) {
+        switch (_currentWave) {
             case 1:
                 _speed += 0.2;
                 break;
@@ -275,7 +290,7 @@ void Game::Update()
         }
         
         bulletFired = true;
-        _wave += 1;
+        _currentWave += 1;
     }
     
     _skybox->Update();
@@ -286,28 +301,82 @@ void Game::SpawnProjectiles()
     int x = 4;
     int z = 4;
     int offset = 8;
-    int randomside = rand() % 4 + 1;
+    int randomSide = rand() % 4 + 1;
     int randomlocationx = rand() % x + (-x/2);
     int randomlocationz = rand() % z + (-z/2);
     
     Projectile* projectile;
     
-    switch (randomside) {
+    switch (randomSide) {
         case 1:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-x-offset, 0.5, randomlocationz), glm::vec3(_speed, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(-x-offset, 0.5, randomlocationz), glm::vec3(_speed, 0, 0), 'z');
+            SetProjectileLaneDiscernibility(randomlocationz, 'z');
             g_GameObjects.insert(projectile);
             break;
         case 2:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, -z-offset), glm::vec3(0, 0, _speed));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, -z-offset), glm::vec3(0, 0, _speed), 'x');
+            SetProjectileLaneDiscernibility(randomlocationx, 'x');
             g_GameObjects.insert(projectile);
             break;
         case 3:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(x+offset, 0.5, randomlocationz), glm::vec3(-_speed, 0, 0));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(x+offset, 0.5, randomlocationz), glm::vec3(-_speed, 0, 0), 'z');
+            SetProjectileLaneDiscernibility(randomlocationz, 'z');
             g_GameObjects.insert(projectile);
             break;
         case 4:
-            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, z+offset), glm::vec3(0, 0, -_speed));
+            projectile = new Projectile(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, z+offset), glm::vec3(0, 0, -_speed), 'x');
+            SetProjectileLaneDiscernibility(randomlocationx, 'x');
             g_GameObjects.insert(projectile);
             break;
+    }
+}
+
+void Game::SetProjectileLaneDiscernibility(int laneIndex, char lane)
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        Platform* plat = dynamic_cast<Platform*>((*obj));
+        if (plat != nullptr) {
+            if (lane == 'z') {
+                if (plat->transform.position.z == laneIndex)
+                    plat->IsOnProjectilePath = true;
+            }
+            
+            if (lane == 'x') {
+                if (plat->transform.position.x == laneIndex)
+                    plat->IsOnProjectilePath = true;
+            }
+        }
+    }
+}
+
+void Game::ResetLaneModels()
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        Platform* plat = dynamic_cast<Platform*>((*obj));
+        if (plat != nullptr) {
+            LOG("Reset platform models");
+            plat->IsOnProjectilePath = false;
+        }
+    }
+}
+
+void Game::ResetLaneModelsWithIndex(int laneIndex, char lane)
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        Platform* plat = dynamic_cast<Platform*>((*obj));
+        if (plat != nullptr) {
+            if (lane == 'z') {
+                if (plat->transform.position.z == laneIndex)
+                    plat->IsOnProjectilePath = false;
+            }
+            
+            if (lane == 'x') {
+                if (plat->transform.position.x == laneIndex)
+                    plat->IsOnProjectilePath = false;
+            }
+        }
     }
 }

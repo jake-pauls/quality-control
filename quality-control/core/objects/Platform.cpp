@@ -9,12 +9,12 @@
 #include "Assert.hpp"
 
 Platform::Platform(Shader* shaderProgram, glm::vec3 position)
-    : GameObject(shaderProgram), _startingPosition(position)
+    : GameObject(shaderProgram), _startingPosition(position), IsOnProjectilePath(false)
 { }
 
 void Platform::Awake()
 {
-    this->model = &Renderer::Model_Cube_Brick;
+    SetDefaultPlatformModel();
     
     // Platform Position
     this->transform.position = _startingPosition;
@@ -43,8 +43,33 @@ void Platform::Draw()
     glm::mat4 modelMatrix = this->transform.GetModelMatrix();
     this->shader->SetUniformMatrix4fv("_modelViewMatrix", glm::value_ptr(modelMatrix));
     
+    if (IsOnProjectilePath)
+        this->model = &Renderer::Model_Cube_Crate;
+    else
+        this->model = this->_defaultModel;
+    
     this->model->Draw(shader);
 }
 
 void Platform::Update()
 { }
+
+/// Stripes the platform models so it looks like a grid
+void Platform::SetDefaultPlatformModel()
+{
+    if ((int) _startingPosition.z % 2 == 0 && (int) _startingPosition.x % 2 == 0)
+    {
+        this->model = &Renderer::Model_Cube_Grass;
+        this->_defaultModel = &Renderer::Model_Cube_Grass;
+    }
+    else if(abs((int) _startingPosition.z % 2) == 1 && abs((int) _startingPosition.x % 2) == 1)
+    {
+        this->model = &Renderer::Model_Cube_Grass;
+        this->_defaultModel = &Renderer::Model_Cube_Grass;
+    }
+    else
+    {
+        this->model = &Renderer::Model_Cube_Brick;
+        this->_defaultModel = &Renderer::Model_Cube_Brick;
+    }
+}

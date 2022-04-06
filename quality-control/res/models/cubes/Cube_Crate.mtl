@@ -1,8 +1,8 @@
-# Blender MTL File: 'Cube_Crate.blend'
+# Blender MTL File: 'None'
 # Material Count: 2
 
 newmtl Wood
-Ns 96.078431
+Ns 96.078443
 Ka 1.000000 1.000000 1.000000
 Kd 0.300596 0.162337 0.046968
 Ks 0.500000 0.500000 0.500000
@@ -12,7 +12,7 @@ d 1.000000
 illum 2
 
 newmtl Wood_Light
-Ns 96.078431
+Ns 96.078443
 Ka 1.000000 1.000000 1.000000
 Kd 0.430576 0.251731 0.069541
 Ks 0.500000 0.500000 0.500000
