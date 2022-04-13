@@ -94,6 +94,7 @@ private:
     int _currentWave;
     float _speed;
     float _projectileCount;
+    
     Timer _projectileTimer;
     
     Skybox* _skybox;

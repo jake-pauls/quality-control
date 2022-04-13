@@ -57,7 +57,6 @@ void Game::Init()
     _skyboxShaderProgram->Bind();
     
     InitializeGameObjects();
-    
 }
 
 void Game::LoadModels()
@@ -80,7 +79,7 @@ void Game::InitializeGameObjects()
     _speed = 0.2;
     _projectileCount = 1;
   
-    // Create the base platform
+    // Create the base platform (5x5 grid)
     for (int i = -2; i < 3; i++)
     {
         for (int j = -2; j < 3; j++)
@@ -116,6 +115,9 @@ void Game::DetectCollisions()
                 // Player was hit by this projectile
                 DestroyGameObject(*(*obj));
                 _gameLives--;
+                
+                // Set player boolean to flash model red
+                PlayerRef->IsHitByProjectile = true;
                 
                 if (_gameLives == 0)
                     CurrentState = GameState::GAME_OVER;
@@ -262,7 +264,7 @@ void Game::Update()
     
     // This is where game objects are detected and IMMEDIATELY destroyed
     DetectCollisions();
-    if (_projectileTimer.GetElapsedTime() >= 5)
+    if (_projectileTimer.GetElapsedTimeInSeconds() >= 5)
     {
         // Reset all projectile lanes at the start of the wave
         ResetLaneModels();
@@ -356,7 +358,6 @@ void Game::ResetLaneModels()
     {
         Platform* plat = dynamic_cast<Platform*>((*obj));
         if (plat != nullptr) {
-            LOG("Reset platform models");
             plat->IsOnProjectilePath = false;
         }
     }

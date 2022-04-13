@@ -25,7 +25,7 @@ struct Timer
     Timer() { Reset(); }
     
     void Reset() { startTime = currentTime(); }
-    double GetElapsedTime()
+    double GetElapsedTimeInSeconds()
     {
         return std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime() - startTime).count() / 1000000000.0;
     }

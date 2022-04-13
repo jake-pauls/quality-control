@@ -39,8 +39,27 @@ void Player::Draw()
     glm::mat4 modelMatrix = this->transform.GetModelMatrix();
     this->shader->SetUniformMatrix4fv("_modelViewMatrix", glm::value_ptr(modelMatrix));
     
-    // Draw cube mesh
-    this->model->Draw(shader);
+    // Determine whether player was hit to assign custom ambient lighting
+    if (IsHitByProjectile) {
+        glm::vec4 diffuse(0.8f, 0.1f, 0.1f, 1.0f);
+        this->model->Draw(shader, diffuse);
+        
+        // Start the hit timer
+        if (!_isHitTimerOn) {
+            _hitTimer.Reset();
+            _isHitTimerOn = true;
+        }
+        
+        // Reset the hit timer and draw call after 0.55 seconds
+        if (_hitTimer.GetElapsedTimeInSeconds() >= 0.55) {
+            _hitTimer.Reset();
+            _isHitTimerOn = false;
+            IsHitByProjectile = false;
+        }
+    } else {
+        this->model->Draw(shader);
+    }
+    
 }
 
 /// Update is called once per frame
