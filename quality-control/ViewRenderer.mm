@@ -19,7 +19,7 @@
     
     Game _game;
     
-    SystemSoundID _soundID[2];
+    SystemSoundID _soundID[3];
 }
 
 @end
@@ -74,7 +74,8 @@
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[0]);
     soundFile = [[NSBundle mainBundle] pathForResource:@"movement" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[1]);
-    
+    soundFile = [[NSBundle mainBundle] pathForResource:@"playerHit" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[2]);
 }
 
 - (void)draw
@@ -99,6 +100,10 @@
         if (_game.bulletFired) {
             [self activateSFX:0];
             _game.bulletFired = false;
+        }
+        if (_game.playerHit) {
+            [self activateSFX:2];
+            _game.playerHit = false;
         }
     }
     

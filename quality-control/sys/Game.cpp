@@ -113,6 +113,8 @@ void Game::DetectCollisions()
                     ResetLaneModelsWithIndex(proj->transform.position.z, 'z');
                 
                 // Player was hit by this projectile
+                // Check lose condition here
+                playerHit = true;
                 DestroyGameObject(*(*obj));
                 _gameLives--;
                 

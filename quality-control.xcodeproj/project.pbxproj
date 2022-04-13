@@ -10,6 +10,8 @@
 		1DC7CC6527F4C24600BA8298 /* libassimp-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */; };
 		2803A00027F0270900FAB22C /* gunfire.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFD27F0270900FAB22C /* gunfire.wav */; };
 		2803A00127F0270900FAB22C /* movement.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFE27F0270900FAB22C /* movement.wav */; };
+		283554E727FE277400890822 /* buttonClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 283554E627FE277400890822 /* buttonClick.wav */; };
+		283554E927FE2B3E00890822 /* playerHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 283554E827FE2B3E00890822 /* playerHit.wav */; };
 		286D7D6127F39C69009595B8 /* bgm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 286D7D6027F39C69009595B8 /* bgm.wav */; };
 		286D7D6327F39F0A009595B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286D7D6227F39F0A009595B8 /* AVFoundation.framework */; };
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
@@ -69,6 +71,8 @@
 		1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libassimp-fat.a"; path = "quality-control/vendor/lib/iOS/libassimp-fat.a"; sourceTree = "<group>"; };
 		28039FFD27F0270900FAB22C /* gunfire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gunfire.wav; sourceTree = "<group>"; };
 		28039FFE27F0270900FAB22C /* movement.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = movement.wav; sourceTree = "<group>"; };
+		283554E627FE277400890822 /* buttonClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buttonClick.wav; sourceTree = "<group>"; };
+		283554E827FE2B3E00890822 /* playerHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerHit.wav; sourceTree = "<group>"; };
 		286D7D6027F39C69009595B8 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
 		286D7D6227F39F0A009595B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
@@ -169,9 +173,11 @@
 		28892F8227F0120500FF27CB /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				283554E627FE277400890822 /* buttonClick.wav */,
 				28039FFD27F0270900FAB22C /* gunfire.wav */,
 				28039FFE27F0270900FAB22C /* movement.wav */,
 				286D7D6027F39C69009595B8 /* bgm.wav */,
+				283554E827FE2B3E00890822 /* playerHit.wav */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -456,6 +462,8 @@
 				404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */,
 				40C5CEF927F2E32800FEDE81 /* Skybox_Top.jpg in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
+				283554E727FE277400890822 /* buttonClick.wav in Resources */,
+				283554E927FE2B3E00890822 /* playerHit.wav in Resources */,
 				9CAD53AE27C0C18C00B4C46C /* Passthrough.fsh in Resources */,
 				40C5CEFC27F2EC8F00FEDE81 /* Skybox_Middle.jpg in Resources */,
 				40CEF01527F06CFE005C174D /* ModelLighting.fsh in Resources */,
