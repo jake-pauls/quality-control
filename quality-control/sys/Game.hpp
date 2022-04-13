@@ -19,6 +19,7 @@
 #include "Player.hpp"
 #include "Projectile.hpp"
 #include "Timer.hpp"
+#include "Coin.hpp"
 
 #define CAMERA_POSITION glm::vec3(0, 9, 13)
 #define CAMERA_LOOKS_AT glm::vec3(0, 2, 0)
@@ -107,6 +108,9 @@ public:
     
     // Player test
     Player* PlayerRef;
+    
+    // Coin test
+    Coin* TestCoin;
     
     bool bulletFired = false;
 };

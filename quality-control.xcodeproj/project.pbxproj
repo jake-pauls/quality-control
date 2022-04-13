@@ -33,6 +33,9 @@
 		40A29F62280669C100972148 /* HeartIcon_Single.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F61280669C100972148 /* HeartIcon_Single.png */; };
 		40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6328066A7E00972148 /* HeartIcon_Double.png */; };
 		40A29F6628066A7E00972148 /* HeartIcon_Triple.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6428066A7E00972148 /* HeartIcon_Triple.png */; };
+		40A29F6A2806762D00972148 /* Coin.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F682806762D00972148 /* Coin.mtl */; };
+		40A29F6B2806762D00972148 /* Coin.obj in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F692806762D00972148 /* Coin.obj */; };
+		40A29F6E280676CB00972148 /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40A29F6C280676CB00972148 /* Coin.cpp */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
 		40BF4A8E27A1E8F500D45FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8D27A1E8F500D45FB6 /* SceneDelegate.swift */; };
@@ -94,6 +97,10 @@
 		40A29F61280669C100972148 /* HeartIcon_Single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Single.png; sourceTree = "<group>"; };
 		40A29F6328066A7E00972148 /* HeartIcon_Double.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Double.png; sourceTree = "<group>"; };
 		40A29F6428066A7E00972148 /* HeartIcon_Triple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Triple.png; sourceTree = "<group>"; };
+		40A29F682806762D00972148 /* Coin.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Coin.mtl; sourceTree = "<group>"; };
+		40A29F692806762D00972148 /* Coin.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Coin.obj; sourceTree = "<group>"; };
+		40A29F6C280676CB00972148 /* Coin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
+		40A29F6D280676CB00972148 /* Coin.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Coin.hpp; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
 		40BF4A8827A1E8F500D45FB6 /* quality-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quality-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +222,15 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		40A29F672806762D00972148 /* pickups */ = {
+			isa = PBXGroup;
+			children = (
+				40A29F682806762D00972148 /* Coin.mtl */,
+				40A29F692806762D00972148 /* Coin.obj */,
+			);
+			path = pickups;
+			sourceTree = "<group>";
+		};
 		40BF4A7F27A1E8F500D45FB6 = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				404DBB3D27F25F6F00AD0B35 /* Character.fbx */,
+				40A29F672806762D00972148 /* pickups */,
 				404DBB3F27F27E1100AD0B35 /* projectiles */,
 				40815CAC27F175E600AF5789 /* cubes */,
 			);
@@ -313,6 +330,8 @@
 				404018D327C5E3D300DDDC1C /* Projectile.hpp */,
 				404DBB4827F2882000AD0B35 /* Skybox.cpp */,
 				404DBB4927F2882000AD0B35 /* Skybox.hpp */,
+				40A29F6C280676CB00972148 /* Coin.cpp */,
+				40A29F6D280676CB00972148 /* Coin.hpp */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -450,6 +469,7 @@
 				404DBB3E27F25F6F00AD0B35 /* Character.fbx in Resources */,
 				40815CB827F177B500AF5789 /* Cube_Crate.mtl in Resources */,
 				40815CBA27F177B500AF5789 /* Cube_Dirt_Single.mtl in Resources */,
+				40A29F6A2806762D00972148 /* Coin.mtl in Resources */,
 				40815CC927F1A86A00AF5789 /* Brick.obj in Resources */,
 				40815CB927F177B500AF5789 /* Cube_Crate.obj in Resources */,
 				40C5CEDE27F2A33200FEDE81 /* Skybox.fsh in Resources */,
@@ -463,6 +483,7 @@
 				408B123A27F3EAA300A8DDD7 /* Launch.png in Resources */,
 				404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */,
 				40CEF01627F06CFE005C174D /* ModelLighting.vsh in Resources */,
+				40A29F6B2806762D00972148 /* Coin.obj in Resources */,
 				40C5CEF827F2E32800FEDE81 /* Skybox_Bottom.jpg in Resources */,
 				40815CBC27F177B500AF5789 /* Cube_Dirt_Single.obj in Resources */,
 				40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */,
@@ -479,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40A29F6E280676CB00972148 /* Coin.cpp in Sources */,
 				9CAD53B727C0C99300B4C46C /* Renderer.cpp in Sources */,
 				9C9CF4C327C1A8A800650B07 /* Game.cpp in Sources */,
 				40CEF01027F060D7005C174D /* TextureLoader.mm in Sources */,
@@ -644,6 +666,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -691,6 +714,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
