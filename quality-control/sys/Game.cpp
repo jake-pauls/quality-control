@@ -155,6 +155,7 @@ void Game::DetectCollisions()
             // Player walked over a coin, destroy it and increase score
             if (collision) {
                 DestroyGameObject(*(*obj));
+                coinCollected = true;
                 _gameScore += 10;
                 break;
             }

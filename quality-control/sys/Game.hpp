@@ -114,6 +114,7 @@ public:
     
     bool bulletFired = false;
     bool playerHit = false;
+    bool coinCollected = false;
 };
 
 #endif /* Game_hpp */
