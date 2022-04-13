@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -18,14 +18,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="quality_control" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GLKView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Title.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E86-iW-glp">
-                                <rect key="frame" x="20" y="33" width="374" height="257"/>
+                                <rect key="frame" x="16" y="33" width="343" height="257"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg7-NW-5so">
-                                <rect key="frame" x="146" y="765" width="128" height="31"/>
+                                <rect key="frame" x="146" y="570" width="89" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="play.fill" catalog="system">
                                     <color key="baseForegroundColor" red="0.047058823530000002" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAT-pV-eeX">
-                                <rect key="frame" x="146" y="726" width="128" height="31"/>
+                                <rect key="frame" x="146" y="531" width="89" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="arrow.clockwise" catalog="system">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,7 +47,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="GAME SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ul7-0M-2ZJ" userLabel="Final Score Text Field">
-                                <rect key="frame" x="88" y="392" width="218" height="28"/>
+                                <rect key="frame" x="88" y="392" width="179" height="28"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -59,7 +59,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HIGH SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="X41-uh-yCb" userLabel="High Score Text Field">
-                                <rect key="frame" x="88" y="344" width="218" height="28"/>
+                                <rect key="frame" x="88" y="344" width="179" height="28"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -71,7 +71,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameOver.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnc-qa-FU7">
-                                <rect key="frame" x="-186" y="101" width="792" height="150"/>
+                                <rect key="frame" x="-205.5" y="101" width="792" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="2pq-R9-7hg"/>
                                 </constraints>
@@ -89,7 +89,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SCORE" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
-                                <rect key="frame" x="297" y="62" width="97" height="30"/>
+                                <rect key="frame" x="297" y="62" width="58" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
@@ -97,6 +97,10 @@
                                 <fontDescription key="fontDescription" name="TitanOne" family="Titan One" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_character.png" translatesAutoresizingMaskIntoConstraints="NO" id="P5L-rp-Ifh">
+                                <rect key="frame" x="42" y="33" width="71" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -125,6 +129,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="characterIcon" destination="P5L-rp-Ifh" id="ThJ-g4-8cK"/>
                         <outlet property="doubleHeartIcon" destination="JgB-BY-cUE" id="bB5-Ij-gij"/>
                         <outlet property="finalScoreTextField" destination="Ul7-0M-2ZJ" id="aUG-D8-Lre"/>
                         <outlet property="gameOverImage" destination="bnc-qa-FU7" id="dZt-zC-eu1"/>
@@ -139,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.94202898550725" y="83.705357142857139"/>
+            <point key="canvasLocation" x="114.40000000000001" y="83.208395802098963"/>
         </scene>
     </scenes>
     <resources>
@@ -149,6 +154,7 @@
         <image name="HeartIcon_Triple.png" width="400" height="144"/>
         <image name="Title.png" width="1190" height="537"/>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="default_character.png" width="303" height="440"/>
         <image name="play.fill" catalog="system" width="116" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -29,6 +29,10 @@ void Renderer::LoadModelData()
     
     // Character Model
     Renderer::Model_Character = Model(RetrieveObjectiveCPath("Character.fbx"));
+    Renderer::Model_Orange_Character = Model(RetrieveObjectiveCPath("CharacterOrange.fbx"));
+    Renderer::Model_Purple_Character = Model(RetrieveObjectiveCPath("CharacterPurple.fbx"));
+    Renderer::Model_Gold_Character = Model(RetrieveObjectiveCPath("CharacterGold.fbx"));
+    Renderer::Model_Evil_Character = Model(RetrieveObjectiveCPath("CharacterEvil.fbx"));
     
     // Cubes/Platforms
     Renderer::Model_Cube_DarkGrass = Model(RetrieveObjectiveCPath("DarkGrass.obj"));
@@ -39,7 +43,11 @@ void Renderer::LoadModelData()
     // Projectiles
     Renderer::Model_Projectile_SpikyBall = Model(RetrieveObjectiveCPath("SpikyBall.obj"));
     Renderer::Model_Projectile_Enemy = Model(RetrieveObjectiveCPath("Enemy.obj"));
+    Renderer::Model_Projectile_Bee = Model(RetrieveObjectiveCPath("Bee.obj"));
+    Renderer::Model_Projectile_Crab = Model(RetrieveObjectiveCPath("Crab.obj"));
     Renderer::Model_Projectile_Saw = Model(RetrieveObjectiveCPath("Hazard_Saw.obj"));
+    Renderer::Model_Projectile_Bomb = Model(RetrieveObjectiveCPath("Bomb.obj"));
+    Renderer::Model_Projectile_Pipe = Model(RetrieveObjectiveCPath("Pipe_End.obj"));
     
     // Pickups
     Renderer::Model_Pickups_Coin = Model(RetrieveObjectiveCPath("Coin.obj"));

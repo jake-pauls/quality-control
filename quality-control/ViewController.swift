@@ -14,6 +14,9 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         
+        // Update the player model
+        viewRenderer.highScore = Int32(lastHighScore)
+        
         // Update heart icons for lives
         if viewRenderer.isGameStarted {
             updateHeartIcons(numberOfLives: Int(viewRenderer.gameLives))
@@ -46,6 +49,9 @@ extension ViewController: GLKViewControllerDelegate {
                 highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", lastHighScore), attributes: BlackTextAttributes)
             }
             
+            // Update the character icon
+            updateCharacerIcon()
+            
             toggleHideGameOverMenu(false)
         }
     }
@@ -74,6 +80,10 @@ class ViewController: GLKViewController {
     @IBOutlet weak var singleHeartIcon: UIImageView!
     @IBOutlet weak var doubleHeartIcon: UIImageView!
     @IBOutlet weak var tripleHeartIcon: UIImageView!
+    
+    /// Scope Creep
+    @IBOutlet weak var characterIcon: UIImageView!
+    
     
     /**
      * Initializes the GL view from a Swift context
@@ -106,6 +116,7 @@ class ViewController: GLKViewController {
         self.setupView()
         
         // Hide gameplay buttons (or gestures)
+        characterIcon.isHidden = true
         gameOverImage.isHidden = true
         restartButton.isHidden = true
         finalScoreTextField.isHidden = true
@@ -118,6 +129,7 @@ class ViewController: GLKViewController {
         
         // Retrieve last high score value
         lastHighScore = UserDefaults.standard.integer(forKey: "QC_HighScore")
+        viewRenderer.highScore = Int32(lastHighScore)
         
         // Setup audio
         let BGM = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
@@ -189,6 +201,7 @@ class ViewController: GLKViewController {
     }
     
     func toggleHideGameOverMenu(_ hide: Bool) {
+        characterIcon.isHidden = hide
         gameOverImage.isHidden = hide
         restartButton.isHidden = hide
         finalScoreTextField.isHidden = hide
@@ -234,6 +247,20 @@ class ViewController: GLKViewController {
             doubleHeartIcon.isHidden = true
             tripleHeartIcon.isHidden = true
             break
+        }
+    }
+    
+    func updateCharacerIcon() {
+        if (lastHighScore >= 1000) {
+            characterIcon.image = UIImage(named: "black_character");
+        } else if (lastHighScore >= 500) {
+            characterIcon.image = UIImage(named: "gold_character");
+        } else if (lastHighScore >= 250) {
+            characterIcon.image = UIImage(named: "purple_character");
+        } else if (lastHighScore >= 100) {
+            characterIcon.image = UIImage(named: "orange_character");
+        } else if (lastHighScore <= 50) {
+            characterIcon.image = UIImage(named: "default_character");
         }
     }
 }

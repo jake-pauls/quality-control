@@ -13,14 +13,22 @@ Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 dire
     : GameObject(shaderProgram), _startingPosition(position), _direction(direction), LaneId(laneId)
 {
     // Basic logic to provide variation to projectile models (or behaviours?)
-    int random = rand() % 3;
+    int random = rand() % 7;
     
     if (random == 0)
         this->model = &Renderer::Model_Projectile_SpikyBall;
     else if (random == 1)
-        this->model = &Renderer::Model_Projectile_Enemy;
-    else
+        this->model = &Renderer::Model_Projectile_Pipe;
+    else if (random == 2)
+        this->model = &Renderer::Model_Projectile_Bomb;
+    else if (random == 3)
         this->model = &Renderer::Model_Projectile_Saw;
+    else if (random == 4)
+        this->model = &Renderer::Model_Projectile_Enemy;
+    else if (random == 5)
+        this->model = &Renderer::Model_Projectile_Crab;
+    else
+        this->model = &Renderer::Model_Projectile_Bee;
     
     // Set transform data
     this->transform.position = position;

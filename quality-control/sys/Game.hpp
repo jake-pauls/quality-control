@@ -122,6 +122,8 @@ public:
     bool bulletFired = false;
     bool playerHit = false;
     bool coinCollected = false;
+    
+    inline static int HighScore;
 };
 
 #endif /* Game_hpp */

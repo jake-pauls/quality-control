@@ -194,8 +194,12 @@ void Game::ResetWaves()
 {
     _currentWave = 1;
     _speed = 0.2;
+    
     _projectileCount = 1;
+    _coinCount = 1;
+    
     _projectileTimer.Reset();
+    _coinTimer.Reset();
 }
 
 void Game::KillProjectiles()
@@ -376,9 +380,14 @@ void Game::UpdateProjectiles()
                 _coinCount += 1;
                 break;
             case 15:
+                _speed += 0.05;
                 _coinCount += 1;
                 _projectileCount += 1;
                 break;
+            case 20:
+                _speed += 0.025;
+                _coinCount += 1;
+                _projectileCount += 1;
             default:
                 break;
         }

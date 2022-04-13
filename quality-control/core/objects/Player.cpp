@@ -39,6 +39,19 @@ void Player::Draw()
     glm::mat4 modelMatrix = this->transform.GetModelMatrix();
     this->shader->SetUniformMatrix4fv("_modelViewMatrix", glm::value_ptr(modelMatrix));
     
+    // Check player model
+    if (Game::HighScore >= 1000) {
+        this->model = &Renderer::Model_Evil_Character;
+    } else if (Game::HighScore >= 500) {
+        this->model = &Renderer::Model_Gold_Character;
+    } else if (Game::HighScore >= 250) {
+        this->model = &Renderer::Model_Purple_Character;
+    } else if (Game::HighScore >= 100) {
+        this->model = &Renderer::Model_Orange_Character;
+    } else if (Game::HighScore <= 50) {
+        this->model = &Renderer::Model_Character;
+    }
+
     // Determine whether player was hit to assign custom ambient lighting
     if (IsHitByProjectile) {
         glm::vec4 diffuse(0.8f, 0.1f, 0.1f, 1.0f);

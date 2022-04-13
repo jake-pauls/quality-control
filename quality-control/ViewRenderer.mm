@@ -26,6 +26,7 @@
 
 @implementation ViewRenderer
 
+@synthesize highScore;
 @synthesize gameScore;
 @synthesize gameLives;
 @synthesize isGameStarted;
@@ -70,6 +71,7 @@
     
     _game.Awake();
     
+    // Initialize sound files
     NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"gunfire" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[0]);
     soundFile = [[NSBundle mainBundle] pathForResource:@"movement" ofType:@"wav"];
@@ -82,6 +84,9 @@
 
 - (void)draw
 {
+    // TODO: Refactor to set high score after view loads
+    _game.HighScore = highScore;
+    
     _game.Render();
 }
 
@@ -115,6 +120,8 @@
     
     if (_game.CurrentState == Game::GameState::GAME_OVER)
     {
+        _game.HighScore = highScore;
+        
         isGameStarted = false;
         isGameOver = true;
         
