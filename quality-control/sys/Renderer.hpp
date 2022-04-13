@@ -35,6 +35,7 @@ public:
     inline static Model Model_Cube_XLightGrass;
     inline static Model Model_Projectile_Cannonball;
     inline static Model Model_Projectile_SpikyBall;
+    inline static Model Model_Pickups_Coin;
 };
 
 #endif /* Renderer_hpp */

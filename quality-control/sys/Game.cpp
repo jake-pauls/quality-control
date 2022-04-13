@@ -17,6 +17,7 @@
 #include "Skybox.hpp"
 #include "Platform.hpp"
 #include "Projectile.hpp"
+#include "Coin.hpp"
 
 Game::Game()
 { }
@@ -92,6 +93,9 @@ void Game::InitializeGameObjects()
     PlayerRef = new Player(_modelLightingShaderProgram);
     g_GameObjects.insert(PlayerRef);
     
+    TestCoin = new Coin(_modelLightingShaderProgram, glm::vec3(1.0f, 0.5f, 0.0f));
+    g_GameObjects.insert(TestCoin);
+    
     // Start the projectile timer
     _projectileTimer.Reset();
 }
@@ -101,6 +105,8 @@ void Game::DetectCollisions()
     for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
     {
         Projectile* proj = dynamic_cast<Projectile *>((*obj));
+        Coin* coin = dynamic_cast<Coin *>((*obj));
+        
         if (proj != nullptr) {
             bool collision = GameObject::IsCollisionDetected(*PlayerRef, *(*obj));
             
@@ -140,6 +146,17 @@ void Game::DetectCollisions()
                     _gameScore++;
                     break;
                 }
+            }
+        }
+        
+        if (coin != nullptr) {
+            bool collision = GameObject::IsCollisionDetected(*PlayerRef, *(*obj));
+            
+            // Player walked over a coin, destroy it and increase score
+            if (collision) {
+                DestroyGameObject(*(*obj));
+                _gameScore += 10;
+                break;
             }
         }
     }
@@ -302,8 +319,8 @@ void Game::Update()
 
 void Game::SpawnProjectiles()
 {
-    int x = 4;
-    int z = 4;
+    int x = 5;
+    int z = 5;
     int offset = 8;
     int randomSide = rand() % 4 + 1;
     int randomlocationx = rand() % x + (-x/2);

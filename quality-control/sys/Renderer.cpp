@@ -39,6 +39,9 @@ void Renderer::LoadModelData()
     // Projectiles
     Renderer::Model_Projectile_Cannonball = Model(RetrieveObjectiveCPath("Cannonball.obj"));
     Renderer::Model_Projectile_SpikyBall = Model(RetrieveObjectiveCPath("SpikyBall.obj"));
+    
+    // Pickups
+    Renderer::Model_Pickups_Coin = Model(RetrieveObjectiveCPath("Coin.obj"));
 }
 
 /**
