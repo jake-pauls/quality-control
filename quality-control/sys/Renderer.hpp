@@ -29,9 +29,10 @@ public:
     
     // Global Model Types
     inline static Model Model_Character;
-    inline static Model Model_Cube_Crate;
-    inline static Model Model_Cube_Brick;
-    inline static Model Model_Cube_Grass;
+    inline static Model Model_Cube_XDarkGrass;
+    inline static Model Model_Cube_DarkGrass;
+    inline static Model Model_Cube_LightGrass;
+    inline static Model Model_Cube_XLightGrass;
     inline static Model Model_Projectile_Cannonball;
     inline static Model Model_Projectile_SpikyBall;
 };
