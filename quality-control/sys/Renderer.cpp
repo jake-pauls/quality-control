@@ -37,8 +37,9 @@ void Renderer::LoadModelData()
     Renderer::Model_Cube_XLightGrass = Model(RetrieveObjectiveCPath("XLightGrass.obj"));
     
     // Projectiles
-    Renderer::Model_Projectile_Cannonball = Model(RetrieveObjectiveCPath("Cannonball.obj"));
     Renderer::Model_Projectile_SpikyBall = Model(RetrieveObjectiveCPath("SpikyBall.obj"));
+    Renderer::Model_Projectile_Enemy = Model(RetrieveObjectiveCPath("Enemy.obj"));
+    Renderer::Model_Projectile_Saw = Model(RetrieveObjectiveCPath("Hazard_Saw.obj"));
     
     // Pickups
     Renderer::Model_Pickups_Coin = Model(RetrieveObjectiveCPath("Coin.obj"));

@@ -17,8 +17,6 @@
 		286D7D6327F39F0A009595B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 286D7D6227F39F0A009595B8 /* AVFoundation.framework */; };
 		404018D427C5E3D300DDDC1C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404018D227C5E3D300DDDC1C /* Projectile.cpp */; };
 		404DBB3E27F25F6F00AD0B35 /* Character.fbx in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB3D27F25F6F00AD0B35 /* Character.fbx */; };
-		404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4027F27E1E00AD0B35 /* Cannonball.obj */; };
-		404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */; };
 		404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4427F2804500AD0B35 /* SpikyBall.mtl */; };
 		404DBB4727F2804500AD0B35 /* SpikyBall.obj in Resources */ = {isa = PBXBuildFile; fileRef = 404DBB4527F2804500AD0B35 /* SpikyBall.obj */; };
 		404DBB4A27F2882000AD0B35 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404DBB4827F2882000AD0B35 /* Skybox.cpp */; };
@@ -34,6 +32,10 @@
 		408B123627F3E00300A8DDD7 /* GameOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123427F3E00300A8DDD7 /* GameOver.png */; };
 		408B123A27F3EAA300A8DDD7 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123927F3EAA300A8DDD7 /* Launch.png */; };
 		409B800D2806B690005783D0 /* TitanOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 409B800C2806B690005783D0 /* TitanOne-Regular.ttf */; };
+		409B80122806BCC6005783D0 /* Enemy.obj in Resources */ = {isa = PBXBuildFile; fileRef = 409B800E2806BCC6005783D0 /* Enemy.obj */; };
+		409B80132806BCC6005783D0 /* Enemy.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 409B800F2806BCC6005783D0 /* Enemy.mtl */; };
+		409B80142806BCC6005783D0 /* Hazard_Saw.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 409B80102806BCC6005783D0 /* Hazard_Saw.mtl */; };
+		409B80152806BCC6005783D0 /* Hazard_Saw.obj in Resources */ = {isa = PBXBuildFile; fileRef = 409B80112806BCC6005783D0 /* Hazard_Saw.obj */; };
 		40A29F62280669C100972148 /* HeartIcon_Single.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F61280669C100972148 /* HeartIcon_Single.png */; };
 		40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6328066A7E00972148 /* HeartIcon_Double.png */; };
 		40A29F6628066A7E00972148 /* HeartIcon_Triple.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6428066A7E00972148 /* HeartIcon_Triple.png */; };
@@ -92,8 +94,6 @@
 		404018D227C5E3D300DDDC1C /* Projectile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		404018D327C5E3D300DDDC1C /* Projectile.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
 		404DBB3D27F25F6F00AD0B35 /* Character.fbx */ = {isa = PBXFileReference; lastKnownFileType = file; path = Character.fbx; sourceTree = "<group>"; };
-		404DBB4027F27E1E00AD0B35 /* Cannonball.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cannonball.obj; sourceTree = "<group>"; };
-		404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cannonball.mtl; sourceTree = "<group>"; };
 		404DBB4427F2804500AD0B35 /* SpikyBall.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpikyBall.mtl; sourceTree = "<group>"; };
 		404DBB4527F2804500AD0B35 /* SpikyBall.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SpikyBall.obj; sourceTree = "<group>"; };
 		404DBB4827F2882000AD0B35 /* Skybox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
@@ -110,6 +110,10 @@
 		408B123427F3E00300A8DDD7 /* GameOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameOver.png; sourceTree = "<group>"; };
 		408B123927F3EAA300A8DDD7 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
 		409B800C2806B690005783D0 /* TitanOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TitanOne-Regular.ttf"; sourceTree = "<group>"; };
+		409B800E2806BCC6005783D0 /* Enemy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Enemy.obj; sourceTree = "<group>"; };
+		409B800F2806BCC6005783D0 /* Enemy.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Enemy.mtl; sourceTree = "<group>"; };
+		409B80102806BCC6005783D0 /* Hazard_Saw.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Hazard_Saw.mtl; sourceTree = "<group>"; };
+		409B80112806BCC6005783D0 /* Hazard_Saw.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Hazard_Saw.obj; sourceTree = "<group>"; };
 		40A29F61280669C100972148 /* HeartIcon_Single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Single.png; sourceTree = "<group>"; };
 		40A29F6328066A7E00972148 /* HeartIcon_Double.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Double.png; sourceTree = "<group>"; };
 		40A29F6428066A7E00972148 /* HeartIcon_Triple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Triple.png; sourceTree = "<group>"; };
@@ -213,10 +217,12 @@
 		404DBB3F27F27E1100AD0B35 /* projectiles */ = {
 			isa = PBXGroup;
 			children = (
+				409B800F2806BCC6005783D0 /* Enemy.mtl */,
+				409B800E2806BCC6005783D0 /* Enemy.obj */,
+				409B80102806BCC6005783D0 /* Hazard_Saw.mtl */,
+				409B80112806BCC6005783D0 /* Hazard_Saw.obj */,
 				404DBB4427F2804500AD0B35 /* SpikyBall.mtl */,
 				404DBB4527F2804500AD0B35 /* SpikyBall.obj */,
-				404DBB4127F27E1E00AD0B35 /* Cannonball.mtl */,
-				404DBB4027F27E1E00AD0B35 /* Cannonball.obj */,
 			);
 			path = projectiles;
 			sourceTree = "<group>";
@@ -498,9 +504,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				610513912806874D0013883F /* XDarkGrass.mtl in Resources */,
+				409B80142806BCC6005783D0 /* Hazard_Saw.mtl in Resources */,
 				408B123627F3E00300A8DDD7 /* GameOver.png in Resources */,
 				40A987E927A9AEA5003B5236 /* vendor in Resources */,
 				40A29F6628066A7E00972148 /* HeartIcon_Triple.png in Resources */,
+				409B80152806BCC6005783D0 /* Hazard_Saw.obj in Resources */,
+				409B80122806BCC6005783D0 /* Enemy.obj in Resources */,
 				40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */,
 				2803A00027F0270900FAB22C /* gunfire.wav in Resources */,
 				286D7D6127F39C69009595B8 /* bgm.wav in Resources */,
@@ -521,7 +530,6 @@
 				40815CB927F177B500AF5789 /* Cube_Crate.obj in Resources */,
 				409B800D2806B690005783D0 /* TitanOne-Regular.ttf in Resources */,
 				40C5CEDE27F2A33200FEDE81 /* Skybox.fsh in Resources */,
-				404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */,
 				40C5CEF927F2E32800FEDE81 /* Skybox_Top.jpg in Resources */,
 				40BF4A9327A1E8F500D45FB6 /* Main.storyboard in Resources */,
 				61051395280688460013883F /* XLightGrass.obj in Resources */,
@@ -534,7 +542,6 @@
 				6105137B28067A980013883F /* DarkGrass.obj in Resources */,
 				404DBB4727F2804500AD0B35 /* SpikyBall.obj in Resources */,
 				408B123A27F3EAA300A8DDD7 /* Launch.png in Resources */,
-				404DBB4327F27E1E00AD0B35 /* Cannonball.mtl in Resources */,
 				40CEF01627F06CFE005C174D /* ModelLighting.vsh in Resources */,
 				6105138328067B2D0013883F /* DarkGrass.mtl in Resources */,
 				40A29F6B2806762D00972148 /* Coin.obj in Resources */,
@@ -544,6 +551,7 @@
 				40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */,
 				40815CC827F1A86A00AF5789 /* Brick.mtl in Resources */,
 				2808A4C02806AD1900F755D8 /* coin.wav in Resources */,
+				409B80132806BCC6005783D0 /* Enemy.mtl in Resources */,
 				404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */,
 				40C5CEDF27F2A33200FEDE81 /* Skybox.vsh in Resources */,
 			);

@@ -33,8 +33,9 @@ public:
     inline static Model Model_Cube_DarkGrass;
     inline static Model Model_Cube_LightGrass;
     inline static Model Model_Cube_XLightGrass;
-    inline static Model Model_Projectile_Cannonball;
     inline static Model Model_Projectile_SpikyBall;
+    inline static Model Model_Projectile_Enemy;
+    inline static Model Model_Projectile_Saw;
     inline static Model Model_Pickups_Coin;
 };
 

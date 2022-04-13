@@ -13,12 +13,14 @@ Projectile::Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 dire
     : GameObject(shaderProgram), _startingPosition(position), _direction(direction), LaneId(laneId)
 {
     // Basic logic to provide variation to projectile models (or behaviours?)
-    int random = rand() % 2;
+    int random = rand() % 3;
     
     if (random == 0)
-        this->model = &Renderer::Model_Projectile_Cannonball;
-    else
         this->model = &Renderer::Model_Projectile_SpikyBall;
+    else if (random == 1)
+        this->model = &Renderer::Model_Projectile_Enemy;
+    else
+        this->model = &Renderer::Model_Projectile_Saw;
     
     // Set transform data
     this->transform.position = position;
@@ -65,7 +67,9 @@ void Projectile::Update()
     this->transform.position += vector;
     this->transform.Translate();
     
+    // Only rotate saws and enemies about Y-axis if they are spawned in
     vector = glm::vec3(rotationUpdate, 0, rotationUpdate) * _direction;
+
     this->transform.rotation += vector;
     this->transform.Rotate();
 }
