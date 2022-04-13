@@ -302,8 +302,8 @@ void Game::Update()
 
 void Game::SpawnProjectiles()
 {
-    int x = 4;
-    int z = 4;
+    int x = 5;
+    int z = 5;
     int offset = 8;
     int randomSide = rand() % 4 + 1;
     int randomlocationx = rand() % x + (-x/2);
