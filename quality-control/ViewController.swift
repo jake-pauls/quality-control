@@ -15,15 +15,16 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         
-        let scoreTextContent = String(format: "Score: %d", viewRenderer.gameScore)
-        let livesTextContent = String(format: "Lives: %d", viewRenderer.gameLives)
-       
+        // Update heart icons for lives
+        if viewRenderer.isGameStarted {
+            updateHeartIcons(numberOfLives: Int(viewRenderer.gameLives))
+        }
+        
+        let scoreTextContent = String(format: "SCORE: %d", viewRenderer.gameScore)
+        
         let scoreTextAttrString = NSAttributedString(string: scoreTextContent, attributes: WhiteTextAttributes)
         
-        let livesTextAttrString = NSAttributedString(string: livesTextContent, attributes: WhiteTextAttributes)
-        
         scoreTextField.attributedText = scoreTextAttrString
-        livesTextField.attributedText = livesTextAttrString
         
         // Check if game is over
         if (viewRenderer.isGameOver) {
@@ -60,7 +61,6 @@ class ViewController: GLKViewController {
     
     /// Game UI Elements
     @IBOutlet weak var scoreTextField: UITextField!
-    @IBOutlet weak var livesTextField: UITextField!
     
     /// Menu UI Elements
     @IBOutlet weak var titleImage: UIImageView!
@@ -69,6 +69,11 @@ class ViewController: GLKViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var finalScoreTextField: UITextField!
     @IBOutlet weak var highScoreTextField: UITextField!
+    
+    /// UI Heart Icons
+    @IBOutlet weak var singleHeartIcon: UIImageView!
+    @IBOutlet weak var doubleHeartIcon: UIImageView!
+    @IBOutlet weak var tripleHeartIcon: UIImageView!
     
     /**
      * Initializes the GL view from a Swift context
@@ -125,7 +130,6 @@ class ViewController: GLKViewController {
         
         // TODO: Use NSAttributeStrings for styling text fields
         scoreTextField.textColor = UIColor.white
-        livesTextField.textColor = UIColor.white
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.doSwipes(_:)))
         swipeRight.direction = .right
@@ -171,8 +175,10 @@ class ViewController: GLKViewController {
         playButton.isHidden = hide
         titleImage.isHidden = hide
         
+        singleHeartIcon.isHidden = !hide
+        doubleHeartIcon.isHidden = !hide
+        tripleHeartIcon.isHidden = !hide
         scoreTextField.isHidden = !hide
-        livesTextField.isHidden = !hide
     }
     
     func toggleHideGameOverMenu(_ hide: Bool) {
@@ -181,8 +187,10 @@ class ViewController: GLKViewController {
         finalScoreTextField.isHidden = hide
         highScoreTextField.isHidden = hide
         
+        singleHeartIcon.isHidden = !hide
+        doubleHeartIcon.isHidden = !hide
+        tripleHeartIcon.isHidden = !hide
         scoreTextField.isHidden = !hide
-        livesTextField.isHidden = !hide
     }
     
     @IBAction func Play(_ sender: UIButton) {
@@ -194,6 +202,31 @@ class ViewController: GLKViewController {
         viewRenderer.reset()
         
         toggleHideGameOverMenu(true)
+    }
+    
+    func updateHeartIcons(numberOfLives: Int) {
+        switch(numberOfLives) {
+        case 3:
+            singleHeartIcon.isHidden = true
+            doubleHeartIcon.isHidden = true
+            tripleHeartIcon.isHidden = false
+            break
+        case 2:
+            singleHeartIcon.isHidden = true
+            doubleHeartIcon.isHidden = false
+            tripleHeartIcon.isHidden = true
+            break
+        case 1:
+            singleHeartIcon.isHidden = false
+            doubleHeartIcon.isHidden = true
+            tripleHeartIcon.isHidden = true
+            break
+        default:
+            singleHeartIcon.isHidden = true
+            doubleHeartIcon.isHidden = true
+            tripleHeartIcon.isHidden = true
+            break
+        }
     }
 }
 
