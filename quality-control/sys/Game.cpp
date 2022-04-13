@@ -79,6 +79,7 @@ void Game::InitializeGameObjects()
     _currentWave = 1;
     _speed = 0.2;
     _projectileCount = 1;
+    _coinCount = 1;
   
     // Create the base platform (5x5 grid)
     for (int i = -2; i < 3; i++)
@@ -92,9 +93,6 @@ void Game::InitializeGameObjects()
     // Track a reference of the player
     PlayerRef = new Player(_modelLightingShaderProgram);
     g_GameObjects.insert(PlayerRef);
-    
-    TestCoin = new Coin(_modelLightingShaderProgram, glm::vec3(1.0f, 0.5f, 0.0f));
-    g_GameObjects.insert(TestCoin);
     
     // Start the projectile timer
     _projectileTimer.Reset();
@@ -196,8 +194,12 @@ void Game::ResetWaves()
 {
     _currentWave = 1;
     _speed = 0.2;
+    
     _projectileCount = 1;
+    _coinCount = 1;
+    
     _projectileTimer.Reset();
+    _coinTimer.Reset();
 }
 
 void Game::KillProjectiles()
@@ -212,7 +214,19 @@ void Game::KillProjectiles()
             
             // Destroy any remaining projectiles after the game ends
             DestroyGameObject(*(*obj));
-            LOG("Killing game object -> " << (*obj)->id);
+            break;
+        }
+    }
+}
+
+void Game::KillCoins()
+{
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        Coin* coin = dynamic_cast<Coin *>((*obj));
+        if (coin != nullptr)
+        {
+            DestroyGameObject(*(*obj));
             break;
         }
     }
@@ -284,6 +298,63 @@ void Game::Update()
     
     // This is where game objects are detected and IMMEDIATELY destroyed
     DetectCollisions();
+    
+    // Update projectiles in the scene
+    UpdateProjectiles();
+    
+    // Update coins in the scene
+    UpdateCoins();
+    
+    _skybox->Update();
+}
+
+// MARK: Coin Logic
+
+void Game::UpdateCoins()
+{
+   if (_coinTimer.GetElapsedTimeInSeconds() >= 8)
+   {
+       _coinTimer.Reset();
+       
+       SpawnCoins();
+   }
+    
+    // Check if coins are dead
+    for (GameObjectSet::iterator obj = g_GameObjects.begin(); obj != g_GameObjects.end(); obj++)
+    {
+        Coin* coin = dynamic_cast<Coin *>((*obj));
+        
+        if (coin != nullptr && coin->IsCoinTimeout)
+        {
+            DestroyGameObject(*(*obj));
+            break;
+        }
+    }
+}
+
+void Game::SpawnCoins()
+{
+    int x = 5;
+    int z = 5;
+    int randomlocationx = 0;
+    int randomlocationz = 0;
+    
+    Coin* coin;
+    
+    for (unsigned int i = 0; i < _coinCount; i++)
+    {
+        randomlocationx = rand() % x + (-x/2);
+        randomlocationz = rand() % z + (-z/2);
+        
+        coin = new Coin(_modelLightingShaderProgram, glm::vec3(randomlocationx, 0.5, randomlocationz));
+        g_GameObjects.insert(coin);
+    }
+}
+
+// MARK: Projectile Logic
+
+void Game::UpdateProjectiles()
+{
     if (_projectileTimer.GetElapsedTimeInSeconds() >= 5)
     {
         // Reset all projectile lanes at the start of the wave
@@ -295,14 +366,28 @@ void Game::Update()
             case 1:
                 _speed += 0.2;
                 break;
+            case 3:
+                _coinCount += 1;
+                break;
             case 5:
                 _speed += 0.1;
                 _projectileCount += 1;
+                _coinCount += 1;
                 break;
             case 10:
                 _speed += 0.1;
                 _projectileCount += 1;
+                _coinCount += 1;
                 break;
+            case 15:
+                _speed += 0.05;
+                _coinCount += 1;
+                _projectileCount += 1;
+                break;
+            case 20:
+                _speed += 0.025;
+                _coinCount += 1;
+                _projectileCount += 1;
             default:
                 break;
         }
@@ -314,8 +399,6 @@ void Game::Update()
         bulletFired = true;
         _currentWave += 1;
     }
-    
-    _skybox->Update();
 }
 
 void Game::SpawnProjectiles()

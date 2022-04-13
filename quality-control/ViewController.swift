@@ -5,8 +5,7 @@
 import GLKit
 import AVFoundation
 
-let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Galvji", size: 24.0)!, .foregroundColor: UIColor.white]
-
+let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "TitanOne", size: 40.0)!, .foregroundColor: UIColor.white]
 
 extension ViewController: GLKViewControllerDelegate {
     /**
@@ -15,12 +14,15 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         
+        // Update the player model
+        viewRenderer.highScore = Int32(lastHighScore)
+        
         // Update heart icons for lives
         if viewRenderer.isGameStarted {
             updateHeartIcons(numberOfLives: Int(viewRenderer.gameLives))
         }
         
-        let scoreTextContent = String(format: "SCORE: %d", viewRenderer.gameScore)
+        let scoreTextContent = String(format: "%d", viewRenderer.gameScore)
         
         let scoreTextAttrString = NSAttributedString(string: scoreTextContent, attributes: WhiteTextAttributes)
         
@@ -40,12 +42,15 @@ extension ViewController: GLKViewControllerDelegate {
             
             if lastHighScore < viewRenderer.gameScore {
                 UserDefaults.standard.set(viewRenderer.gameScore, forKey: "QC_HighScore")
-                
+
                 highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
                 lastHighScore = Int(viewRenderer.gameScore)
             } else {
                 highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", lastHighScore), attributes: BlackTextAttributes)
             }
+            
+            // Update the character icon
+            updateCharacerIcon()
             
             toggleHideGameOverMenu(false)
         }
@@ -75,6 +80,10 @@ class ViewController: GLKViewController {
     @IBOutlet weak var singleHeartIcon: UIImageView!
     @IBOutlet weak var doubleHeartIcon: UIImageView!
     @IBOutlet weak var tripleHeartIcon: UIImageView!
+    
+    /// Scope Creep
+    @IBOutlet weak var characterIcon: UIImageView!
+    
     
     /**
      * Initializes the GL view from a Swift context
@@ -107,6 +116,7 @@ class ViewController: GLKViewController {
         self.setupView()
         
         // Hide gameplay buttons (or gestures)
+        characterIcon.isHidden = true
         gameOverImage.isHidden = true
         restartButton.isHidden = true
         finalScoreTextField.isHidden = true
@@ -119,6 +129,7 @@ class ViewController: GLKViewController {
         
         // Retrieve last high score value
         lastHighScore = UserDefaults.standard.integer(forKey: "QC_HighScore")
+        viewRenderer.highScore = Int32(lastHighScore)
         
         // Setup audio
         let BGM = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
@@ -190,6 +201,7 @@ class ViewController: GLKViewController {
     }
     
     func toggleHideGameOverMenu(_ hide: Bool) {
+        characterIcon.isHidden = hide
         gameOverImage.isHidden = hide
         restartButton.isHidden = hide
         finalScoreTextField.isHidden = hide
@@ -235,6 +247,20 @@ class ViewController: GLKViewController {
             doubleHeartIcon.isHidden = true
             tripleHeartIcon.isHidden = true
             break
+        }
+    }
+    
+    func updateCharacerIcon() {
+        if (lastHighScore >= 1000) {
+            characterIcon.image = UIImage(named: "black_character");
+        } else if (lastHighScore >= 500) {
+            characterIcon.image = UIImage(named: "gold_character");
+        } else if (lastHighScore >= 250) {
+            characterIcon.image = UIImage(named: "purple_character");
+        } else if (lastHighScore >= 100) {
+            characterIcon.image = UIImage(named: "orange_character");
+        } else {
+            characterIcon.image = UIImage(named: "default_character");
         }
     }
 }

@@ -8,8 +8,6 @@
 Coin::Coin(Shader* shaderProgram, glm::vec3 position)
     : GameObject(shaderProgram), _startingPosition(position)
 {
-    // Basic logic to provide variation to projectile models (or behaviours?)
-//    int random = rand() % 2;
     this->model = &Renderer::Model_Pickups_Coin;
     
     // Set transform data
@@ -41,7 +39,12 @@ void Coin::Draw()
     glm::mat4 modelMatrix = this->transform.GetModelMatrix();
     this->shader->SetUniformMatrix4fv("_modelViewMatrix", glm::value_ptr(modelMatrix));
     
-    this->model->Draw(shader);
+    if (_coinTimer.GetElapsedTimeInSeconds() >= 5) {
+        glm::vec4 diffuse(1.0f, 0.2f, 0.2f, 1.0f);
+        this->model->Draw(shader, diffuse);
+    } else {
+        this->model->Draw(shader);
+    }
 }
 
 void Coin::Update()
@@ -55,4 +58,8 @@ void Coin::Update()
     glm::vec3 rot(rotationUpdate, 0.0f, 0.0f);
     this->transform.rotation += rot;
     this->transform.Rotate();
+    
+    // After 6 seconds, add the coin to the kill list
+    if (_coinTimer.GetElapsedTimeInSeconds() >= 6)
+        IsCoinTimeout = true;
 }
