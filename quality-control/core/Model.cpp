@@ -145,18 +145,6 @@ Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
             texVector.x = mesh->mTextureCoords[0][i].x;
             texVector.y = mesh->mTextureCoords[0][i].y;
             vertex.TexCoords = texVector;
-            
-            // Tangents
-            vector.x = mesh->mTangents[i].x;
-            vector.y = mesh->mTangents[i].y;
-            vector.z = mesh->mTangents[i].z;
-            vertex.Tangent = vector;
-            
-            // Bitangents
-            vector.x = mesh->mBitangents[i].x;
-            vector.y = mesh->mBitangents[i].y;
-            vector.z = mesh->mBitangents[i].z;
-            vertex.Bitangent = vector;
         }
         else
         {

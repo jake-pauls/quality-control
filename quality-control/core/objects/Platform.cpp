@@ -44,7 +44,18 @@ void Platform::Draw()
     this->shader->SetUniformMatrix4fv("_modelViewMatrix", glm::value_ptr(modelMatrix));
     
     if (IsOnProjectilePath)
-        this->model = &Renderer::Model_Cube_Crate;
+        if ((int) _startingPosition.z % 2 == 0 && (int) _startingPosition.x % 2 == 0)
+        {
+            this->model = &Renderer::Model_Cube_XLightGrass;
+        }
+        else if(abs((int) _startingPosition.z % 2) == 1 && abs((int) _startingPosition.x % 2) == 1)
+        {
+            this->model = &Renderer::Model_Cube_XLightGrass;
+        }
+        else
+        {
+            this->model = &Renderer::Model_Cube_XDarkGrass;
+        }
     else
         this->model = this->_defaultModel;
     
@@ -59,17 +70,17 @@ void Platform::SetDefaultPlatformModel()
 {
     if ((int) _startingPosition.z % 2 == 0 && (int) _startingPosition.x % 2 == 0)
     {
-        this->model = &Renderer::Model_Cube_Grass;
-        this->_defaultModel = &Renderer::Model_Cube_Grass;
+        this->model = &Renderer::Model_Cube_LightGrass;
+        this->_defaultModel = &Renderer::Model_Cube_LightGrass;
     }
     else if(abs((int) _startingPosition.z % 2) == 1 && abs((int) _startingPosition.x % 2) == 1)
     {
-        this->model = &Renderer::Model_Cube_Grass;
-        this->_defaultModel = &Renderer::Model_Cube_Grass;
+        this->model = &Renderer::Model_Cube_LightGrass;
+        this->_defaultModel = &Renderer::Model_Cube_LightGrass;
     }
     else
     {
-        this->model = &Renderer::Model_Cube_Brick;
-        this->_defaultModel = &Renderer::Model_Cube_Brick;
+        this->model = &Renderer::Model_Cube_DarkGrass;
+        this->_defaultModel = &Renderer::Model_Cube_DarkGrass;
     }
 }

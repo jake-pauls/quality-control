@@ -31,9 +31,10 @@ void Renderer::LoadModelData()
     Renderer::Model_Character = Model(RetrieveObjectiveCPath("Character.fbx"));
     
     // Cubes/Platforms
-    Renderer::Model_Cube_Brick = Model(RetrieveObjectiveCPath("Brick.obj"));
-    Renderer::Model_Cube_Crate = Model(RetrieveObjectiveCPath("Cube_Crate.obj"));
-    Renderer::Model_Cube_Grass = Model(RetrieveObjectiveCPath("Cube_Grass_Single.obj"));
+    Renderer::Model_Cube_DarkGrass = Model(RetrieveObjectiveCPath("DarkGrass.obj"));
+    Renderer::Model_Cube_XDarkGrass = Model(RetrieveObjectiveCPath("XDarkGrass.obj"));
+    Renderer::Model_Cube_LightGrass = Model(RetrieveObjectiveCPath("LightGrass.obj"));
+    Renderer::Model_Cube_XLightGrass = Model(RetrieveObjectiveCPath("XLightGrass.obj"));
     
     // Projectiles
     Renderer::Model_Projectile_Cannonball = Model(RetrieveObjectiveCPath("Cannonball.obj"));
