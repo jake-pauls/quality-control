@@ -56,7 +56,8 @@ class ViewController: GLKViewController {
     private var viewRenderer: ViewRenderer!
     private var lastHighScore: Int!
     
-    private var AudioPlayer = AVAudioPlayer()
+    private var MusicPlayer = AVAudioPlayer()
+    private var SfxPlayer = AVAudioPlayer()
     
     /// Game UI Elements
     @IBOutlet weak var scoreTextField: UITextField!
@@ -115,13 +116,20 @@ class ViewController: GLKViewController {
         lastHighScore = UserDefaults.standard.integer(forKey: "QC_HighScore")
         
         // Setup audio
-        let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
+        let BGM = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
        
-        AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
-        AudioPlayer.volume = 0.05
-        AudioPlayer.prepareToPlay()
-        AudioPlayer.numberOfLoops = -1
-        AudioPlayer.play()
+        MusicPlayer = try! AVAudioPlayer(contentsOf: BGM as URL)
+        MusicPlayer.volume = 0.05
+        MusicPlayer.prepareToPlay()
+        MusicPlayer.numberOfLoops = -1
+        MusicPlayer.play()
+        
+        let buttonSFX = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonClick", ofType: "wav")!)
+        
+        SfxPlayer = try! AVAudioPlayer(contentsOf: buttonSFX as URL)
+        SfxPlayer.volume = 1
+        SfxPlayer.prepareToPlay()
+        SfxPlayer.numberOfLoops = 0
         
         // TODO: Use NSAttributeStrings for styling text fields
         scoreTextField.textColor = UIColor.white
@@ -187,12 +195,13 @@ class ViewController: GLKViewController {
     
     @IBAction func Play(_ sender: UIButton) {
         toggleHideMainMenu(true)
+        SfxPlayer.play()
         viewRenderer.isGameStarted = true
     }
     
     @IBAction func Restart(_ sender: Any) {
         viewRenderer.reset()
-        
+        SfxPlayer.play()
         toggleHideGameOverMenu(true)
     }
 }

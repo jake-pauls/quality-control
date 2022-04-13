@@ -101,6 +101,7 @@ public:
     Player* PlayerRef;
     
     bool bulletFired = false;
+    bool playerHit = false;
 };
 
 #endif /* Game_hpp */
