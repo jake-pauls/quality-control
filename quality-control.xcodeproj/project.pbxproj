@@ -10,6 +10,7 @@
 		1DC7CC6527F4C24600BA8298 /* libassimp-fat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */; };
 		2803A00027F0270900FAB22C /* gunfire.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFD27F0270900FAB22C /* gunfire.wav */; };
 		2803A00127F0270900FAB22C /* movement.wav in Resources */ = {isa = PBXBuildFile; fileRef = 28039FFE27F0270900FAB22C /* movement.wav */; };
+		2808A4C02806AD1900F755D8 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2808A4BF2806AD1900F755D8 /* coin.wav */; };
 		283554E727FE277400890822 /* buttonClick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 283554E627FE277400890822 /* buttonClick.wav */; };
 		283554E927FE2B3E00890822 /* playerHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 283554E827FE2B3E00890822 /* playerHit.wav */; };
 		286D7D6127F39C69009595B8 /* bgm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 286D7D6027F39C69009595B8 /* bgm.wav */; };
@@ -82,6 +83,7 @@
 		1DC7CC6427F4C24600BA8298 /* libassimp-fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libassimp-fat.a"; path = "quality-control/vendor/lib/iOS/libassimp-fat.a"; sourceTree = "<group>"; };
 		28039FFD27F0270900FAB22C /* gunfire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gunfire.wav; sourceTree = "<group>"; };
 		28039FFE27F0270900FAB22C /* movement.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = movement.wav; sourceTree = "<group>"; };
+		2808A4BF2806AD1900F755D8 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
 		283554E627FE277400890822 /* buttonClick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = buttonClick.wav; sourceTree = "<group>"; };
 		283554E827FE2B3E00890822 /* playerHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerHit.wav; sourceTree = "<group>"; };
 		286D7D6027F39C69009595B8 /* bgm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgm.wav; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 		28892F8227F0120500FF27CB /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				2808A4BF2806AD1900F755D8 /* coin.wav */,
 				283554E627FE277400890822 /* buttonClick.wav */,
 				28039FFD27F0270900FAB22C /* gunfire.wav */,
 				28039FFE27F0270900FAB22C /* movement.wav */,
@@ -528,6 +531,7 @@
 				6105138528067B2D0013883F /* LightGrass.mtl in Resources */,
 				40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */,
 				40815CC827F1A86A00AF5789 /* Brick.mtl in Resources */,
+				2808A4C02806AD1900F755D8 /* coin.wav in Resources */,
 				404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */,
 				40C5CEDF27F2A33200FEDE81 /* Skybox.vsh in Resources */,
 			);

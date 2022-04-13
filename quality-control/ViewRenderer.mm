@@ -19,7 +19,7 @@
     
     Game _game;
     
-    SystemSoundID _soundID[3];
+    SystemSoundID _soundID[4];
 }
 
 @end
@@ -76,6 +76,8 @@
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[1]);
     soundFile = [[NSBundle mainBundle] pathForResource:@"playerHit" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[2]);
+    soundFile = [[NSBundle mainBundle] pathForResource:@"coin" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[3]);
 }
 
 - (void)draw
@@ -104,6 +106,10 @@
         if (_game.playerHit) {
             [self activateSFX:2];
             _game.playerHit = false;
+        }
+        if (_game.coinCollected) {
+            [self activateSFX:3];
+            _game.coinCollected = false;
         }
     }
     
