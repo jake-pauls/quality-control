@@ -72,6 +72,13 @@ public:
     
     void HandleInput(int keyCode);
     void SpawnProjectiles();
+    
+    /// Projectile lane model methods
+    void SetProjectileLaneDiscernibility(int laneIndex, char laneId);
+    void ResetLaneModelsWithIndex(int laneIndex, char laneId);
+    
+    // Resets all lane models to a default
+    void ResetLaneModels();
 
 private:
     GLfloat _viewWidth;
@@ -84,9 +91,10 @@ private:
     int _gameScore;
     int _gameLives;
     
-    int _wave;
+    int _currentWave;
     float _speed;
     float _projectileCount;
+    
     Timer _projectileTimer;
     
     Skybox* _skybox;

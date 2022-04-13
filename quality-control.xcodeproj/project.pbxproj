@@ -32,6 +32,9 @@
 		408B123527F3E00300A8DDD7 /* Title.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123327F3E00300A8DDD7 /* Title.png */; };
 		408B123627F3E00300A8DDD7 /* GameOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123427F3E00300A8DDD7 /* GameOver.png */; };
 		408B123A27F3EAA300A8DDD7 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123927F3EAA300A8DDD7 /* Launch.png */; };
+		40A29F62280669C100972148 /* HeartIcon_Single.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F61280669C100972148 /* HeartIcon_Single.png */; };
+		40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6328066A7E00972148 /* HeartIcon_Double.png */; };
+		40A29F6628066A7E00972148 /* HeartIcon_Triple.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6428066A7E00972148 /* HeartIcon_Triple.png */; };
 		40A987E927A9AEA5003B5236 /* vendor in Resources */ = {isa = PBXBuildFile; fileRef = 40A987E827A9AEA4003B5236 /* vendor */; };
 		40BF4A8C27A1E8F500D45FB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */; };
 		40BF4A8E27A1E8F500D45FB6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF4A8D27A1E8F500D45FB6 /* SceneDelegate.swift */; };
@@ -92,6 +95,9 @@
 		408B123327F3E00300A8DDD7 /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Title.png; sourceTree = "<group>"; };
 		408B123427F3E00300A8DDD7 /* GameOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameOver.png; sourceTree = "<group>"; };
 		408B123927F3EAA300A8DDD7 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
+		40A29F61280669C100972148 /* HeartIcon_Single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Single.png; sourceTree = "<group>"; };
+		40A29F6328066A7E00972148 /* HeartIcon_Double.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Double.png; sourceTree = "<group>"; };
+		40A29F6428066A7E00972148 /* HeartIcon_Triple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Triple.png; sourceTree = "<group>"; };
 		40A987E827A9AEA4003B5236 /* vendor */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vendor; sourceTree = "<group>"; };
 		40BF4A8827A1E8F500D45FB6 /* quality-control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "quality-control.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BF4A8B27A1E8F500D45FB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 		408B122E27F3DEE400A8DDD7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				40A29F61280669C100972148 /* HeartIcon_Single.png */,
+				40A29F6328066A7E00972148 /* HeartIcon_Double.png */,
+				40A29F6428066A7E00972148 /* HeartIcon_Triple.png */,
 				408B123927F3EAA300A8DDD7 /* Launch.png */,
 				408B123427F3E00300A8DDD7 /* GameOver.png */,
 				408B123327F3E00300A8DDD7 /* Title.png */,
@@ -433,11 +442,13 @@
 			files = (
 				408B123627F3E00300A8DDD7 /* GameOver.png in Resources */,
 				40A987E927A9AEA5003B5236 /* vendor in Resources */,
+				40A29F6628066A7E00972148 /* HeartIcon_Triple.png in Resources */,
 				40BF4A9827A1E8F600D45FB6 /* LaunchScreen.storyboard in Resources */,
 				2803A00027F0270900FAB22C /* gunfire.wav in Resources */,
 				286D7D6127F39C69009595B8 /* bgm.wav in Resources */,
 				2803A00127F0270900FAB22C /* movement.wav in Resources */,
 				9C9CF4C027C18C8300650B07 /* Passthrough.vsh in Resources */,
+				40A29F62280669C100972148 /* HeartIcon_Single.png in Resources */,
 				408B123527F3E00300A8DDD7 /* Title.png in Resources */,
 				40815CB027F1778500AF5789 /* Cube_Grass_Single.obj in Resources */,
 				40BF4A9527A1E8F600D45FB6 /* Assets.xcassets in Resources */,
@@ -462,6 +473,7 @@
 				40CEF01627F06CFE005C174D /* ModelLighting.vsh in Resources */,
 				40C5CEF827F2E32800FEDE81 /* Skybox_Bottom.jpg in Resources */,
 				40815CBC27F177B500AF5789 /* Cube_Dirt_Single.obj in Resources */,
+				40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */,
 				40815CC827F1A86A00AF5789 /* Brick.mtl in Resources */,
 				404DBB4627F2804500AD0B35 /* SpikyBall.mtl in Resources */,
 				40C5CEDF27F2A33200FEDE81 /* Skybox.vsh in Resources */,

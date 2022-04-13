@@ -33,6 +33,7 @@ void Renderer::LoadModelData()
     // Cubes/Platforms
     Renderer::Model_Cube_Brick = Model(RetrieveObjectiveCPath("Brick.obj"));
     Renderer::Model_Cube_Crate = Model(RetrieveObjectiveCPath("Cube_Crate.obj"));
+    Renderer::Model_Cube_Grass = Model(RetrieveObjectiveCPath("Cube_Grass_Single.obj"));
     
     // Projectiles
     Renderer::Model_Projectile_Cannonball = Model(RetrieveObjectiveCPath("Cannonball.obj"));
