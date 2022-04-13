@@ -70,8 +70,16 @@ public:
     // Reset wave data
     void ResetWaves();
     void KillProjectiles();
+    void KillCoins();
     
     void HandleInput(int keyCode);
+    
+    // Coin Spawning and Updating
+    void UpdateCoins();
+    void SpawnCoins();
+    
+    // Projectile Spawning and Updating
+    void UpdateProjectiles();
     void SpawnProjectiles();
     
     /// Projectile lane model methods
@@ -95,8 +103,10 @@ private:
     int _currentWave;
     float _speed;
     float _projectileCount;
+    float _coinCount;
     
     Timer _projectileTimer;
+    Timer _coinTimer;
     
     Skybox* _skybox;
     
@@ -108,9 +118,6 @@ public:
     
     // Player test
     Player* PlayerRef;
-    
-    // Coin test
-    Coin* TestCoin;
     
     bool bulletFired = false;
     bool playerHit = false;

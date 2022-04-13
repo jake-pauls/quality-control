@@ -113,6 +113,7 @@
         isGameOver = true;
         
         _game.KillProjectiles();
+        _game.KillCoins();
     }
 }
 
