@@ -5,8 +5,7 @@
 import GLKit
 import AVFoundation
 
-let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Galvji", size: 24.0)!, .foregroundColor: UIColor.white]
-
+let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "TitanOne", size: 40.0)!, .foregroundColor: UIColor.white]
 
 extension ViewController: GLKViewControllerDelegate {
     /**
@@ -20,7 +19,7 @@ extension ViewController: GLKViewControllerDelegate {
             updateHeartIcons(numberOfLives: Int(viewRenderer.gameLives))
         }
         
-        let scoreTextContent = String(format: "SCORE: %d", viewRenderer.gameScore)
+        let scoreTextContent = String(format: "%d", viewRenderer.gameScore)
         
         let scoreTextAttrString = NSAttributedString(string: scoreTextContent, attributes: WhiteTextAttributes)
         
@@ -40,7 +39,7 @@ extension ViewController: GLKViewControllerDelegate {
             
             if lastHighScore < viewRenderer.gameScore {
                 UserDefaults.standard.set(viewRenderer.gameScore, forKey: "QC_HighScore")
-                
+
                 highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
                 lastHighScore = Int(viewRenderer.gameScore)
             } else {

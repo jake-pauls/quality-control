@@ -7,6 +7,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TitanOne-Regular.ttf">
+            <string>TitanOne</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -50,7 +55,7 @@
                                     <constraint firstAttribute="height" constant="28" id="vMj-0V-VSC"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="TitanOne" family="Titan One" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HIGH SCORE" allowsEditingTextAttributes="YES" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="X41-uh-yCb" userLabel="High Score Text Field">
@@ -62,7 +67,7 @@
                                     <constraint firstAttribute="height" constant="28" id="ZV8-2P-6dx"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="TitanOne" family="Titan One" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameOver.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnc-qa-FU7">
@@ -84,12 +89,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SCORE" allowsEditingTextAttributes="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-Th-ibC">
-                                <rect key="frame" x="33" y="56" width="304" height="30"/>
+                                <rect key="frame" x="297" y="62" width="97" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Galvji-Bold" family="Galvji" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="TitanOne" family="Titan One" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
@@ -101,11 +106,11 @@
                             <constraint firstItem="X41-uh-yCb" firstAttribute="centerX" secondItem="bnc-qa-FU7" secondAttribute="centerX" constant="-13" id="4Ec-8P-y1a"/>
                             <constraint firstItem="bAT-pV-eeX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="146" id="8O7-QH-Vtc"/>
                             <constraint firstItem="X41-uh-yCb" firstAttribute="trailing" secondItem="Ul7-0M-2ZJ" secondAttribute="trailing" id="9F1-NA-R4X"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="77" id="D4B-bw-Pvx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Evf-Th-ibC" secondAttribute="trailing" constant="20" id="D4B-bw-Pvx"/>
                             <constraint firstItem="E86-iW-glp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Igm-we-4A9"/>
-                            <constraint firstItem="Evf-Th-ibC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="Ldf-Ue-pmf"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="Ldf-Ue-pmf"/>
                             <constraint firstItem="X41-uh-yCb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="344" id="Nyn-nV-5QC"/>
-                            <constraint firstItem="E86-iW-glp" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="-53" id="QV6-Wi-0B9"/>
+                            <constraint firstItem="E86-iW-glp" firstAttribute="top" secondItem="Evf-Th-ibC" secondAttribute="bottom" constant="-59" id="QV6-Wi-0B9"/>
                             <constraint firstItem="E86-iW-glp" firstAttribute="centerX" secondItem="bnc-qa-FU7" secondAttribute="centerX" constant="-3" id="TPu-ap-f6P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zg7-NW-5so" secondAttribute="bottom" constant="66" id="UGB-6P-wHH"/>
                             <constraint firstItem="bAT-pV-eeX" firstAttribute="trailing" secondItem="zg7-NW-5so" secondAttribute="trailing" id="VoO-sa-hou"/>
@@ -115,7 +120,7 @@
                             <constraint firstItem="zg7-NW-5so" firstAttribute="top" secondItem="bAT-pV-eeX" secondAttribute="bottom" constant="8" id="nMO-yJ-OHW"/>
                             <constraint firstItem="X41-uh-yCb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="oT0-mN-B4m"/>
                             <constraint firstItem="E86-iW-glp" firstAttribute="bottom" secondItem="bnc-qa-FU7" secondAttribute="bottom" constant="38.999999999999943" id="r6S-Em-xfQ"/>
-                            <constraint firstItem="Evf-Th-ibC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="wa1-u9-b9M"/>
+                            <constraint firstItem="Evf-Th-ibC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="297" id="wa1-u9-b9M"/>
                             <constraint firstItem="X41-uh-yCb" firstAttribute="leading" secondItem="Ul7-0M-2ZJ" secondAttribute="leading" id="yf2-RO-SJl"/>
                         </constraints>
                     </view>

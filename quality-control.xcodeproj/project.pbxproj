@@ -33,6 +33,7 @@
 		408B123527F3E00300A8DDD7 /* Title.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123327F3E00300A8DDD7 /* Title.png */; };
 		408B123627F3E00300A8DDD7 /* GameOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123427F3E00300A8DDD7 /* GameOver.png */; };
 		408B123A27F3EAA300A8DDD7 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 408B123927F3EAA300A8DDD7 /* Launch.png */; };
+		409B800D2806B690005783D0 /* TitanOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 409B800C2806B690005783D0 /* TitanOne-Regular.ttf */; };
 		40A29F62280669C100972148 /* HeartIcon_Single.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F61280669C100972148 /* HeartIcon_Single.png */; };
 		40A29F6528066A7E00972148 /* HeartIcon_Double.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6328066A7E00972148 /* HeartIcon_Double.png */; };
 		40A29F6628066A7E00972148 /* HeartIcon_Triple.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A29F6428066A7E00972148 /* HeartIcon_Triple.png */; };
@@ -108,6 +109,7 @@
 		408B123327F3E00300A8DDD7 /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Title.png; sourceTree = "<group>"; };
 		408B123427F3E00300A8DDD7 /* GameOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameOver.png; sourceTree = "<group>"; };
 		408B123927F3EAA300A8DDD7 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
+		409B800C2806B690005783D0 /* TitanOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TitanOne-Regular.ttf"; sourceTree = "<group>"; };
 		40A29F61280669C100972148 /* HeartIcon_Single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Single.png; sourceTree = "<group>"; };
 		40A29F6328066A7E00972148 /* HeartIcon_Double.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Double.png; sourceTree = "<group>"; };
 		40A29F6428066A7E00972148 /* HeartIcon_Triple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartIcon_Triple.png; sourceTree = "<group>"; };
@@ -255,6 +257,14 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		409B800B2806B685005783D0 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				409B800C2806B690005783D0 /* TitanOne-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		40A29F672806762D00972148 /* pickups */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +397,7 @@
 		9CAD53AA27C0C14000B4C46C /* res */ = {
 			isa = PBXGroup;
 			children = (
+				409B800B2806B685005783D0 /* fonts */,
 				408B122E27F3DEE400A8DDD7 /* images */,
 				28892F8227F0120500FF27CB /* sounds */,
 				40C5CECD27F29D3E00FEDE81 /* textures */,
@@ -508,6 +519,7 @@
 				40A29F6A2806762D00972148 /* Coin.mtl in Resources */,
 				40815CC927F1A86A00AF5789 /* Brick.obj in Resources */,
 				40815CB927F177B500AF5789 /* Cube_Crate.obj in Resources */,
+				409B800D2806B690005783D0 /* TitanOne-Regular.ttf in Resources */,
 				40C5CEDE27F2A33200FEDE81 /* Skybox.fsh in Resources */,
 				404DBB4227F27E1E00AD0B35 /* Cannonball.obj in Resources */,
 				40C5CEF927F2E32800FEDE81 /* Skybox_Top.jpg in Resources */,
