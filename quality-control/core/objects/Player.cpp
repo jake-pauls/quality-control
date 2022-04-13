@@ -48,7 +48,7 @@ void Player::Draw()
         this->model = &Renderer::Model_Purple_Character;
     } else if (Game::HighScore >= 100) {
         this->model = &Renderer::Model_Orange_Character;
-    } else if (Game::HighScore <= 50) {
+    } else {
         this->model = &Renderer::Model_Character;
     }
 

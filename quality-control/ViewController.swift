@@ -259,7 +259,7 @@ class ViewController: GLKViewController {
             characterIcon.image = UIImage(named: "purple_character");
         } else if (lastHighScore >= 100) {
             characterIcon.image = UIImage(named: "orange_character");
-        } else if (lastHighScore <= 50) {
+        } else {
             characterIcon.image = UIImage(named: "default_character");
         }
     }
