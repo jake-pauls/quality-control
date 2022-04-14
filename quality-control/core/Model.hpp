@@ -23,6 +23,7 @@ public:
     Model(const std::string& modelFilePath);
     
     void Draw(Shader* shader);
+    void Draw(Shader* shaderProgram, glm::vec4 diffuse);
     
     std::vector<Mesh::Texture> LoadedTextures;
     std::vector<Mesh> Meshes;

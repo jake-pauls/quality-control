@@ -13,12 +13,14 @@ public:
     using GameObject::GameObject;
     
     // GameObject specific constructor
-    Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction);
+    Projectile(Shader* shaderProgram, glm::vec3 position, glm::vec3 direction, char laneId);
     
     // Implement lifecycle methods
     void Awake();
     void Draw();
     void Update();
+    
+    char LaneId;
 private:
     glm::vec3 _startingPosition;
     glm::vec3 _direction;

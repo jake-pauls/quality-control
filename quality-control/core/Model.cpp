@@ -58,6 +58,32 @@ void Model::Draw(Shader* shaderProgram)
     }
 }
 
+void Model::Draw(Shader* shaderProgram, glm::vec4 diffuse)
+{
+    glm::vec3 _viewPosition(2.0f, 2.0f, 20.0f);
+    glm::vec3 _lightPosition(15.0f, 80.0f, 65.0f);
+    
+    shaderProgram->SetUniform3fv("_viewPosition", glm::value_ptr(_viewPosition));
+    shaderProgram->SetUniform3fv("_light.position", glm::value_ptr(_lightPosition));
+    shaderProgram->SetUniform1f("_shininess", 32.0f);
+    
+    
+    for (unsigned int i = 0; i < Meshes.size(); i++) {
+        Mesh currentMesh = Meshes[i];
+        Mesh::Color meshColor = currentMesh.colors;
+        
+        // Reassign diffuse based on passed vector
+        meshColor.diffuse *= diffuse;
+        
+        shaderProgram->SetUniform4f("_model.ambient", meshColor.ambient.r, meshColor.ambient.g, meshColor.ambient.b, meshColor.ambient.a);
+        shaderProgram->SetUniform4f("_model.diffuse", meshColor.diffuse.r, meshColor.diffuse.g, meshColor.diffuse.b, meshColor.diffuse.a);
+        shaderProgram->SetUniform4f("_model.specular", meshColor.specular.r, meshColor.specular.g, meshColor.specular.b, meshColor.specular.a);
+        shaderProgram->SetUniform4f("_model.emissive", meshColor.emissive.r, meshColor.emissive.g, meshColor.emissive.b, meshColor.emissive.a);
+        
+        currentMesh.Draw(shaderProgram);
+    }
+}
+
 /**
  * Recursively processes the nodes attached to a model loaded in an aiScene
  *
@@ -119,18 +145,6 @@ Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
             texVector.x = mesh->mTextureCoords[0][i].x;
             texVector.y = mesh->mTextureCoords[0][i].y;
             vertex.TexCoords = texVector;
-            
-            // Tangents
-            vector.x = mesh->mTangents[i].x;
-            vector.y = mesh->mTangents[i].y;
-            vector.z = mesh->mTangents[i].z;
-            vertex.Tangent = vector;
-            
-            // Bitangents
-            vector.x = mesh->mBitangents[i].x;
-            vector.y = mesh->mBitangents[i].y;
-            vector.z = mesh->mBitangents[i].z;
-            vertex.Bitangent = vector;
         }
         else
         {

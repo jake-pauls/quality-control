@@ -5,8 +5,7 @@
 import GLKit
 import AVFoundation
 
-let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "Galvji", size: 24.0)!, .foregroundColor: UIColor.white]
-
+let WhiteTextAttributes: [NSAttributedString.Key: Any] = [.font: UIFont(name: "TitanOne", size: 40.0)!, .foregroundColor: UIColor.white]
 
 extension ViewController: GLKViewControllerDelegate {
     /**
@@ -15,15 +14,19 @@ extension ViewController: GLKViewControllerDelegate {
     func glkViewControllerUpdate(_ controller: GLKViewController) {
         viewRenderer.update()
         
-        let scoreTextContent = String(format: "Score: %d", viewRenderer.gameScore)
-        let livesTextContent = String(format: "Lives: %d", viewRenderer.gameLives)
-       
+        // Update the player model
+        viewRenderer.highScore = Int32(lastHighScore)
+        
+        // Update heart icons for lives
+        if viewRenderer.isGameStarted {
+            updateHeartIcons(numberOfLives: Int(viewRenderer.gameLives))
+        }
+        
+        let scoreTextContent = String(format: "%d", viewRenderer.gameScore)
+        
         let scoreTextAttrString = NSAttributedString(string: scoreTextContent, attributes: WhiteTextAttributes)
         
-        let livesTextAttrString = NSAttributedString(string: livesTextContent, attributes: WhiteTextAttributes)
-        
         scoreTextField.attributedText = scoreTextAttrString
-        livesTextField.attributedText = livesTextAttrString
         
         // Check if game is over
         if (viewRenderer.isGameOver) {
@@ -39,12 +42,15 @@ extension ViewController: GLKViewControllerDelegate {
             
             if lastHighScore < viewRenderer.gameScore {
                 UserDefaults.standard.set(viewRenderer.gameScore, forKey: "QC_HighScore")
-                
+
                 highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", viewRenderer.gameScore), attributes: BlackTextAttributes)
                 lastHighScore = Int(viewRenderer.gameScore)
             } else {
                 highScoreTextField.attributedText = NSAttributedString(string: String(format: "High Score: %d", lastHighScore), attributes: BlackTextAttributes)
             }
+            
+            // Update the character icon
+            updateCharacerIcon()
             
             toggleHideGameOverMenu(false)
         }
@@ -56,11 +62,11 @@ class ViewController: GLKViewController {
     private var viewRenderer: ViewRenderer!
     private var lastHighScore: Int!
     
-    private var AudioPlayer = AVAudioPlayer()
+    private var MusicPlayer = AVAudioPlayer()
+    private var SfxPlayer = AVAudioPlayer()
     
     /// Game UI Elements
     @IBOutlet weak var scoreTextField: UITextField!
-    @IBOutlet weak var livesTextField: UITextField!
     
     /// Menu UI Elements
     @IBOutlet weak var titleImage: UIImageView!
@@ -69,6 +75,15 @@ class ViewController: GLKViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var finalScoreTextField: UITextField!
     @IBOutlet weak var highScoreTextField: UITextField!
+    
+    /// UI Heart Icons
+    @IBOutlet weak var singleHeartIcon: UIImageView!
+    @IBOutlet weak var doubleHeartIcon: UIImageView!
+    @IBOutlet weak var tripleHeartIcon: UIImageView!
+    
+    /// Scope Creep
+    @IBOutlet weak var characterIcon: UIImageView!
+    
     
     /**
      * Initializes the GL view from a Swift context
@@ -101,6 +116,7 @@ class ViewController: GLKViewController {
         self.setupView()
         
         // Hide gameplay buttons (or gestures)
+        characterIcon.isHidden = true
         gameOverImage.isHidden = true
         restartButton.isHidden = true
         finalScoreTextField.isHidden = true
@@ -113,19 +129,26 @@ class ViewController: GLKViewController {
         
         // Retrieve last high score value
         lastHighScore = UserDefaults.standard.integer(forKey: "QC_HighScore")
+        viewRenderer.highScore = Int32(lastHighScore)
         
         // Setup audio
-        let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
+        let BGM = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgm", ofType: "wav")!)
        
-        AudioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
-        AudioPlayer.volume = 0.05
-        AudioPlayer.prepareToPlay()
-        AudioPlayer.numberOfLoops = -1
-        AudioPlayer.play()
+        MusicPlayer = try! AVAudioPlayer(contentsOf: BGM as URL)
+        MusicPlayer.volume = 0.05
+        MusicPlayer.prepareToPlay()
+        MusicPlayer.numberOfLoops = -1
+        MusicPlayer.play()
+        
+        let buttonSFX = NSURL(fileURLWithPath: Bundle.main.path(forResource: "buttonClick", ofType: "wav")!)
+        
+        SfxPlayer = try! AVAudioPlayer(contentsOf: buttonSFX as URL)
+        SfxPlayer.volume = 1
+        SfxPlayer.prepareToPlay()
+        SfxPlayer.numberOfLoops = 0
         
         // TODO: Use NSAttributeStrings for styling text fields
         scoreTextField.textColor = UIColor.white
-        livesTextField.textColor = UIColor.white
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.doSwipes(_:)))
         swipeRight.direction = .right
@@ -171,29 +194,74 @@ class ViewController: GLKViewController {
         playButton.isHidden = hide
         titleImage.isHidden = hide
         
+        singleHeartIcon.isHidden = !hide
+        doubleHeartIcon.isHidden = !hide
+        tripleHeartIcon.isHidden = !hide
         scoreTextField.isHidden = !hide
-        livesTextField.isHidden = !hide
     }
     
     func toggleHideGameOverMenu(_ hide: Bool) {
+        characterIcon.isHidden = hide
         gameOverImage.isHidden = hide
         restartButton.isHidden = hide
         finalScoreTextField.isHidden = hide
         highScoreTextField.isHidden = hide
         
+        singleHeartIcon.isHidden = !hide
+        doubleHeartIcon.isHidden = !hide
+        tripleHeartIcon.isHidden = !hide
         scoreTextField.isHidden = !hide
-        livesTextField.isHidden = !hide
     }
     
     @IBAction func Play(_ sender: UIButton) {
         toggleHideMainMenu(true)
+        SfxPlayer.play()
         viewRenderer.isGameStarted = true
     }
     
     @IBAction func Restart(_ sender: Any) {
         viewRenderer.reset()
-        
+        SfxPlayer.play()
         toggleHideGameOverMenu(true)
+    }
+    
+    func updateHeartIcons(numberOfLives: Int) {
+        switch(numberOfLives) {
+        case 3:
+            singleHeartIcon.isHidden = true
+            doubleHeartIcon.isHidden = true
+            tripleHeartIcon.isHidden = false
+            break
+        case 2:
+            singleHeartIcon.isHidden = true
+            doubleHeartIcon.isHidden = false
+            tripleHeartIcon.isHidden = true
+            break
+        case 1:
+            singleHeartIcon.isHidden = false
+            doubleHeartIcon.isHidden = true
+            tripleHeartIcon.isHidden = true
+            break
+        default:
+            singleHeartIcon.isHidden = true
+            doubleHeartIcon.isHidden = true
+            tripleHeartIcon.isHidden = true
+            break
+        }
+    }
+    
+    func updateCharacerIcon() {
+        if (lastHighScore >= 1000) {
+            characterIcon.image = UIImage(named: "black_character");
+        } else if (lastHighScore >= 500) {
+            characterIcon.image = UIImage(named: "gold_character");
+        } else if (lastHighScore >= 250) {
+            characterIcon.image = UIImage(named: "purple_character");
+        } else if (lastHighScore >= 100) {
+            characterIcon.image = UIImage(named: "orange_character");
+        } else {
+            characterIcon.image = UIImage(named: "default_character");
+        }
     }
 }
 

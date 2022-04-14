@@ -20,8 +20,15 @@ public:
     void Draw();
     void Update();
     
+    // Set default platform model
+    void SetDefaultPlatformModel();
+    
+    bool IsOnProjectilePath;
+    
 private:
     glm::vec3 _startingPosition;
+    
+    Model* _defaultModel;
 };
 
 

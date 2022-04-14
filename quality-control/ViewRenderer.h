@@ -12,6 +12,7 @@
 
 @interface ViewRenderer : NSObject
 
+@property int highScore;
 @property int gameScore;
 @property int gameLives;
 @property bool isGameStarted;

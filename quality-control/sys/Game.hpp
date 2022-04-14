@@ -19,8 +19,9 @@
 #include "Player.hpp"
 #include "Projectile.hpp"
 #include "Timer.hpp"
+#include "Coin.hpp"
 
-#define CAMERA_POSITION glm::vec3(2, 9, 13)
+#define CAMERA_POSITION glm::vec3(0, 9, 13)
 #define CAMERA_LOOKS_AT glm::vec3(0, 2, 0)
 #define CAMERA_UP       glm::vec3(0, 1, 0)
 
@@ -69,9 +70,24 @@ public:
     // Reset wave data
     void ResetWaves();
     void KillProjectiles();
+    void KillCoins();
     
     void HandleInput(int keyCode);
+    
+    // Coin Spawning and Updating
+    void UpdateCoins();
+    void SpawnCoins();
+    
+    // Projectile Spawning and Updating
+    void UpdateProjectiles();
     void SpawnProjectiles();
+    
+    /// Projectile lane model methods
+    void SetProjectileLaneDiscernibility(int laneIndex, char laneId);
+    void ResetLaneModelsWithIndex(int laneIndex, char laneId);
+    
+    // Resets all lane models to a default
+    void ResetLaneModels();
 
 private:
     GLfloat _viewWidth;
@@ -84,10 +100,13 @@ private:
     int _gameScore;
     int _gameLives;
     
-    int _wave;
+    int _currentWave;
     float _speed;
     float _projectileCount;
+    float _coinCount;
+    
     Timer _projectileTimer;
+    Timer _coinTimer;
     
     Skybox* _skybox;
     
@@ -101,6 +120,10 @@ public:
     Player* PlayerRef;
     
     bool bulletFired = false;
+    bool playerHit = false;
+    bool coinCollected = false;
+    
+    inline static int HighScore;
 };
 
 #endif /* Game_hpp */

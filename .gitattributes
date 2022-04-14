@@ -1,5 +1,5 @@
 # Remove 'assimp' as a vendored path
-assimp/* linguist-vendored=false
+assimp/** linguist-vendored=false
 
 # Remove 'lib' as a vendored path
-lib/* linguist-vendored=false
+lib/** linguist-vendored=false

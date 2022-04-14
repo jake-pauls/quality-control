@@ -19,13 +19,14 @@
     
     Game _game;
     
-    SystemSoundID _soundID[2];
+    SystemSoundID _soundID[4];
 }
 
 @end
 
 @implementation ViewRenderer
 
+@synthesize highScore;
 @synthesize gameScore;
 @synthesize gameLives;
 @synthesize isGameStarted;
@@ -70,15 +71,22 @@
     
     _game.Awake();
     
+    // Initialize sound files
     NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"gunfire" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[0]);
     soundFile = [[NSBundle mainBundle] pathForResource:@"movement" ofType:@"wav"];
     AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[1]);
-    
+    soundFile = [[NSBundle mainBundle] pathForResource:@"playerHit" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[2]);
+    soundFile = [[NSBundle mainBundle] pathForResource:@"coin" ofType:@"wav"];
+    AudioServicesCreateSystemSoundID((__bridge  CFURLRef)[NSURL fileURLWithPath:soundFile], & _soundID[3]);
 }
 
 - (void)draw
 {
+    // TODO: Refactor to set high score after view loads
+    _game.HighScore = highScore;
+    
     _game.Render();
 }
 
@@ -100,14 +108,25 @@
             [self activateSFX:0];
             _game.bulletFired = false;
         }
+        if (_game.playerHit) {
+            [self activateSFX:2];
+            _game.playerHit = false;
+        }
+        if (_game.coinCollected) {
+            [self activateSFX:3];
+            _game.coinCollected = false;
+        }
     }
     
     if (_game.CurrentState == Game::GameState::GAME_OVER)
     {
+        _game.HighScore = highScore;
+        
         isGameStarted = false;
         isGameOver = true;
         
         _game.KillProjectiles();
+        _game.KillCoins();
     }
 }
 
